@@ -1,0 +1,111 @@
+package com.start.dvizk.auth
+
+import android.os.Bundle
+import android.text.InputType
+import android.text.method.PasswordTransformationMethod
+import android.view.LayoutInflater
+import android.view.View
+import android.view.View.OnClickListener
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.snackbar.Snackbar
+import com.google.gson.JsonObject
+import com.start.dvizk.R
+import com.start.dvizk.network.AuthApi
+import com.start.dvizk.network.RetrofitClient
+import com.start.dvizk.registration.RegistrationFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+
+class ProfileAuthFragment : Fragment(), OnClickListener {
+
+	private var isPasswordVisible = false
+
+	private lateinit var loginEditText: EditText
+	private lateinit var passwordEditText: EditText
+	private lateinit var registrationButton: TextView
+	private lateinit var showPasswordImageView: ImageView
+	private lateinit var button1: Button
+	private lateinit var fragment_auth_return_button: ImageView
+
+	override fun onCreateView(
+		inflater: LayoutInflater, container: ViewGroup?,
+		savedInstanceState: Bundle?
+	): View? {
+		// Inflate the layout for this fragment
+		return inflater.inflate(R.layout.fragment_profile_auth, container, false)
+	}
+
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+
+		loginEditText = view.findViewById(R.id.fragment_auth_login_edit_text)
+		passwordEditText = view.findViewById(R.id.fragment_auth_password_edit_text)
+		registrationButton = view.findViewById(R.id.text2)
+		showPasswordImageView = view.findViewById(R.id.fragment_auth_password_show)
+		button1 = view.findViewById(R.id.button1)
+		fragment_auth_return_button = view.findViewById(R.id.fragment_auth_return_button)
+
+		registrationButton.setOnClickListener {
+			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+
+			ft.add(R.id.fragment_container, RegistrationFragment())
+			ft.addToBackStack(null)
+			ft.commit()
+		}
+
+
+		button1.setOnClickListener(this)
+		showPasswordImageView.setOnClickListener(this)
+		fragment_auth_return_button.setOnClickListener(this)
+	}
+
+	override fun onClick(view: View?) {
+		when (view?.id) {
+			fragment_auth_return_button.id -> {
+				requireActivity().supportFragmentManager.popBackStack()
+			}
+			showPasswordImageView.id -> {
+				if (isPasswordVisible) {
+					showPasswordImageView.setImageResource(R.drawable.ic_password_hidden)
+					passwordEditText.transformationMethod = PasswordTransformationMethod()
+					isPasswordVisible = false
+				} else {
+					showPasswordImageView.setImageResource(R.drawable.ic_password_visible)
+					passwordEditText.transformationMethod = null;
+					isPasswordVisible = true
+				}
+				passwordEditText.setSelection(passwordEditText.length());
+			}
+			button1.id -> {
+				val apiInterface = RetrofitClient().getClient().create(AuthApi::class.java)
+
+				val call1: Call<JsonObject> = apiInterface.auth(loginEditText.text.toString(),passwordEditText.text.toString())
+				call1.enqueue(object : Callback<JsonObject> {
+
+					override fun onResponse(call: Call<JsonObject?>?, response: Response<JsonObject>) {
+						if (response.isSuccessful) {
+							Snackbar.make(view, "Успешно авторизовались, Брат скоро все сделаю", Snackbar.LENGTH_LONG).show()
+
+							return
+						}
+
+						Snackbar.make(view, response.message(), Snackbar.LENGTH_LONG).show()
+					}
+
+					override fun onFailure(call: Call<JsonObject?>, t: Throwable?) {
+						Snackbar.make(view, t?.message.toString(), Snackbar.LENGTH_LONG).show()
+						call.cancel()
+					}
+				})
+			}
+		}
+	}
+}

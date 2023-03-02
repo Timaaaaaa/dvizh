@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#181a20">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp">
+
+        <ImageView
+            android:id="@+id/fragment_registration_return_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="30dp"
+            android:scaleType="center"
+            android:src="@drawable/ic_arrow_white_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fragment_registration_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Заполните ваши данные"
+            android:textColor="@color/white"
+            android:textColorHint="#9D9E9E"
+            android:textSize="24sp"
+            android:layout_marginStart="17dp"
+            app:layout_constraintStart_toEndOf="@id/fragment_registration_return_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fragment_registration_return_button"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_registration_return_button"
+            />
+        
+        <ImageView
+            android:id="@+id/fragment_registration_user_image"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_registration_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_registration_image_placeholder"
+            />
+
+        <ImageView
+            android:id="@+id/fragment_registration_user_image_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_registration_user_image"
+            app:layout_constraintEnd_toEndOf="@id/fragment_registration_user_image"
+            />
+
+        <EditText
+            android:id="@+id/fragment_registration_user_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/bg_gradient_dark_grey_button"
+            android:hint="Имя фимилия пользователя"
+            android:padding="20dp"
+            android:textColorHint="#9D9E9E"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_image" />
+
+        <EditText
+            android:id="@+id/fragment_registration_user_nickname_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_gradient_dark_grey_button"
+            android:hint="Никнэйм пользователя"
+            android:padding="20dp"
+            android:textColorHint="#9D9E9E"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_name_edit_text" />
+
+        <EditText
+            android:id="@+id/fragment_registration_user_birthday_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_gradient_dark_grey_button"
+            android:hint="День рождение"
+            android:inputType="date"
+            android:padding="20dp"
+            android:textColorHint="#9D9E9E"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_nickname_edit_text" />
+
+        <!--  todo src  -->
+        <ImageView
+            android:id="@+id/fragment_registration_user_birthday_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fragment_registration_user_birthday_text_view"
+            app:layout_constraintEnd_toEndOf="@id/fragment_registration_user_birthday_text_view"
+            app:layout_constraintTop_toTopOf="@id/fragment_registration_user_birthday_text_view"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_logo"
+            />
+
+        <EditText
+            android:id="@+id/fragment_registration_user_email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_gradient_dark_grey_button"
+            android:hint="Эл. почта"
+            android:inputType="textEmailAddress"
+            android:padding="20dp"
+            android:textColorHint="#9D9E9E"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_birthday_text_view" />
+
+        <EditText
+            android:id="@+id/fragment_registration_user_phone_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_gradient_dark_grey_button"
+            android:hint="+7 (000) 000 00 00"
+            android:padding="20dp"
+            android:inputType="phone"
+            android:textColorHint="#9D9E9E"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_email_edit_text" />
+
+        <TextView
+            android:id="@+id/fragment_registration_user_gender_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_gradient_dark_grey_button"
+            android:hint="Пол"
+            android:textColorHint="@color/grey_default"
+            android:padding="20dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_phone_edit_text"
+            />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_purple_button"
+            android:text="Продолжить"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_gender_spinner" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

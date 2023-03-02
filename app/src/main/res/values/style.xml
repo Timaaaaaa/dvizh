@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/app_white</item>
+        <item name="colorPrimaryDark">@color/app_black</item>
+        <item name="colorAccent">@color/app_accent</item>
+    </style>
+
+    <style name="Base.AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Base.AppTheme.Translucent" />
+
+    <style name="SplashTheme" parent="Base.AppTheme.Translucent">
+        <item name="colorPrimaryDark">@color/purple_500</item>
+    </style>
+
+
+</resources>
