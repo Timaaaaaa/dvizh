@@ -7,4 +7,14 @@
         <item>Муж</item>
         <item>Жен</item>
     </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="title_search">Поиск</string>
+    <string name="title_favorites">Избранное</string>
+    <string name="title_qr">Dvizh QR</string>
+    <string name="title_my_tickets">Мои билеты</string>
+    <string name="title_profile">Профиль</string>
 </resources>

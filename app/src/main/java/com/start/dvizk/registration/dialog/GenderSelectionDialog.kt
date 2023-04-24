@@ -16,15 +16,23 @@ class GenderSelectionDialog : DialogFragment() {
 
     private var genderSelectionListener: GenderSelectionListener? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.DefaultTransparentDialogStyle)
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?,
-    ): View = inflater.inflate(
-            R.layout.dialog_gender_selection,
-            container,
-            false
-    )
+    ): View {
+
+        return inflater.inflate(
+                R.layout.dialog_gender_selection,
+                container,
+                false
+        )
+    }
 
     override fun onViewCreated(
             view: View,
@@ -35,11 +43,11 @@ class GenderSelectionDialog : DialogFragment() {
         maleText = view.findViewById(R.id.gender_selection_dialog_male_text)
         femaleText = view.findViewById(R.id.gender_selection_dialog_female_text)
         maleText.setOnClickListener {
-            genderSelectionListener?.getGender("Муж")
+            genderSelectionListener?.getGender("male")
             dismiss()
         }
         femaleText.setOnClickListener {
-            genderSelectionListener?.getGender("Жен")
+            genderSelectionListener?.getGender("female")
             dismiss()
         }
     }
