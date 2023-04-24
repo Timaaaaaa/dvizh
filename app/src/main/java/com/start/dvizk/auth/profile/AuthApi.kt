@@ -1,4 +1,4 @@
-package com.start.dvizk.network
+package com.start.dvizk.auth.profile
 
 import com.google.gson.JsonObject
 import retrofit2.Call

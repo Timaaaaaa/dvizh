@@ -1,7 +1,7 @@
-package com.start.dvizk.auth
+package com.start.dvizk.auth.profile
 
+import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -16,9 +16,10 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.JsonObject
 import com.start.dvizk.R
-import com.start.dvizk.network.AuthApi
+import com.start.dvizk.main.MainActivity
+import com.start.dvizk.main.MainPageFragment
 import com.start.dvizk.network.RetrofitClient
-import com.start.dvizk.registration.RegistrationFragment
+import com.start.dvizk.registration.registr.presentation.RegistrationFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +34,7 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 	private lateinit var registrationButton: TextView
 	private lateinit var showPasswordImageView: ImageView
 	private lateinit var button1: Button
-	private lateinit var fragment_auth_return_button: ImageView
+	private lateinit var returnButton: ImageView
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -48,10 +49,10 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 
 		loginEditText = view.findViewById(R.id.fragment_auth_login_edit_text)
 		passwordEditText = view.findViewById(R.id.fragment_auth_password_edit_text)
-		registrationButton = view.findViewById(R.id.text2)
+		registrationButton = view.findViewById(R.id.fragment_auth_registration_text)
 		showPasswordImageView = view.findViewById(R.id.fragment_auth_password_show)
-		button1 = view.findViewById(R.id.button1)
-		fragment_auth_return_button = view.findViewById(R.id.fragment_auth_return_button)
+		button1 = view.findViewById(R.id.fragment_auth_login)
+		returnButton = view.findViewById(R.id.fragment_auth_return_button)
 
 		registrationButton.setOnClickListener {
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
@@ -64,12 +65,12 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 
 		button1.setOnClickListener(this)
 		showPasswordImageView.setOnClickListener(this)
-		fragment_auth_return_button.setOnClickListener(this)
+		returnButton.setOnClickListener(this)
 	}
 
 	override fun onClick(view: View?) {
 		when (view?.id) {
-			fragment_auth_return_button.id -> {
+			returnButton.id -> {
 				requireActivity().supportFragmentManager.popBackStack()
 			}
 			showPasswordImageView.id -> {
@@ -90,9 +91,15 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 				val call1: Call<JsonObject> = apiInterface.auth(loginEditText.text.toString(),passwordEditText.text.toString())
 				call1.enqueue(object : Callback<JsonObject> {
 
-					override fun onResponse(call: Call<JsonObject?>?, response: Response<JsonObject>) {
+					override fun onResponse(
+						call: Call<JsonObject>,
+						response: Response<JsonObject>
+					) {
 						if (response.isSuccessful) {
 							Snackbar.make(view, "Успешно авторизовались, Брат скоро все сделаю", Snackbar.LENGTH_LONG).show()
+
+							val intent = Intent(requireContext(), MainActivity::class.java)
+							startActivity(intent)
 
 							return
 						}
@@ -100,8 +107,8 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 						Snackbar.make(view, response.message(), Snackbar.LENGTH_LONG).show()
 					}
 
-					override fun onFailure(call: Call<JsonObject?>, t: Throwable?) {
-						Snackbar.make(view, t?.message.toString(), Snackbar.LENGTH_LONG).show()
+					override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+						Snackbar.make(view, t.message.toString(), Snackbar.LENGTH_LONG).show()
 						call.cancel()
 					}
 				})

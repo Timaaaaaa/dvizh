@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/edit_text_1"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        android:gravity="center"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textColor="@color/white"
+        android:layout_marginEnd="9dp"/>
+
+    <EditText
+        android:id="@+id/edit_text_2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        android:gravity="center"
+        android:layout_marginStart="9dp"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:maxLength="1"
+        android:layout_marginEnd="9dp"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/edit_text_3"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        android:gravity="center"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:layout_marginStart="9dp"
+        android:maxLength="1"
+        android:layout_marginEnd="9dp"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/edit_text_4"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        android:gravity="center"
+        android:inputType="number"
+        android:layout_marginStart="9dp"
+        android:maxLength="1"
+        android:textColor="@color/white" />
+</merge>

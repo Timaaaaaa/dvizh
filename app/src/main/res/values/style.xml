@@ -18,5 +18,9 @@
         <item name="colorPrimaryDark">@color/purple_500</item>
     </style>
 
+    <style name="DefaultTransparentDialogStyle" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 
 </resources>

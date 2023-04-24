@@ -1,4 +1,4 @@
-package com.start.dvizk.auth
+package com.start.dvizk.auth.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
 import com.start.dvizk.R
-import com.start.dvizk.registration.RegistrationFragment
+import com.start.dvizk.auth.profile.ProfileAuthFragment
+import com.start.dvizk.registration.registr.presentation.RegistrationFragment
 
 class MainAuthFragment : Fragment() {
 
