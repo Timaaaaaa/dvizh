@@ -13,14 +13,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/separator">
+        app:layout_constraintBottom_toTopOf="@id/fragment_event_page_separator_main">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/fragment_event_page_header_image"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/fragment_return_button"
+                android:id="@+id/fragment_event_page_return_button"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="15dp"
@@ -41,18 +41,18 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/fragment_like_button"
+                android:id="@+id/fragment_event_page_like_button"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="15dp"
                 android:scaleType="center"
                 android:src="@drawable/like"
-                app:layout_constraintEnd_toStartOf="@id/fragment_send_button"
+                app:layout_constraintEnd_toStartOf="@id/fragment_event_page_send_button"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/fragment_send_button"
+                android:id="@+id/fragment_event_page_send_button"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/name_of_event"
+                android:id="@+id/fragment_event_page_header_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -71,20 +71,20 @@
                 android:textColor="@color/white"
                 android:textSize="31sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/fragment_send_button"
-                app:layout_constraintStart_toStartOf="@id/fragment_return_button"
-                app:layout_constraintTop_toBottomOf="@id/image" />
+                app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button"
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_header_image" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/menu"
+                android:id="@+id/fragment_event_page_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                app:layout_constraintStart_toStartOf="@id/fragment_return_button"
-                app:layout_constraintTop_toBottomOf="@id/name_of_event">
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_header_text">
 
                 <TextView
-                    android:id="@+id/type_of_event"
+                    android:id="@+id/fragment_event_page_category_of_event"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/tv_bg"
@@ -92,22 +92,22 @@
                     android:textColor="@color/app_accent"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/avatar_group"
+                    app:layout_constraintEnd_toStartOf="@id/fragment_event_page_avatar_group"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/avatar_group"
+                    android:id="@+id/fragment_event_page_avatar_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/sum_of_users"
-                    app:layout_constraintStart_toEndOf="@id/type_of_event"
+                    app:layout_constraintEnd_toStartOf="@id/fragment_event_page_number_of_users"
+                    app:layout_constraintStart_toEndOf="@id/fragment_event_page_category_of_event"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/civ_1"
+                    <ImageView
+                        android:id="@+id/fragment_event_page_avatar_group_avatar_1"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:scaleType="centerCrop"
@@ -116,8 +116,8 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/civ_2"
+                    <ImageView
+                        android:id="@+id/fragment_event_page_avatar_group_avatar_2"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="-15dp"
@@ -125,46 +125,46 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/destroy_lonely"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/civ_1"
+                        app:layout_constraintStart_toEndOf="@id/fragment_event_page_avatar_group_avatar_1"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/civ_3"
+                    <ImageView
+                        android:id="@+id/fragment_event_page_avatar_group_avatar_3"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="-15dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/destroy_lonely"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/civ_2"
+                        app:layout_constraintStart_toEndOf="@id/fragment_event_page_avatar_group_avatar_2"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/civ_4"
+                    <ImageView
+                        android:id="@+id/fragment_event_page_avatar_group_avatar_4"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="-15dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/destroy_lonely"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/civ_3"
+                        app:layout_constraintStart_toEndOf="@id/fragment_event_page_avatar_group_avatar_3"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/civ_5"
+                    <ImageView
+                        android:id="@+id/fragment_event_page_avatar_group_avatar_5"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="-15dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/destroy_lonely"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/civ_4"
+                        app:layout_constraintStart_toEndOf="@id/fragment_event_page_avatar_group_avatar_4"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/sum_of_users"
+                    android:id="@+id/fragment_event_page_number_of_users"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -172,67 +172,67 @@
                     android:textColor="@color/prompt_color"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/go_button"
-                    app:layout_constraintStart_toEndOf="@+id/avatar_group"
+                    app:layout_constraintEnd_toStartOf="@id/fragment_event_page_go_button"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_event_page_avatar_group"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/go_button"
+                    android:id="@+id/fragment_event_page_go_button"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="10dp"
                     android:src="@drawable/go"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/sum_of_users"
+                    app:layout_constraintStart_toEndOf="@id/fragment_event_page_number_of_users"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
-                android:id="@+id/separator_1"
+                android:id="@+id/fragment_event_page_separator_1"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_gradient_dark_grey_button"
-                app:layout_constraintTop_toBottomOf="@id/menu"
-                app:layout_constraintStart_toStartOf="@id/fragment_return_button"
-                app:layout_constraintEnd_toEndOf="@id/fragment_send_button" />
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_menu"
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list"
+                android:id="@+id/fragment_event_page_recycler_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 tools:itemCount="3"
                 tools:listitem="@layout/item_view"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/separator_1"
-                app:layout_constraintStart_toStartOf="@id/fragment_return_button"
-                app:layout_constraintEnd_toEndOf="@id/fragment_send_button"
-                app:layout_constraintBottom_toTopOf="@id/separator_2" />
+                app:layout_constraintTop_toBottomOf="@+id/fragment_event_page_separator_1"
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button"
+                app:layout_constraintBottom_toTopOf="@id/fragment_event_page_separator_2" />
 
             <View
-                android:id="@+id/separator_2"
+                android:id="@+id/fragment_event_page_separator_2"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_gradient_dark_grey_button"
-                app:layout_constraintTop_toBottomOf="@id/list"
-                app:layout_constraintStart_toStartOf="@id/fragment_return_button"
-                app:layout_constraintEnd_toEndOf="@id/fragment_send_button" />
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_recycler_view"
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/profile_panel"
+                android:id="@+id/fragment_event_page_profile_panel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:layout_constraintTop_toBottomOf="@id/separator_2"
-                app:layout_constraintStart_toStartOf="@id/fragment_return_button"
-                app:layout_constraintEnd_toEndOf="@id/fragment_send_button">
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_separator_2"
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/avatar"
+                <ImageView
+                    android:id="@+id/fragment_event_page_organizer_avatar"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:scaleType="centerCrop"
@@ -241,7 +241,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/name"
+                    android:id="@+id/fragment_event_page_organizer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -250,23 +250,23 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/avatar"
-                    app:layout_constraintTop_toTopOf="@id/avatar"
-                    app:layout_constraintBottom_toTopOf="@id/status" />
+                    app:layout_constraintStart_toEndOf="@+id/fragment_event_page_organizer_avatar"
+                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_organizer_avatar"
+                    app:layout_constraintBottom_toTopOf="@id/fragment_event_page_organizer_status" />
 
                 <TextView
-                    android:id="@+id/status"
+                    android:id="@+id/fragment_event_page_organizer_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Organizer"
                     android:textColor="@color/prompt_color"
                     android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@+id/name"
-                    app:layout_constraintTop_toBottomOf="@+id/name" />
+                    app:layout_constraintStart_toStartOf="@+id/fragment_event_page_organizer_name"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_event_page_organizer_name" />
 
                 <Button
-                    android:id="@+id/btn_follow"
+                    android:id="@+id/fragment_event_page_follow_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_purple_button"
@@ -274,23 +274,23 @@
                     android:textSize="13sp"
                     android:textColor="@color/white"
                     android:textAllCaps="false"
-                    app:layout_constraintTop_toTopOf="@id/name"
+                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_organizer_name"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@id/status" />
+                    app:layout_constraintBottom_toBottomOf="@id/fragment_event_page_organizer_status" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/about"
+                android:id="@+id/fragment_event_page_about_event"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:layout_constraintTop_toBottomOf="@id/profile_panel"
-                app:layout_constraintStart_toStartOf="@id/fragment_return_button"
-                app:layout_constraintEnd_toEndOf="@id/fragment_send_button">
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_profile_panel"
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button">
 
                 <TextView
-                    android:id="@+id/about_event"
+                    android:id="@+id/fragment_event_page_about_event_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="About Event"
@@ -302,7 +302,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/event_description"
+                    android:id="@+id/fragment_event_page_about_event_description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="14dp"
@@ -310,7 +310,7 @@
                     android:text="Lorem ipsum dolor sit omet. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniom, quis nostrud exercitatian ullamco laboris nisi ut"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
-                    app:layout_constraintTop_toBottomOf="@id/about_event"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_event_page_about_event_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
@@ -318,16 +318,16 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/gallery"
+                android:id="@+id/fragment_event_page_gallery"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="@id/fragment_return_button"
-                app:layout_constraintEnd_toEndOf="@id/fragment_send_button"
-                app:layout_constraintTop_toBottomOf="@id/about">
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button"
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_about_event">
 
                 <TextView
-                    android:id="@+id/tv_gallery"
+                    android:id="@+id/fragment_event_page_gallery_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Gallery (Pre-Event)"
@@ -336,11 +336,11 @@
                     android:textStyle="bold"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/see_all"
-                    app:layout_constraintBottom_toTopOf="@id/image1" />
+                    app:layout_constraintEnd_toStartOf="@id/fragment_event_page_see_all_button"
+                    app:layout_constraintBottom_toTopOf="@id/fragment_event_page_gallery_image_1" />
 
                 <TextView
-                    android:id="@+id/see_all"
+                    android:id="@+id/fragment_event_page_see_all_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="See All"
@@ -351,68 +351,69 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageView
-                    android:id="@+id/image1"
+                    android:id="@+id/fragment_event_page_gallery_image_1"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="15dp"
-                    app:layout_constraintTop_toBottomOf="@id/tv_gallery"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_event_page_gallery_text"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:src="@drawable/concert3" />
 
                 <ImageView
-                    android:id="@+id/image2"
+                    android:id="@+id/fragment_event_page_gallery_image_2"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    app:layout_constraintTop_toTopOf="@id/image1"
-                    app:layout_constraintStart_toEndOf="@id/image1"
+                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_gallery_image_1"
+                    app:layout_constraintStart_toEndOf="@id/fragment_event_page_gallery_image_1"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/image3"
+                    app:layout_constraintEnd_toStartOf="@id/fragment_event_page_gallery_image_3"
                     android:src="@drawable/concert3" />
 
                 <ImageView
-                    android:id="@+id/image3"
+                    android:id="@+id/fragment_event_page_gallery_image_3"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/bg_image"
-                    app:layout_constraintTop_toTopOf="@id/image1"
+                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_gallery_image_1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:src="@drawable/concert3" />
 
                 <View
+                    android:id="@+id/fragment_event_page_tinted_bg"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/bg_image"
-                    app:layout_constraintTop_toTopOf="@id/image3"
-                    app:layout_constraintStart_toStartOf="@id/image3" />
+                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_gallery_image_3"
+                    app:layout_constraintStart_toStartOf="@id/fragment_event_page_gallery_image_3" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/fragment_event_page_number_of_images"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="20+"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/image3"
-                    app:layout_constraintEnd_toEndOf="@id/image3"
-                    app:layout_constraintStart_toStartOf="@id/image3"
-                    app:layout_constraintTop_toTopOf="@id/image3" />
+                    app:layout_constraintBottom_toBottomOf="@id/fragment_event_page_gallery_image_3"
+                    app:layout_constraintEnd_toEndOf="@id/fragment_event_page_gallery_image_3"
+                    app:layout_constraintStart_toStartOf="@id/fragment_event_page_gallery_image_3"
+                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_gallery_image_3" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/location"
+                android:id="@+id/fragment_event_page_location"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="@id/fragment_return_button"
-                app:layout_constraintEnd_toEndOf="@id/fragment_send_button"
-                app:layout_constraintTop_toBottomOf="@id/gallery">
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button"
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_gallery">
 
                 <TextView
-                    android:id="@+id/tv_location"
+                    android:id="@+id/fragment_event_page_location_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Location"
@@ -423,55 +424,56 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
-                    android:id="@+id/iv_geo"
+                    android:id="@+id/fragment_event_page_location_geo"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="15dp"
                     android:src="@drawable/geo"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_location" />
+                    app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_text" />
 
                 <TextView
-                    android:id="@+id/tv_full_address"
+                    android:id="@+id/fragment_event_page_location_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="Grand City St. 100, New York, United States"
                     android:textColor="@color/prompt_color"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@id/iv_geo"
-                    app:layout_constraintTop_toTopOf="@id/iv_geo" />
+                    app:layout_constraintStart_toEndOf="@id/fragment_event_page_location_geo"
+                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_location_geo" />
 
                 <ImageView
-                    android:id="@+id/iv_map"
+                    android:id="@+id/fragment_event_page_location_map"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:src="@drawable/map"
                     android:adjustViewBounds="true"
-                    app:layout_constraintTop_toBottomOf="@id/iv_geo"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_geo"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
                 <ImageView
-                    android:id="@+id/iv_geo_in_map"
+                    android:id="@+id/fragment_event_page_location_map_marker"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/location"
-                    app:layout_constraintTop_toTopOf="@id/iv_map"
-                    app:layout_constraintStart_toStartOf="@id/iv_map"
-                    app:layout_constraintEnd_toEndOf="@id/iv_map"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_map" />
+                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_location_map"
+                    app:layout_constraintStart_toStartOf="@id/fragment_event_page_location_map"
+                    app:layout_constraintEnd_toEndOf="@id/fragment_event_page_location_map"
+                    app:layout_constraintBottom_toBottomOf="@id/fragment_event_page_location_map" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <ImageView
+                    android:id="@+id/fragment_event_page_location_map_marker_image"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:src="@drawable/event"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toTopOf="@id/iv_geo_in_map"
-                    app:layout_constraintStart_toStartOf="@id/iv_geo_in_map"
-                    app:layout_constraintEnd_toEndOf="@id/iv_geo_in_map" />
+                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_location_map_marker"
+                    app:layout_constraintStart_toStartOf="@id/fragment_event_page_location_map_marker"
+                    app:layout_constraintEnd_toEndOf="@id/fragment_event_page_location_map_marker" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -481,17 +483,17 @@
     </ScrollView>
 
     <View
-        android:id="@+id/separator"
+        android:id="@+id/fragment_event_page_separator_main"
         android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/bg_gradient_dark_grey_button"
-        app:layout_constraintBottom_toTopOf="@id/btn_book_event"
+        app:layout_constraintBottom_toTopOf="@id/fragment_event_page_book_event_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_book_event"
+        android:id="@+id/fragment_event_page_book_event_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="25dp"

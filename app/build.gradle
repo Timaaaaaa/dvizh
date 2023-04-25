@@ -71,6 +71,4 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     // Koin main features for Android (Scope,ViewModel ...)
     implementation 'io.insert-koin:koin-android:3.2.2'
-
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
