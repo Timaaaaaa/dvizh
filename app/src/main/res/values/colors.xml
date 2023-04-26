@@ -26,7 +26,8 @@
     <color name="app_red">#dd2c00</color>
     <color name="transparent">#0FFF</color>
     <color name="white_darker">#fafafa</color>
-
-
     <color name="grey_default">#9D9E9E</color>
+
+    <color name="prompt_color">#CDCDCE</color>
+    <color name="app_background">#181A20</color>
 </resources>
