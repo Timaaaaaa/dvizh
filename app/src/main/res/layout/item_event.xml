@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="25dp"
+    android:background="@drawable/bg_item_event_grey"
+    android:layout_marginStart="24dp">
+
+    <ImageView
+        android:id="@+id/item_event_image"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/temp_logo"
+        android:scaleType="fitXY"
+        android:background="@drawable/bg_item_event_image_corners"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_event_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="Popular"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_event_image" />
+
+    <TextView
+        android:id="@+id/item_event_subtitle_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="Пон, 24 Марта · 18:00 - 23:00"
+        android:textColor="@color/nav_focus_color"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_event_title_text_view" />
+
+    <ImageView
+        android:id="@+id/item_event_address_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_event_subtitle_text_view" />
+
+    <TextView
+        android:id="@+id/item_event_address_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="18dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="Пон, 24 Марта · 18:00 - 23:00"
+        android:textColor="@color/nav_focus_color"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/item_event_favorite_image"
+        app:layout_constraintStart_toEndOf="@id/item_event_address_image"
+        app:layout_constraintTop_toBottomOf="@id/item_event_subtitle_text_view" />
+
+
+    <ImageView
+        android:id="@+id/item_event_favorite_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_favorite_empty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/item_event_address_text_view"
+        app:layout_constraintTop_toBottomOf="@id/item_event_subtitle_text_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

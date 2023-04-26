@@ -24,14 +24,11 @@ import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.start.dvizk.R
+import com.start.dvizk.registration.createpassword.presentation.PasswordGenerationFragment
 import com.start.dvizk.registration.dialog.GenderSelectionDialog
 import com.start.dvizk.registration.dialog.GenderSelectionListener
-import com.start.dvizk.registration.varification.presentation.VerificationCodeFragment
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import com.start.dvizk.registration.registr.presentation.model.User
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.File
 import java.util.*
 
 private const val PICK_IMAGE_REQUEST = 1
@@ -118,6 +115,7 @@ class RegistrationFragment :
 				.load(selectedImageUri)
 				.apply(RequestOptions.circleCropTransform())
 				.into(profileImageLoader)
+
 			cursor?.close()
 		}
 	}
@@ -149,16 +147,27 @@ class RegistrationFragment :
 				getBirthday()
 			}
 			continueRegistrtion.id -> {
-				registrationViewModel.register(
+				val user = User(
 					email = fragment_registration_user_email_edit_text.text.toString(),
-					password = "12345678",
+					password = null,
 					name = fragment_registration_user_name_edit_text.text.toString(),
 					nickname = fragment_registration_user_nickname_edit_text.text.toString(),
 					phone_number = fragment_registration_user_phone_edit_text.text.toString(),
 					gender = gender,
 					birthday = birthday,
-					image = getMultipart()
+					imageFilePath = filePath
 				)
+
+				val bundle = Bundle().apply {
+					putParcelable("user_regis", user)
+				}
+				val ft: FragmentTransaction =
+					requireActivity().supportFragmentManager.beginTransaction()
+				val fragment = PasswordGenerationFragment()
+				fragment.arguments = bundle
+				ft.add(R.id.fragment_container, fragment)
+				ft.addToBackStack(null)
+				ft.commit()
 			}
 			profileImageLoader.id -> {
 				if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -197,16 +206,16 @@ class RegistrationFragment :
 			}
 			is RegistrationState.Success -> {
 				fragment_registration_loader.visibility = View.GONE
-				val bundle = Bundle().apply {
-					putString("email", fragment_registration_user_email_edit_text.text.toString())
-				}
-				val ft: FragmentTransaction =
-					requireActivity().supportFragmentManager.beginTransaction()
-				val fragment = VerificationCodeFragment()
-				fragment.arguments = bundle
-				ft.add(R.id.fragment_container, fragment)
-				ft.addToBackStack(null)
-				ft.commit()
+//				val bundle = Bundle().apply {
+//					putString("email", fragment_registration_user_email_edit_text.text.toString())
+//				}
+//				val ft: FragmentTransaction =
+//					requireActivity().supportFragmentManager.beginTransaction()
+//				val fragment = VerificationCodeFragment()
+//				fragment.arguments = bundle
+//				ft.add(R.id.fragment_container, fragment)
+//				ft.addToBackStack(null)
+//				ft.commit()
 			}
 		}
 	}
@@ -226,18 +235,6 @@ class RegistrationFragment :
 		)
 
 		datePickerDialog.show()
-	}
-
-	private fun getMultipart(): MultipartBody.Part? {
-		if (filePath.isEmpty()) {
-
-			return null
-		}
-		val file = File(filePath)
-
-		val body = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-
-		return MultipartBody.Part.createFormData("image", file.name, body)
 	}
 
 	private fun openGallery() {

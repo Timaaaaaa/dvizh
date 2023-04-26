@@ -1,4 +1,4 @@
-package com.start.dvizk.registration.registr.domain
+package com.start.dvizk.registration.registr.data
 
 import com.google.gson.JsonObject
 import com.start.dvizk.network.ApiErrorExceptionFactory
