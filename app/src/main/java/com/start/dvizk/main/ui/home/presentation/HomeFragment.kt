@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.start.dvizk.R
+import com.start.dvizk.main.ui.event.EventPageFragment
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Event
 import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
@@ -44,6 +46,12 @@ class HomeFragment : Fragment(), OnItemClickListener {
 
 	override fun onItemClick(data: Event) {
 		view?.let { Snackbar.make(it, "Скоро брат", Snackbar.LENGTH_LONG).show() }
+
+		val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+
+		ft.replace(R.id.nav_host_fragment_activity_main, EventPageFragment())
+
+		ft.commit()
 	}
 
 	private fun initView(view: View) {
@@ -54,6 +62,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
 	private fun initPopularList() {
 		popularRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 		popularAdapter = BigEventAdapter(resources)
+		popularAdapter.setListener(this)
 		popularRecyclerView.adapter = popularAdapter
 
 		categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

@@ -39,6 +39,10 @@ class BigEventAdapter(
 		notifyDataSetChanged()
 	}
 
+	fun setListener(listener: OnItemClickListener) {
+		this.listener = listener
+	}
+
 	class ViewHolder(itemView: View, val resources: Resources) : RecyclerView.ViewHolder(itemView) {
 
 		private var image: ImageView = itemView.findViewById(R.id.item_event_image)
