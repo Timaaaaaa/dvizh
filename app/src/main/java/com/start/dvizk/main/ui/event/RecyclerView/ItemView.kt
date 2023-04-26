@@ -1,4 +1,4 @@
-package com.start.dvizk.event
+package com.start.dvizk.main.ui.event.RecyclerView
 
 data class ItemView(
 	val icon: Int,

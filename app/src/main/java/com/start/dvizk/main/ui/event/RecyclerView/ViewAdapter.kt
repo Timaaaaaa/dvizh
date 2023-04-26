@@ -1,4 +1,4 @@
-package com.start.dvizk.event
+package com.start.dvizk.main.ui.event.RecyclerView
 
 import android.view.LayoutInflater
 import android.view.View
