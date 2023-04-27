@@ -29,19 +29,18 @@ class ViewAdapter(private val mList: List<ItemView>) : RecyclerView.Adapter<View
 
 		holder.icon.setImageResource(itemView.icon)
 		holder.title.text = itemView.title
-		holder.subtitle.text = itemView.subtitle
-		holder.button.setCompoundDrawablesWithIntrinsicBounds(itemView.buttonImage, 0, 0, 0);
-		holder.button.text = itemView.buttonText
+		holder.subtitle1.text = itemView.subtitle1
+		holder.subtitle2.text = itemView.subtitle2
 
-		if (holder.button.text.isEmpty()) {
-			holder.button.visibility = View.GONE
+		if (holder.subtitle2.text.isEmpty()) {
+			holder.subtitle2.visibility = View.GONE
 		}
 	}
 
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 		val icon: ImageView = itemView.findViewById(R.id.icon)
 		val title: TextView = itemView.findViewById(R.id.title)
-		val subtitle: TextView = itemView.findViewById(R.id.subtitle)
-		val button: Button = itemView.findViewById(R.id.btn)
+		val subtitle1: TextView = itemView.findViewById(R.id.subtitle_1)
+		val subtitle2: TextView = itemView.findViewById(R.id.subtitle_2)
 	}
 }
