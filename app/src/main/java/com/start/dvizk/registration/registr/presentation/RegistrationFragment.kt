@@ -155,7 +155,8 @@ class RegistrationFragment :
 					phone_number = fragment_registration_user_phone_edit_text.text.toString(),
 					gender = gender,
 					birthday = birthday,
-					imageFilePath = filePath
+					image = filePath,
+					token = ""
 				)
 
 				val bundle = Bundle().apply {
@@ -165,7 +166,7 @@ class RegistrationFragment :
 					requireActivity().supportFragmentManager.beginTransaction()
 				val fragment = PasswordGenerationFragment()
 				fragment.arguments = bundle
-				ft.add(R.id.fragment_container, fragment)
+				ft.add(R.id.nav_host_fragment_activity_main, fragment)
 				ft.addToBackStack(null)
 				ft.commit()
 			}

@@ -81,7 +81,7 @@ class PasswordGenerationFragment :
 							phone_number = user.phone_number,
 							gender = user.gender,
 							birthday = user.birthday,
-							image = getMultipart(user.imageFilePath),
+							image = getMultipart(user.image),
 						)
 					} else {
 						Toast.makeText(
@@ -117,15 +117,15 @@ class PasswordGenerationFragment :
 					requireActivity().supportFragmentManager.beginTransaction()
 				val fragment = VerificationCodeFragment()
 				fragment.arguments = bundle
-				ft.add(R.id.fragment_container, fragment)
+				ft.add(R.id.nav_host_fragment_activity_main, fragment)
 				ft.addToBackStack(null)
 				ft.commit()
 			}
 		}
 	}
 
-	private fun getMultipart(filePath: String): MultipartBody.Part? {
-		if (filePath.isEmpty()) {
+	private fun getMultipart(filePath: String?): MultipartBody.Part? {
+		if (filePath.isNullOrEmpty()) {
 
 			return null
 		}

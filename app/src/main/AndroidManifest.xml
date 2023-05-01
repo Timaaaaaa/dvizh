@@ -20,7 +20,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".auth.AuthActivity"
+            android:name=".main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/SplashTheme">
@@ -33,7 +33,7 @@
                 android:value="" />
         </activity>
 
-        <activity android:name=".main.MainActivity" />
+        <activity android:name=".auth.AuthActivity" />
     </application>
 
 </manifest>

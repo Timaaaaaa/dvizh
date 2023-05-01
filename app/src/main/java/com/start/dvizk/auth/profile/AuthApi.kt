@@ -1,6 +1,7 @@
 package com.start.dvizk.auth.profile
 
 import com.google.gson.JsonObject
+import com.start.dvizk.registration.registr.presentation.model.User
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -14,5 +15,5 @@ interface AuthApi {
 	fun auth(
 		@Field("email") email: String,
 		@Field("password") password: String
-	): Call<JsonObject>
+	): Call<User>
 }

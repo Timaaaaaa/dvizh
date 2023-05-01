@@ -3,9 +3,11 @@ package com.start.dvizk.registration.varification.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.start.dvizk.arch.CustomMutableLiveData
+import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.network.Response
 import com.start.dvizk.registration.registr.domain.VerificationRepository
 import com.start.dvizk.registration.registr.presentation.RegistrationState
+import com.start.dvizk.registration.registr.presentation.model.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,6 +16,7 @@ import kotlin.coroutines.CoroutineContext
 
 class VerificationViewModel(
 	private val verificationRepo: VerificationRepository,
+	private val sharedPreferencesRepository: SharedPreferencesRepository,
 	override val coroutineContext: CoroutineContext = Dispatchers.Main
 ) : ViewModel(),
 	CoroutineScope {
@@ -32,12 +35,20 @@ class VerificationViewModel(
 			)
 			launch(Dispatchers.Main) {
 				when (response) {
-					is Response.Success -> verificationStateLiveData.value =
-						VerificationState.Success(null)
+					is Response.Success -> {
+						setUserData(response.result)
+						verificationStateLiveData.value =
+							VerificationState.Success(null)
+					}
 					is Response.Error -> verificationStateLiveData.value =
 						VerificationState.Failed(response.error.toString())
 				}
 			}
 		}
+	}
+
+	private fun setUserData(user: User) {
+		sharedPreferencesRepository.setUserToken(user.token)
+		sharedPreferencesRepository.setUserName(user.name)
 	}
 }

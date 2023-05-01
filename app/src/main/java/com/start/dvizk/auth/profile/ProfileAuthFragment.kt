@@ -16,10 +16,13 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.JsonObject
 import com.start.dvizk.R
+import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.main.MainActivity
 import com.start.dvizk.main.MainPageFragment
 import com.start.dvizk.network.RetrofitClient
 import com.start.dvizk.registration.registr.presentation.RegistrationFragment
+import com.start.dvizk.registration.registr.presentation.model.User
+import org.koin.android.ext.android.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,6 +31,8 @@ import retrofit2.Response
 class ProfileAuthFragment : Fragment(), OnClickListener {
 
 	private var isPasswordVisible = false
+
+	val sharedPreferencesRepository: SharedPreferencesRepository by inject()
 
 	private lateinit var loginEditText: EditText
 	private lateinit var passwordEditText: EditText
@@ -56,12 +61,10 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 
 		registrationButton.setOnClickListener {
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-
-			ft.add(R.id.fragment_container, RegistrationFragment())
+			ft.add(R.id.nav_host_fragment_activity_main, RegistrationFragment())
 			ft.addToBackStack(null)
 			ft.commit()
 		}
-
 
 		button1.setOnClickListener(this)
 		showPasswordImageView.setOnClickListener(this)
@@ -88,16 +91,24 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 			button1.id -> {
 				val apiInterface = RetrofitClient().getClient().create(AuthApi::class.java)
 
-				val call1: Call<JsonObject> = apiInterface.auth(loginEditText.text.toString(),passwordEditText.text.toString())
-				call1.enqueue(object : Callback<JsonObject> {
+				val call1: Call<User> = apiInterface.auth(loginEditText.text.toString(),passwordEditText.text.toString())
+				call1.enqueue(object : Callback<User> {
 
 					override fun onResponse(
-						call: Call<JsonObject>,
-						response: Response<JsonObject>
+						call: Call<User>,
+						response: Response<User>
 					) {
 						if (response.isSuccessful) {
 							Snackbar.make(view, "Успешно авторизовались, Брат скоро все сделаю", Snackbar.LENGTH_LONG).show()
 
+							response.body()?.let {
+								sharedPreferencesRepository.setUserToken(
+									it.token
+								)
+								sharedPreferencesRepository.setUserName(
+									it.name
+								)
+							}
 							val intent = Intent(requireContext(), MainActivity::class.java)
 							startActivity(intent)
 
@@ -107,7 +118,7 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 						Snackbar.make(view, response.message(), Snackbar.LENGTH_LONG).show()
 					}
 
-					override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+					override fun onFailure(call: Call<User>, t: Throwable) {
 						Snackbar.make(view, t.message.toString(), Snackbar.LENGTH_LONG).show()
 						call.cancel()
 					}

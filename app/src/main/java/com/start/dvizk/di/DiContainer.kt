@@ -1,6 +1,7 @@
 package com.start.dvizk.di
 
 import android.app.Application
+import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.main.ui.home.data.HomePageApi
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.HomeViewModel
@@ -9,7 +10,7 @@ import com.start.dvizk.network.DefaultApiErrorExceptionFactory
 import com.start.dvizk.registration.createpassword.presentation.PasswordGenerationViewModel
 import com.start.dvizk.registration.createpassword.domain.PasswordGenerationRepository
 import com.start.dvizk.registration.registr.data.RegistrationApi
-import com.start.dvizk.registration.registr.data.VerificationApi
+import com.start.dvizk.registration.varification.data.VerificationApi
 import com.start.dvizk.registration.registr.data.RegistrationRepository
 import com.start.dvizk.registration.registr.domain.VerificationRepository
 import com.start.dvizk.registration.registr.presentation.RegistrationViewModel
@@ -118,7 +119,8 @@ object DiContainer {
 
 		viewModel {
 			VerificationViewModel(
-				verificationRepo = get()
+				verificationRepo = get(),
+				sharedPreferencesRepository = get()
 			)
 		}
 
@@ -129,12 +131,20 @@ object DiContainer {
 		}
 	}
 
+	val mainModule: Module = module {
+
+		factory {
+			SharedPreferencesRepository(androidContext())
+		}
+	}
+
 	fun startKoinDi(application: Application) {
 		startKoin {
 			androidContext(application)
 			modules(
 				viewModelModule,
-				networkModule
+				networkModule,
+				mainModule
 			)
 		}
 	}

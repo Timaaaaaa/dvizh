@@ -3,5 +3,6 @@
     <stroke
         android:color="@color/nav_focus_color"
         android:width="1dp" />
+    <solid android:color="@color/nav_focus_color" />
     <corners android:radius="20dp" />
 </shape>

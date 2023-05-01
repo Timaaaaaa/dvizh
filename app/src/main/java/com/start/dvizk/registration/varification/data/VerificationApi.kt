@@ -1,14 +1,10 @@
-package com.start.dvizk.registration.registr.data
+package com.start.dvizk.registration.varification.data
 
-import com.google.gson.JsonObject
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import com.start.dvizk.registration.registr.presentation.model.User
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Multipart
 import retrofit2.http.POST
-import retrofit2.http.Part
 
 interface VerificationApi {
 
@@ -17,5 +13,5 @@ interface VerificationApi {
 	fun verify(
 		@Field("email") email: String,
 		@Field("verification_code") verificationCode: String
-	): Call<JsonObject>
+	): Call<User>
 }

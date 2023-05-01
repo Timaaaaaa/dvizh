@@ -5,5 +5,6 @@
     <dimen name="subsequent_item_offset">2dp</dimen>
 
     <dimen name="big_event_image_radius">40dp</dimen>
+    <dimen name="big_event_default_image_radius">20dp</dimen>
 
 </resources>

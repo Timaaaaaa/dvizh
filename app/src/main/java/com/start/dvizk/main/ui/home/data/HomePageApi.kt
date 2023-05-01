@@ -15,5 +15,11 @@ interface HomePageApi {
 	): Call<EventResponse>
 
 	@GET("/api/v2/event_category")
-	fun getCategories(): Call<List<Category>>
+	fun getCategories(): Call<MutableList<Category>>
+
+	@GET("/api/v2/event/upcoming")
+	fun getUpcomingEvents(
+		@Query("category_id") categoryId: Int,
+		@Query("page") page: Int,
+	): Call<EventResponse>
 }

@@ -1,14 +1,13 @@
 package com.start.dvizk.main.ui.home.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.start.dvizk.arch.CustomMutableLiveData
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.PopularEvetsState
+import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
 import com.start.dvizk.network.Response
-import com.start.dvizk.registration.registr.presentation.RegistrationState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,6 +20,7 @@ class HomeViewModel(
 	CoroutineScope {
 
 	val popularEventsStateLiveData: MutableLiveData<PopularEvetsState> = CustomMutableLiveData()
+	val upcomingEventsStateLiveData: MutableLiveData<UpcomingEvetsState> = CustomMutableLiveData()
 	val categoriesListState: MutableLiveData<CategoriesListState> = CustomMutableLiveData()
 
 
@@ -49,6 +49,25 @@ class HomeViewModel(
 						CategoriesListState.Success(response.result)
 					is Response.Error -> categoriesListState.value =
 						CategoriesListState.Failed(response.error.toString())
+				}
+			}
+		}
+	}
+
+	fun getUpcomingEvents(
+		page: Int,
+		categoryId: Int,
+	) {
+		upcomingEventsStateLiveData.value = UpcomingEvetsState.Loading
+		launch(Dispatchers.IO) {
+			val response = homePageRepository.getUpcomingEvents(page = page,categoryId = categoryId)
+
+			launch(Dispatchers.Main) {
+				when (response) {
+					is Response.Success -> upcomingEventsStateLiveData.value =
+						UpcomingEvetsState.Success(response.result)
+					is Response.Error -> upcomingEventsStateLiveData.value =
+						UpcomingEvetsState.Failed(response.error.toString())
 				}
 			}
 		}
