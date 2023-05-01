@@ -1,0 +1,31 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="7dp"
+    tools:background="#171A21">
+
+    <ImageView
+        android:id="@+id/check_image"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/check_circle"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/check_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20sp"
+        android:text="Перекус для пикника"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/check_image"
+        app:layout_constraintTop_toTopOf="@id/check_image"
+        app:layout_constraintBottom_toBottomOf="@id/check_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
