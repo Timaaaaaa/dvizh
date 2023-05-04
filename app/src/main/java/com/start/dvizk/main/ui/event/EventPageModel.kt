@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class EventPageViewModel : ViewModel() {
+class EventPageModel : ViewModel() {
 
 	private val _text = MutableLiveData<String>().apply {
 		value = "This is event page Fragment"

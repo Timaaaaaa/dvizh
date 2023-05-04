@@ -10,7 +10,7 @@
         android:id="@+id/check_image"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/check_circle"
+        android:src="@drawable/ic_check"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
