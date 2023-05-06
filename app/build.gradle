@@ -26,6 +26,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -73,4 +74,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     // Koin main features for Android (Scope,ViewModel ...)
     implementation 'io.insert-koin:koin-android:3.2.2'
+
+    // Carousel (Image Slider)
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
 }

@@ -19,13 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/fragment_event_page_header_image"
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/fragment_event_page_carousel"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/event"
+                android:layout_height="450dp"
+                app:iss_auto_cycle="true"
+                app:iss_period="3000"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,7 +101,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button"
                 app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
-                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_header_image" />
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_carousel" />
 
             <View
                 android:id="@+id/fragment_event_page_separator_1"

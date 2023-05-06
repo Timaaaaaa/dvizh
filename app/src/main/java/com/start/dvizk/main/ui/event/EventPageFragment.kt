@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.denzcoskun.imageslider.ImageSlider
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.start.dvizk.R
 
 class EventPageFragment : Fragment() {
@@ -17,6 +20,7 @@ class EventPageFragment : Fragment() {
 	private lateinit var fragment_event_page_profile_organizer_avatar: ImageView
 	private lateinit var fragment_event_page_recycler_view: RecyclerView
 	private lateinit var fragment_event_page_items_checklist: RecyclerView
+	private lateinit var fragment_event_page_carousel: ImageSlider
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -29,6 +33,18 @@ class EventPageFragment : Fragment() {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
+		// Carousel
+		fragment_event_page_carousel = view.findViewById(R.id.fragment_event_page_carousel)
+
+		val images = ArrayList<SlideModel>();
+
+		images.add(SlideModel(R.drawable.temp_event_1))
+		images.add(SlideModel(R.drawable.temp_event_2))
+		images.add(SlideModel(R.drawable.temp_event_3))
+
+		fragment_event_page_carousel.setImageList(images, ScaleTypes.CENTER_CROP)
+
+		// Recyclers
 		fragment_event_page_recycler_view = view.findViewById(R.id.fragment_event_page_recycler_view)
 		fragment_event_page_recycler_view.layoutManager = LinearLayoutManager(view.context)
 		fragment_event_page_items_checklist = view.findViewById(R.id.fragment_event_page_items_checklist)
@@ -72,6 +88,7 @@ class EventPageFragment : Fragment() {
 
 		fragment_event_page_profile_organizer_avatar = view.findViewById(R.id.fragment_event_page_profile_organizer_avatar)
 
+		// Glide
 		val imageUri = "https://s3.amazonaws.com/bit-photos/large/12849129.jpeg"
 
 		Glide.with(this)
