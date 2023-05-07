@@ -24,6 +24,7 @@
         android:text="Перекус для пикника"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:fontFamily="@font/app_font_md"
         app:layout_constraintStart_toEndOf="@+id/check_image"
         app:layout_constraintTop_toTopOf="@id/check_image"
         app:layout_constraintBottom_toBottomOf="@id/check_image" />

@@ -98,7 +98,7 @@
                 android:text="Oiu Music Fest"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/app_font_bd"
                 app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button"
                 app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
                 app:layout_constraintTop_toBottomOf="@id/fragment_event_page_carousel" />
@@ -162,7 +162,7 @@
                     android:text="Место проведения"
                     android:textSize="24sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/app_font_bd"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -174,6 +174,7 @@
                     android:text="Возле замечательного парка имени Ломаносова, рядом имеется большое количество отелей и магазинов, что не заставит вас заскучать!"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
+                    android:fontFamily="@font/app_font_md"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_text" />
 
@@ -205,7 +206,7 @@
                     android:text="Кто может посетить мероприятие?"
                     android:textSize="24sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/app_font_bd"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -218,6 +219,7 @@
                     Дополнительные требования: людям с сердечной недостаточностью участие в данном мероприятии запрещено!"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
+                    android:fontFamily="@font/app_font_md"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_who_can_participate_text" />
 
@@ -249,7 +251,7 @@
                     android:text="Чем вы займетесь?"
                     android:textSize="24sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/app_font_bd"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -261,6 +263,7 @@
                     android:text="Готовы выиграть нашу виртуальную домашнюю игру по поиску мусора? Присоединяйтесь к Alley Kat Adventures в увлекательной, уникальной и интерактивной игре, которая выведет вас за пределы зоны комфорта, чтобы выполнять творческие, сложные и дурацкие миссии за очки и забавные виртуальные призы! Отлично подходит для корпоративных команд, семей, одиночных искателей приключений, свиданий, дней рождения и других особых случаев и т. Д.! Нравитс… читать дальше"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
+                    android:fontFamily="@font/app_font_md"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_program_of_event_text" />
 
@@ -292,7 +295,7 @@
                     android:text="Что мы предоставляем гостям?"
                     android:textSize="24sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/app_font_bd"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -304,6 +307,7 @@
                     android:text="Отлично подходит для корпоративных команд, семей, одиночных искателей приключений, свиданий, дней рождения и других особых случаев и т. Д.! Нравитс… читать дальше"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
+                    android:fontFamily="@font/app_font_md"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_organizer_services_text" />
 
@@ -335,7 +339,7 @@
                     android:text="Что взять собой?"
                     android:textSize="24sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/app_font_bd"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -395,7 +399,7 @@
                         android:text="Destroy Lonely"
                         android:textColor="@color/white"
                         android:textSize="20sp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/app_font_bd"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toTopOf="@id/fragment_event_page_organizer_status" />
@@ -407,6 +411,7 @@
                         android:text="Organizer"
                         android:textColor="@color/prompt_color"
                         android:textSize="14sp"
+                        android:fontFamily="@font/app_font_bk"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -420,6 +425,7 @@
                         android:textSize="14sp"
                         android:textColor="@color/white"
                         android:textAllCaps="false"
+                        android:fontFamily="@font/app_font_bd"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent" />
@@ -434,6 +440,7 @@
                     android:text="Мы - Alley Kat Adventures: глобальная компания по дизайну мероприятий, базирующаяся в Остине, штат Техас. Основатель компании Кэт, организатор множества экстремальных массовых мероприятий по охоте за мусором в Северной Америке…  читать дальше"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
+                    android:fontFamily="@font/app_font_md"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_profile_organizer_avatar" />
 
@@ -455,7 +462,7 @@
                     android:text="Связаться с организаторами"
                     android:textSize="24sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/app_font_bd"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -541,6 +548,7 @@
                     android:text="В целях безопасности не переводите деньги и не общайтесь за пределами сайта или приложения Dvizh Go. Подробнее"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    android:fontFamily="@font/app_font_md"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_contacts_contact_1" />
 
@@ -556,6 +564,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                android:fontFamily="@font/app_font_bd"
                 app:layout_constraintTop_toBottomOf="@id/fragment_event_page_contacts"
                 app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
                 app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button" />
@@ -570,6 +579,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                android:fontFamily="@font/app_font_bd"
                 app:layout_constraintTop_toBottomOf="@id/fragment_event_page_rules_of_event_button"
                 app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
                 app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button" />
@@ -584,6 +594,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"
+                android:fontFamily="@font/app_font_bd"
                 app:layout_constraintTop_toBottomOf="@id/fragment_event_page_cancellation_rules_button"
                 app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
                 app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button" />
@@ -617,6 +628,7 @@
                     android:text="Мастер класс по искусству"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    android:fontFamily="@font/app_font_bd"
                     app:layout_constraintStart_toEndOf="@id/fragment_event_page_next_event_image"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -628,6 +640,7 @@
                     android:text="24 Мар · 15:00 - 17:00"
                     android:textColor="@color/app_accent"
                     android:textSize="14sp"
+                    android:fontFamily="@font/app_font_bk"
                     app:layout_constraintStart_toStartOf="@id/fragment_event_page_next_event_title"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_next_event_title" />
 
@@ -648,6 +661,7 @@
                     android:text="Атакент парк, Алматы"
                     android:textColor="@color/white"
                     android:textSize="12sp"
+                    android:fontFamily="@font/app_font_bk"
                     app:layout_constraintTop_toTopOf="@id/fragment_event_page_next_event_geo_image"
                     app:layout_constraintStart_toEndOf="@id/fragment_event_page_next_event_geo_image"
                     app:layout_constraintBottom_toBottomOf="@id/fragment_event_page_next_event_geo_image" />
@@ -693,6 +707,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
+        android:fontFamily="@font/app_font_bd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
