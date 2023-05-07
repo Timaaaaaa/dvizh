@@ -5,8 +5,9 @@ import android.content.Context
 class SharedPreferencesRepository(context: Context) : SharedPreferencesContract {
 	override val MY_PREFS_NAME = "MyPrefsFile"
 	override val KEY_USER_NAME = "user_name"
-	override val KEY_USER_AGE = "user_age"
+	override val KEY_USER_ID = "user_id"
 	override val KEY_USER_TOKEN = "user_token"
+	override val FIRST_LAUNCH_INSTRUCTIOn = "first_launch_instruction"
 
 	val no_value = ""
 
@@ -20,12 +21,12 @@ class SharedPreferencesRepository(context: Context) : SharedPreferencesContract 
 		prefs.edit().putString(KEY_USER_NAME, name).apply()
 	}
 
-	fun getUserAge(): Int {
-		return prefs.getInt(KEY_USER_AGE, 0)
+	fun getUserId(): Long {
+		return prefs.getLong(KEY_USER_ID, 0)
 	}
 
-	fun setUserAge(age: Int) {
-		prefs.edit().putInt(KEY_USER_AGE, age).apply()
+	fun setUserId(id: Long) {
+		prefs.edit().putLong(KEY_USER_ID, id).apply()
 	}
 
 	fun getUserToken(): String {
@@ -34,6 +35,14 @@ class SharedPreferencesRepository(context: Context) : SharedPreferencesContract 
 
 	fun setUserToken(name: String) {
 		prefs.edit().putString(KEY_USER_TOKEN, name).apply()
+	}
+
+	fun setFirstLaunchInstructio(value: Boolean) {
+		prefs.edit().putBoolean(FIRST_LAUNCH_INSTRUCTIOn, value).apply()
+	}
+
+	fun getFirstLaunchInstructio(): Boolean {
+		return prefs.getBoolean(FIRST_LAUNCH_INSTRUCTIOn, true)
 	}
 
 	fun clearAll() {
