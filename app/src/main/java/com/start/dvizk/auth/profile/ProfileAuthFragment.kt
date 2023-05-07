@@ -108,6 +108,9 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 								sharedPreferencesRepository.setUserName(
 									it.name
 								)
+
+								it.id?.let { it1 -> sharedPreferencesRepository.setUserId(it1) }
+
 							}
 							val intent = Intent(requireContext(), MainActivity::class.java)
 							startActivity(intent)

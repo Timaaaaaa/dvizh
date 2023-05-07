@@ -7,6 +7,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class User(
 	@JsonProperty("id")
+	val id: Long? = -1,
+	@JsonProperty("email")
 	val email: String,
 	@JsonProperty("name")
 	val name: String,

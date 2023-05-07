@@ -49,6 +49,9 @@ class VerificationViewModel(
 
 	private fun setUserData(user: User) {
 		sharedPreferencesRepository.setUserToken(user.token)
+		user.id?.let {
+			sharedPreferencesRepository.setUserId(it)
+		}
 		sharedPreferencesRepository.setUserName(user.name)
 	}
 }

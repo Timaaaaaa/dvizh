@@ -2,14 +2,13 @@
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+    android:background="#181A20"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#181A20"
         android:paddingBottom="44dp">
 
         <ImageView
@@ -41,9 +40,9 @@
             android:id="@+id/fragment_home_user_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Айбек Нуртазаев"
+            android:layout_marginTop="4dp"
             android:textColor="@color/white"
+            android:textStyle="bold"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/fragment_home_title"
             app:layout_constraintTop_toBottomOf="@id/fragment_home_title" />

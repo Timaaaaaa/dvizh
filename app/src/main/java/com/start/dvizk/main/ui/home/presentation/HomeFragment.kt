@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.start.dvizk.R
+import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.main.ui.event.EventPageFragment
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
@@ -24,11 +25,13 @@ import com.start.dvizk.main.ui.home.presentation.model.Event
 import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
 import com.start.dvizk.main.ui.home.presentation.model.PopularEvetsState
 import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListener {
 
 	private val viewModel: HomeViewModel by viewModel()
+	private val sharedPreferencesRepository: SharedPreferencesRepository by inject()
 
 	private lateinit var popularRecyclerView: RecyclerView
 	private lateinit var categoryRecyclerView: RecyclerView
@@ -69,12 +72,14 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 	}
 
 	private fun initView(view: View) {
+		title = view.findViewById(R.id.fragment_home_user_nickname)
 		popularRecyclerView = view.findViewById(R.id.fragment_home_popular)
 		categoryRecyclerView = view.findViewById(R.id.fragment_home_category_recycler_view)
 		upcomingEventsRecyclerView = view.findViewById(R.id.fragment_home_upcoming_events_recycler_view)
 		fragment_home_user_photo = view.findViewById(R.id.fragment_home_user_photo)
 		fragment_home_upcoming_events_progress_bar = view.findViewById(R.id.fragment_home_upcoming_events_progress_bar)
 
+		title.text = sharedPreferencesRepository.getUserName()
 		Glide.with(this).load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMHyHnkeJyo587A_tb63tvSMvEy9USpStzZA&usqp=CAU").apply(RequestOptions.circleCropTransform()).into(fragment_home_user_photo)
 	}
 

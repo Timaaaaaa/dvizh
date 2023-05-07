@@ -1,17 +1,16 @@
 package com.start.dvizk.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.auth.main.MainAuthFragment
-import com.start.dvizk.main.ui.dashboard.DashboardFragment
+import com.start.dvizk.create.CreateActivity
 import com.start.dvizk.main.ui.home.presentation.HomeFragment
-import com.start.dvizk.main.ui.notifications.NotificationsFragment
 import com.start.dvizk.main.ui.profile.ProfileFragment
 import org.koin.android.ext.android.inject
 
@@ -28,51 +27,51 @@ class MainActivity : AppCompatActivity() {
 
 		window.navigationBarColor = ContextCompat.getColor(this, R.color.nav_bg)
 
-		val a = HomeFragment()
-		val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+		println("---------------------"+SharedPreferencesRepository(this).getUserToken())
+		println("---------------------"+SharedPreferencesRepository(this).getUserId())
+
 		navView.setOnItemSelectedListener { item ->
 			when (item.itemId) {
 				R.id.navigation_home -> {
-					Snackbar.make(view, "Скоро брат", Snackbar.LENGTH_LONG).show()
-
-					ft.replace(R.id.nav_host_fragment_activity_main,a)
+					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+					val homeFragment = HomeFragment()
+					ft.replace(R.id.nav_host_fragment_activity_main,homeFragment)
 					ft.commit()
 
 					true
 				}
-				R.id.navigation_dashboard -> {
+				R.id.navigation_favorites -> {
 
-					ft.replace(R.id.nav_host_fragment_activity_main, NotificationsFragment())
-					ft.commit()
+//					ft.replace(R.id.nav_host_fragment_activity_main, NotificationsFragment())
+//					ft.commit()
 
 					true
 				}
-				R.id.navigation_notifications -> {
-
-					ft.replace(R.id.nav_host_fragment_activity_main, NotificationsFragment())
-					ft.commit()
+				R.id.navigation_qr -> {
+					val intent = Intent(this, CreateActivity::class.java)
+					startActivity(intent)
 
 					true
 				}
 				R.id.navigation_my_tickets -> {
 
-					ft.replace(R.id.nav_host_fragment_activity_main, NotificationsFragment())
-					ft.commit()
+//					ft.replace(R.id.nav_host_fragment_activity_main, NotificationsFragment())
+//					ft.commit()
 
 					true
 				}
 				R.id.navigation_profile -> {
 
 					if (prefsRepository.getUserToken() == prefsRepository.no_value) {
-
+						val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
 						ft.replace(R.id.nav_host_fragment_activity_main, MainAuthFragment())
 						ft.commit()
 
 						return@setOnItemSelectedListener true
 					}
 
-
-					ft.replace(R.id.nav_host_fragment_activity_main, NotificationsFragment())
+					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+					ft.replace(R.id.nav_host_fragment_activity_main, ProfileFragment())
 					ft.commit()
 
 					true

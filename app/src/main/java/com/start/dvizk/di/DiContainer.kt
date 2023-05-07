@@ -2,6 +2,9 @@ package com.start.dvizk.di
 
 import android.app.Application
 import com.start.dvizk.arch.data.SharedPreferencesRepository
+import com.start.dvizk.create.organization.list.data.OrganizationListApi
+import com.start.dvizk.create.organization.list.data.OrganizationListRepository
+import com.start.dvizk.create.organization.list.presentation.OrganizationsListModel
 import com.start.dvizk.main.ui.home.data.HomePageApi
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.HomeViewModel
@@ -70,6 +73,13 @@ object DiContainer {
 			)
 		}
 
+		factory {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			OrganizationListRepository(
+				organizationListApi = appRetrofit.create(OrganizationListApi::class.java),
+			)
+		}
+
 		factory<ApiErrorExceptionFactory> {
 			DefaultApiErrorExceptionFactory() as ApiErrorExceptionFactory
 		}
@@ -127,6 +137,12 @@ object DiContainer {
 		viewModel {
 			PasswordGenerationViewModel(
 				passwordGenerationRepository = get()
+			)
+		}
+
+		viewModel {
+			OrganizationsListModel(
+				organizationListRepository = get()
 			)
 		}
 	}
