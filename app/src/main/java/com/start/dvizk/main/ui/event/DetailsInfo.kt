@@ -1,6 +1,6 @@
-package com.start.dvizk.main.ui.event.RecyclerView
+package com.start.dvizk.main.ui.event
 
-data class ItemView(
+data class DetailsInfo(
 	val icon: Int,
 	val title: String,
 	val subtitle1: String,

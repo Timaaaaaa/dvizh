@@ -19,13 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/fragment_event_page_header_image"
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/fragment_event_page_carousel"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:src="@drawable/event"
+                android:layout_height="450dp"
+                app:iss_auto_cycle="true"
+                app:iss_period="3000"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,7 +65,7 @@
                 android:layout_height="40dp"
                 android:layout_marginEnd="5dp"
                 android:scaleType="center"
-                android:src="@drawable/like"
+                android:src="@drawable/ic_like"
                 app:layout_constraintEnd_toStartOf="@id/fragment_event_page_send_button"
                 app:layout_constraintTop_toTopOf="@id/fragment_event_page_send_button"
                 app:layout_constraintBottom_toBottomOf="@id/fragment_event_page_send_button" />
@@ -85,7 +86,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="15dp"
                 android:scaleType="center"
-                android:src="@drawable/send"
+                android:src="@drawable/ic_send"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,7 +101,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button"
                 app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
-                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_header_image" />
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_carousel" />
 
             <View
                 android:id="@+id/fragment_event_page_separator_1"
@@ -118,20 +119,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 tools:itemCount="3"
-                tools:listitem="@layout/item_view"
+                tools:listitem="@layout/item_details_info"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_event_page_separator_1"
                 app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button" />
+
+            <ImageView
+                android:id="@+id/fragment_event_page_map"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/map"
                 app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button"
-                app:layout_constraintBottom_toTopOf="@id/fragment_event_page_separator_2" />
+                app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_recycler_view" />
 
             <View
                 android:id="@+id/fragment_event_page_separator_2"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/bg_gradient_dark_grey_button"
-                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_recycler_view"
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_map"
                 app:layout_constraintStart_toStartOf="@id/fragment_event_page_return_button"
                 app:layout_constraintEnd_toEndOf="@id/fragment_event_page_send_button" />
 
@@ -165,18 +176,6 @@
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_text" />
-
-                <ImageView
-                    android:id="@+id/fragment_event_page_location_map"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/map"
-                    android:adjustViewBounds="true"
-                    app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_address"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -346,7 +345,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     tools:itemCount="5"
-                    tools:listitem="@layout/fragment_event_page_checklist"
+                    tools:listitem="@layout/item_checklist"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_event_page_items_text"
                     app:layout_constraintStart_toStartOf="parent"
@@ -378,47 +377,54 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/destroy_lonely"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/fragment_event_page_organizer_name"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:layout_marginStart="20dp"
-                    android:text="Destroy Lonely"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/fragment_event_page_profile_organizer_avatar"
-                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_profile_organizer_avatar"
-                    app:layout_constraintBottom_toTopOf="@id/fragment_event_page_organizer_status" />
-
-                <TextView
-                    android:id="@+id/fragment_event_page_organizer_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Organizer"
-                    android:textColor="@color/prompt_color"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@+id/fragment_event_page_organizer_name"
-                    app:layout_constraintTop_toBottomOf="@+id/fragment_event_page_organizer_name" />
-
-                <Button
-                    android:id="@+id/fragment_event_page_follow_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="38dp"
-                    android:background="@drawable/bg_purple_button"
-                    android:text="Подписаться"
-                    android:textSize="14sp"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    app:layout_constraintTop_toTopOf="@id/fragment_event_page_organizer_name"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@id/fragment_event_page_organizer_status" />
+                    app:layout_constraintStart_toEndOf="@id/fragment_event_page_profile_organizer_avatar">
+
+                    <TextView
+                        android:id="@+id/fragment_event_page_organizer_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Destroy Lonely"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/fragment_event_page_organizer_status" />
+
+                    <TextView
+                        android:id="@+id/fragment_event_page_organizer_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Organizer"
+                        android:textColor="@color/prompt_color"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <Button
+                        android:id="@+id/fragment_event_page_follow_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:paddingHorizontal="15dp"
+                        android:background="@drawable/bg_purple_button"
+                        android:text="Подписаться"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/fragment_event_page_profile_organizer_text"
@@ -458,7 +464,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/circle_bg"
+                    android:src="@drawable/bg_circle_icon"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_contacts_text"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -476,7 +482,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/circle_bg"
+                    android:src="@drawable/bg_circle_icon"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_contacts_text"
                     app:layout_constraintStart_toEndOf="@id/fragment_event_page_contacts_contact_1"
                     app:layout_constraintEnd_toStartOf="@id/fragment_event_page_contacts_contact_3" />
@@ -484,7 +490,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/whatsapp"
+                    android:src="@drawable/ic_whatsapp"
                     app:layout_constraintTop_toTopOf="@id/fragment_event_page_contacts_contact_2"
                     app:layout_constraintStart_toStartOf="@id/fragment_event_page_contacts_contact_2"
                     app:layout_constraintEnd_toEndOf="@id/fragment_event_page_contacts_contact_2"
@@ -495,7 +501,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/circle_bg"
+                    android:src="@drawable/bg_circle_icon"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_contacts_text"
                     app:layout_constraintStart_toEndOf="@id/fragment_event_page_contacts_contact_2"
                     app:layout_constraintEnd_toStartOf="@id/fragment_event_page_contacts_contact_4" />
@@ -503,7 +509,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/insta"
+                    android:src="@drawable/ic_insta"
                     app:layout_constraintTop_toTopOf="@id/fragment_event_page_contacts_contact_3"
                     app:layout_constraintStart_toStartOf="@id/fragment_event_page_contacts_contact_3"
                     app:layout_constraintEnd_toEndOf="@id/fragment_event_page_contacts_contact_3"
@@ -514,14 +520,14 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/circle_bg"
+                    android:src="@drawable/bg_circle_icon"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_contacts_text"
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/google"
+                    android:src="@drawable/ic_google"
                     app:layout_constraintTop_toTopOf="@id/fragment_event_page_contacts_contact_4"
                     app:layout_constraintStart_toStartOf="@id/fragment_event_page_contacts_contact_4"
                     app:layout_constraintEnd_toEndOf="@id/fragment_event_page_contacts_contact_4"
@@ -630,7 +636,7 @@
                     android:layout_width="12dp"
                     android:layout_height="12dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/geo"
+                    android:src="@drawable/ic_geo"
                     app:layout_constraintStart_toStartOf="@id/fragment_event_page_next_event_title"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_next_event_date" />
 
@@ -651,7 +657,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/like_accent"
+                    android:src="@drawable/ic_like_accent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fragment_event_page_next_event_date" />
 
