@@ -25,6 +25,8 @@ import com.start.dvizk.main.ui.home.presentation.model.Event
 import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
 import com.start.dvizk.main.ui.home.presentation.model.PopularEvetsState
 import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
+import com.start.dvizk.main.ui.notifications.Notification
+import com.start.dvizk.main.ui.notifications.NotificationsFragment
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,6 +41,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 	private lateinit var fragment_home_user_photo: ImageView
 	private lateinit var fragment_home_upcoming_events_progress_bar: ProgressBar
 	private lateinit var title: TextView
+	private lateinit var notificationIcon: ImageView
 
 	private lateinit var popularAdapter: BigEventAdapter
 	private lateinit var categoryAdapter: CategoryAdapter
@@ -78,6 +81,15 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 		upcomingEventsRecyclerView = view.findViewById(R.id.fragment_home_upcoming_events_recycler_view)
 		fragment_home_user_photo = view.findViewById(R.id.fragment_home_user_photo)
 		fragment_home_upcoming_events_progress_bar = view.findViewById(R.id.fragment_home_upcoming_events_progress_bar)
+		notificationIcon = view.findViewById(R.id.fragment_home_notification)
+
+		notificationIcon.setOnClickListener {
+			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+
+			ft.add(R.id.nav_host_fragment_activity_main, NotificationsFragment())
+			ft.addToBackStack("")
+			ft.commit()
+		}
 
 		title.text = sharedPreferencesRepository.getUserName()
 		Glide.with(this).load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMHyHnkeJyo587A_tb63tvSMvEy9USpStzZA&usqp=CAU").apply(RequestOptions.circleCropTransform()).into(fragment_home_user_photo)
