@@ -28,6 +28,7 @@ import com.start.dvizk.registration.createpassword.presentation.PasswordGenerati
 import com.start.dvizk.registration.dialog.GenderSelectionDialog
 import com.start.dvizk.registration.dialog.GenderSelectionListener
 import com.start.dvizk.registration.registr.presentation.model.User
+import com.start.dvizk.registration.varification.presentation.VerificationCodeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -46,7 +47,7 @@ class RegistrationFragment :
 	private lateinit var profileImageLoader: ImageView
 	private lateinit var dateOfBirth: TextView
 	private lateinit var continueRegistrtion: Button
-	private lateinit var fragment_registration_loader: ProgressBar
+	private lateinit var fragment_registration_loader: View
 	private lateinit var fragment_registration_user_name_edit_text: EditText
 	private lateinit var fragment_registration_user_nickname_edit_text: EditText
 	private lateinit var fragment_registration_user_email_edit_text: EditText
@@ -77,7 +78,7 @@ class RegistrationFragment :
 		fragment_registration_user_phone_edit_text =
 			view.findViewById(R.id.fragment_registration_user_phone_edit_text)
 		genderSelectionText = view.findViewById(R.id.fragment_registration_user_gender_spinner)
-		fragment_registration_loader = requireActivity().findViewById(R.id.progressBarLarge)
+		fragment_registration_loader = requireActivity().findViewById(R.id.progress_bar)
 		returnPage = view.findViewById(R.id.fragment_registration_return_button)
 		dateOfBirth = view.findViewById(R.id.fragment_registration_user_birthday_text_view)
 		continueRegistrtion = view.findViewById(R.id.fragment_registration_continue)
@@ -182,7 +183,6 @@ class RegistrationFragment :
 					intent.type = "image/*"
 					startActivityForResult(intent, PICK_IMAGE_REQUEST)
 				}
-
 			}
 		}
 	}
@@ -207,16 +207,16 @@ class RegistrationFragment :
 			}
 			is RegistrationState.Success -> {
 				fragment_registration_loader.visibility = View.GONE
-//				val bundle = Bundle().apply {
-//					putString("email", fragment_registration_user_email_edit_text.text.toString())
-//				}
-//				val ft: FragmentTransaction =
-//					requireActivity().supportFragmentManager.beginTransaction()
-//				val fragment = VerificationCodeFragment()
-//				fragment.arguments = bundle
-//				ft.add(R.id.fragment_container, fragment)
-//				ft.addToBackStack(null)
-//				ft.commit()
+				val bundle = Bundle().apply {
+					putString("email", fragment_registration_user_email_edit_text.text.toString())
+				}
+				val ft: FragmentTransaction =
+					requireActivity().supportFragmentManager.beginTransaction()
+				val fragment = VerificationCodeFragment()
+				fragment.arguments = bundle
+				ft.add(R.id.fragment_container, fragment)
+				ft.addToBackStack(null)
+				ft.commit()
 			}
 		}
 	}

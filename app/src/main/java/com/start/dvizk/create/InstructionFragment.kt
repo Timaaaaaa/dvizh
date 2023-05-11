@@ -8,7 +8,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.start.dvizk.R
-import com.start.dvizk.create.organization.list.presentation.OrgаnizationsListFragment
+import com.start.dvizk.create.organization.list.presentation.OrganizationListFragment
 
 class InstructionFragment : Fragment() {
 
@@ -29,7 +29,7 @@ class InstructionFragment : Fragment() {
 
 		image.setOnClickListener {
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-			val homeFragment = OrgаnizationsListFragment()
+			val homeFragment = OrganizationListFragment()
 			ft.add(R.id.fragment_container,homeFragment)
 			ft.addToBackStack(null)
 			ft.commit()
