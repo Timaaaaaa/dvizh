@@ -5,48 +5,52 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import com.start.dvizk.R
+import com.start.dvizk.auth.profile.ProfileAuthFragment
 import com.start.dvizk.databinding.FragmentNotificationsBinding
+import com.start.dvizk.main.ui.home.presentation.HomeFragment
 
 
 class NotificationsFragment : Fragment() {
 
-	private var _binding: FragmentNotificationsBinding? = null
-
-	// This property is only valid between onCreateView and
-	// onDestroyView.
-	private val binding get() = _binding!!
+	private lateinit var fragment_notifications_notifications: RecyclerView
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		val notificationsViewModel =
-			ViewModelProvider(this).get(NotificationsViewModel::class.java)
-
-		_binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-		val root: View = binding.root
-
-		val textView: TextView = binding.textNotifications
-		notificationsViewModel.text.observe(viewLifecycleOwner) {
-			textView.text = it
-		}
-
-		val handler = Handler()
-
-// Delay the execution of someMethod by 2 seconds
-		handler.postDelayed({
-			textView.text = "asdfsdf"
-		}, 2000)
-
-		return root
+		return inflater.inflate(R.layout.fragment_notifications, container, false)
 	}
 
-	override fun onDestroyView() {
-		super.onDestroyView()
-		_binding = null
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+
+		view.findViewById<ImageView>(R.id.fragment_notifications_return_button).setOnClickListener {
+			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+
+			ft.add(R.id.nav_host_fragment_activity_main, HomeFragment())
+			ft.addToBackStack(null)
+			ft.commit()
+		}
+
+		fragment_notifications_notifications = view.findViewById(R.id.fragment_notifications_notifications)
+
+		val notifications = listOf(
+			Notification(R.drawable.ic_calendar, true, "Бронирование успешно", "23 Август, 2022", "Google Переводчик — веб-служба компании Google, предназначенная для автоматического перевода части текста или веб-страницы на другой язык. Для некоторых языков пользователям предлагаются варианты переводов, например далее"),
+			Notification(R.drawable.ic_message, false, "Бронирование успешно", "23 Август, 2022", "Google Переводчик — веб-служба компании Google, предназначенная для автоматического перевода части текста или веб-страницы на другой язык."),
+			Notification(R.drawable.ic_message, false, "Бронирование успешно", "23 Август, 2022", "Google Переводчик — веб-служба компании Google, предназначенная для автоматического перевода части текста или веб-страницы на другой язык."),
+			Notification(R.drawable.ic_message, false, "Бронирование успешно", "23 Август, 2022", "Google Переводчик — веб-служба компании Google, предназначенная для автоматического перевода части текста или веб-страницы на другой язык."),
+			Notification(R.drawable.ic_message, false, "Бронирование успешно", "23 Август, 2022", "Google Переводчик — веб-служба компании Google, предназначенная для автоматического перевода части текста или веб-страницы на другой язык.")
+		)
+
+		val adapter = NotificationAdapter(notifications)
+		fragment_notifications_notifications.adapter = adapter
 	}
 }

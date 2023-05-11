@@ -18,7 +18,7 @@ import com.start.dvizk.R
 class EventPageFragment : Fragment() {
 
 	private lateinit var fragment_event_page_profile_organizer_avatar: ImageView
-	private lateinit var fragment_event_page_recycler_view: RecyclerView
+	private lateinit var fragment_event_page_detail_infos: RecyclerView
 	private lateinit var fragment_event_page_items_checklist: RecyclerView
 	private lateinit var fragment_event_page_carousel: ImageSlider
 
@@ -45,8 +45,8 @@ class EventPageFragment : Fragment() {
 		fragment_event_page_carousel.setImageList(images, ScaleTypes.CENTER_CROP)
 
 		// Recyclers
-		fragment_event_page_recycler_view = view.findViewById(R.id.fragment_event_page_recycler_view)
-		fragment_event_page_recycler_view.layoutManager = LinearLayoutManager(view.context)
+		fragment_event_page_detail_infos = view.findViewById(R.id.fragment_event_page_detail_infos)
+		fragment_event_page_detail_infos.layoutManager = LinearLayoutManager(view.context)
 		fragment_event_page_items_checklist = view.findViewById(R.id.fragment_event_page_items_checklist)
 		fragment_event_page_items_checklist.layoutManager = LinearLayoutManager(view.context)
 
@@ -82,7 +82,7 @@ class EventPageFragment : Fragment() {
 		}
 
 		val rwAdapter = DetailsInfoAdapter(data1)
-		fragment_event_page_recycler_view.adapter = rwAdapter
+		fragment_event_page_detail_infos.adapter = rwAdapter
 		val clAdapter = CheckListAdapter(data2)
 		fragment_event_page_items_checklist.adapter = clAdapter
 
