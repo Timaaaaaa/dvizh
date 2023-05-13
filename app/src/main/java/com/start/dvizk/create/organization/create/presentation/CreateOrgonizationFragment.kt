@@ -182,13 +182,6 @@ class CreateOrgonizationFragment : Fragment() {
 				progress_bar.visibility = View.GONE
 				Toast.makeText(requireContext(), value.message, Toast.LENGTH_LONG).show()
 				requireActivity().supportFragmentManager.popBackStack()
-
-				val fragmentManager = requireActivity().supportFragmentManager
-
-				val previousFragmentTag = "OrganizationListFragment" // Replace with the actual tag of the previous fragment
-				val previousFragment = fragmentManager.findFragmentByTag(previousFragmentTag) as? OrganizationListFragment
-
-				previousFragment?.refreshContent()
 			}
 			is OrganizationCreatingState.Failed -> {
 				progress_bar.visibility = View.GONE

@@ -1,5 +1,6 @@
 package com.start.dvizk.create.organization.list.data
 
+import com.start.dvizk.create.organization.list.presentation.model.CurrentStep
 import com.start.dvizk.create.organization.list.presentation.model.Organization
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.main.ui.home.presentation.model.Event
@@ -14,17 +15,44 @@ class OrganizationListRepository(
 	fun getPopularEvents(
 		userId: Int
 	): Response<MutableList<Organization>, String> {
-		val response = organizationListApi
-			.getOrganizationList(
-				user_id = userId
-			)
-			.execute()
+		try {
+			val response = organizationListApi
+				.getOrganizationList(
+					user_id = userId
+				)
+				.execute()
 
-		if(response.isSuccessful) {
-			 response.body()?.let { return Response.Success(it.data.toMutableList()) }
+			if (response.isSuccessful) {
+				response.body()?.let { return Response.Success(it.data.toMutableList()) }
+			}
+			val message = JSONObject(response.errorBody()?.string()!!).getString("message")
+
+			return Response.Error(message)
+		} catch (e: Exception) {
+			return Response.Error(e.localizedMessage?.toString() ?: "")
 		}
+	}
 
-		val message = JSONObject(response.errorBody()?.string()!!).getString("message")
-		return Response.Error(message)
+	fun getCurrentStep(
+		token: String,
+		organizationId: Int
+	): Response<CurrentStep, String> {
+		try {
+			val response = organizationListApi
+				.getCurrentStep(
+					token = "Bearer $token",
+					organization_id = organizationId
+				)
+				.execute()
+
+			if (response.isSuccessful) {
+				response.body()?.let { return Response.Success(it) }
+			}
+			val message = JSONObject(response.errorBody()?.string()!!).getString("message")
+
+			return Response.Error(message)
+		} catch (e: Exception) {
+			return Response.Error(e.localizedMessage.toString())
+		}
 	}
 }

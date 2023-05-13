@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="24dp"
-    android:paddingTop="30dp"
+    android:paddingTop="20dp"
+    android:focusable="true"
+    android:clickable="true"
     android:background="@color/app_background">
 
     <ImageView

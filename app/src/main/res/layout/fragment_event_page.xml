@@ -31,6 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/event_page_back"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/bg_circle_button"
