@@ -33,11 +33,7 @@ class NotificationsFragment : Fragment() {
 		super.onViewCreated(view, savedInstanceState)
 
 		view.findViewById<ImageView>(R.id.fragment_notifications_return_button).setOnClickListener {
-			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-
-			ft.add(R.id.nav_host_fragment_activity_main, HomeFragment())
-			ft.addToBackStack(null)
-			ft.commit()
+			requireActivity().supportFragmentManager.popBackStack()
 		}
 
 		fragment_notifications_notifications = view.findViewById(R.id.fragment_notifications_notifications)

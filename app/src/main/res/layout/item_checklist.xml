@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="7dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="7dp"
     tools:background="#171A21">
 
     <ImageView
@@ -12,21 +13,22 @@
         android:layout_height="24dp"
         android:src="@drawable/ic_check"
         android:scaleType="centerCrop"
+        android:layout_marginTop="1dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/check_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="24dp"
         android:text="Перекус для пикника"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:fontFamily="@font/app_font_md"
         app:layout_constraintStart_toEndOf="@+id/check_image"
         app:layout_constraintTop_toTopOf="@id/check_image"
-        app:layout_constraintBottom_toBottomOf="@id/check_image" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
