@@ -30,7 +30,7 @@ class PasswordGenerationFragment :
 	private lateinit var continueRegistration: Button
 	private lateinit var fragment_password_generation_edit_text_1: EditText
 	private lateinit var fragment_password_generation_edit_text_2: EditText
-	private lateinit var fragment_registration_loader: ProgressBar
+	private lateinit var fragment_registration_loader: View
 
 	private var email: String = ""
 
@@ -48,7 +48,7 @@ class PasswordGenerationFragment :
 			view.findViewById(R.id.fragment_password_generation_edit_text_1)
 		fragment_password_generation_edit_text_2 =
 			view.findViewById(R.id.fragment_password_generation_edit_text_2)
-		fragment_registration_loader = requireActivity().findViewById(R.id.progressBarLarge)
+		fragment_registration_loader = requireActivity().findViewById(R.id.progress_bar)
 		continueRegistration = view.findViewById(R.id.fragment_password_generation_continue_button)
 		continueRegistration.setOnClickListener(this)
 	}

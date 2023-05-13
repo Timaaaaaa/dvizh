@@ -30,7 +30,7 @@ class VerificationCodeFragment :
 
 	private lateinit var continueRegistration: Button
 	private lateinit var codeVerificationView: CodeVerificationView
-	private lateinit var fragment_registration_loader: ProgressBar
+	private lateinit var fragment_registration_loader: View
 
 	override fun onCreateView(
 			inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +53,7 @@ class VerificationCodeFragment :
 		spannableString.setSpan(colorSpan, 32, 51, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 		sendAgainTextView.text = spannableString
 
-		fragment_registration_loader = requireActivity().findViewById(R.id.progressBarLarge)
+		fragment_registration_loader = requireActivity().findViewById(R.id.progress_bar)
 		continueRegistration = view.findViewById(R.id.fragment_verification_code_continue_button)
 		continueRegistration.setOnClickListener(this)
 	}

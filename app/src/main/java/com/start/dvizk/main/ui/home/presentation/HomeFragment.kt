@@ -65,8 +65,6 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 	}
 
 	override fun onItemClick(data: Event) {
-		view?.let { Snackbar.make(it, "Скоро брат", Snackbar.LENGTH_LONG).show() }
-
 		val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
 		ft.add(R.id.nav_host_fragment_activity_main, EventPageFragment())

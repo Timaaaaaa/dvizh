@@ -2,6 +2,9 @@ package com.start.dvizk.di
 
 import android.app.Application
 import com.start.dvizk.arch.data.SharedPreferencesRepository
+import com.start.dvizk.create.organization.create.data.CreateOrganizationApi
+import com.start.dvizk.create.organization.create.data.CreateOrganizationRepository
+import com.start.dvizk.create.organization.create.presentation.CreateOrganizationViewModel
 import com.start.dvizk.create.organization.list.data.OrganizationListApi
 import com.start.dvizk.create.organization.list.data.OrganizationListRepository
 import com.start.dvizk.create.organization.list.presentation.OrganizationsListModel
@@ -80,6 +83,13 @@ object DiContainer {
 			)
 		}
 
+		factory {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			CreateOrganizationRepository(
+				createOrganizationApi = appRetrofit.create(CreateOrganizationApi::class.java),
+			)
+		}
+
 		factory<ApiErrorExceptionFactory> {
 			DefaultApiErrorExceptionFactory() as ApiErrorExceptionFactory
 		}
@@ -97,19 +107,13 @@ object DiContainer {
 		val interceptor = HttpLoggingInterceptor()
 		interceptor.level = HttpLoggingInterceptor.Level.BODY
 		return OkHttpClient.Builder()
-			.followRedirects(true)
-			.followSslRedirects(true)
 			.retryOnConnectionFailure(true)
-			.cache(null)
 			.addInterceptor(interceptor)
 //            .addInterceptor {
 //                val requestBuilder = it.request().newBuilder()
 //                        .addHeader("Authorization", "Bearer ${EmployeeConstant.TOKEN}")
 //                it.proceed(requestBuilder.build())
 //            }
-			.connectTimeout(400, TimeUnit.SECONDS)
-			.writeTimeout(400, TimeUnit.SECONDS)
-			.readTimeout(400, TimeUnit.SECONDS)
 			.build()
 	}
 
@@ -143,6 +147,12 @@ object DiContainer {
 		viewModel {
 			OrganizationsListModel(
 				organizationListRepository = get()
+			)
+		}
+
+		viewModel {
+			CreateOrganizationViewModel(
+				createOrganizationRepository = get()
 			)
 		}
 	}

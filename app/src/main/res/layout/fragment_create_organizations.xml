@@ -1,337 +1,379 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_background"
     android:clickable="true"
-    android:focusable="true"
-    android:background="@color/app_background">
+    android:focusable="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="40dp">
+
+            <ImageView
+                android:id="@+id/fragment_create_organization_back_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="30dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_arrow_white_left"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_text_view"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Создайте Движ"
+                android:textColor="@color/white"
+                android:textColorHint="#9D9E9E"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_create_organization_back_image"
+                app:layout_constraintEnd_toStartOf="@id/fragment_create_organization_title_step_text_view"
+                app:layout_constraintStart_toEndOf="@id/fragment_create_organization_back_image"
+                app:layout_constraintTop_toTopOf="@id/fragment_create_organization_back_image" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_step_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="4/22"
+                android:textColor="@color/white"
+                android:textColorHint="#9D9E9E"
+                android:textSize="24sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_create_organization_title_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fragment_create_organization_title_text_view"
+                app:layout_constraintTop_toTopOf="@id/fragment_create_organization_title_text_view" />
+
+            <View
+                android:id="@+id/fragment_create_organization_separator_1"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_text_view" />
+
+            <TextView
+                android:id="@+id/fragment_event_page_location_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Создайте организацию"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_separator_1" />
+
+            <ImageView
+                android:id="@+id/fragment_create_organization_avatar"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_registration_image_placeholder"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_text" />
+
+            <TextView
+                android:id="@+id/fragment_event_page_location_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="Добавьте логотип вашей организации"
+                android:textColor="@color/prompt_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_avatar" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Название вашей организации"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_address" />
+
+
+            <EditText
+                android:id="@+id/fragment_create_organization_name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                android:drawablePadding="16dp"
+                android:hint="Напишите название..."
+                android:padding="20dp"
+                android:textColor="@color/white"
+                android:textColorHint="#9D9E9E"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_2" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Об организации"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_name_edit_text" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="Какие уникальные навыки вы применяете? Расскажите, кто вы, чем занимаетесь, почему любите свое дело и что о нем знаете."
+                android:textColor="@color/prompt_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_3" />
+
+            <EditText
+                android:id="@+id/fragment_create_organization_edit_text_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                android:drawablePadding="16dp"
+                android:gravity="start"
+                android:hint="Расскажите о себе..."
+                android:minHeight="120dp"
+                android:padding="20dp"
+                android:paddingBottom="40dp"
+                android:textColor="@color/white"
+                android:textColorHint="#9D9E9E"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_4" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Как с вами связаться"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_edit_text_1" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="Заполняйте в таком формате как указано на примере"
+                android:textColor="@color/prompt_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_5" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Ваш номер телефона"
+                android:textColor="@color/prompt_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_6" />
+
+            <EditText
+                android:id="@+id/fragment_create_organization_phone_number_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                android:drawablePadding="16dp"
+                android:hint="+7 (777) 777 77 77"
+                android:padding="20dp"
+                android:paddingBottom="40dp"
+                android:textColor="@color/white"
+                android:textColorHint="#9D9E9E"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_7" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Ваша почта"
+                android:textColor="@color/prompt_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_phone_number_edit_text" />
+
+            <EditText
+                android:id="@+id/fragment_create_organization_email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                android:drawablePadding="16dp"
+                android:hint="example@example.com"
+                android:padding="20dp"
+                android:paddingBottom="40dp"
+                android:textColor="@color/white"
+                android:textColorHint="#9D9E9E"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_8" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Ваш Whats’app "
+                android:textColor="@color/prompt_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_email_edit_text" />
+
+            <EditText
+                android:id="@+id/fragment_create_organization_whatsapp_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                android:drawablePadding="16dp"
+                android:hint="https://wa.me/77064130699"
+                android:padding="20dp"
+                android:paddingBottom="40dp"
+                android:textColor="@color/white"
+                android:textColorHint="#9D9E9E"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_9" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Ваш Инстаграм"
+                android:textColor="@color/prompt_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_whatsapp_edit_text" />
+
+            <EditText
+                android:id="@+id/fragment_create_organization_instagram_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                android:drawablePadding="16dp"
+                android:hint=" @example"
+                android:padding="20dp"
+                android:paddingBottom="40dp"
+                android:textColor="@color/white"
+                android:textColorHint="#9D9E9E"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_10" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="40dp">
+        android:background="#1F222A"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageView
-            android:id="@+id/fragment_create_organization_back_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="30dp"
-            android:scaleType="center"
-            android:src="@drawable/ic_arrow_white_left"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_text_view"
+        <Button
+            android:id="@+id/fragment_create_organization_back"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Создайте Движ"
-            android:textColor="@color/white"
-            android:textColorHint="#9D9E9E"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_create_organization_back_image"
-            app:layout_constraintEnd_toStartOf="@id/fragment_create_organization_title_step_text_view"
-            app:layout_constraintStart_toEndOf="@id/fragment_create_organization_back_image"
-            app:layout_constraintTop_toTopOf="@id/fragment_create_organization_back_image" />
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_light_grey"
+            android:text="Назад" />
 
-        <TextView
-            android:id="@+id/fragment_create_organization_title_step_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:text="4/22"
-            android:textColor="@color/white"
-            android:textColorHint="#9D9E9E"
-            android:textSize="24sp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/fragment_create_organization_title_text_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/fragment_create_organization_title_text_view"
-            app:layout_constraintTop_toTopOf="@id/fragment_create_organization_title_text_view" />
-
-        <View
-            android:id="@+id/fragment_create_organization_separator_1"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/bg_gradient_dark_grey_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_text_view" />
-
-        <TextView
-            android:id="@+id/fragment_event_page_location_text"
+        <Button
+            android:id="@+id/fragment_create_organization_next"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Создайте организацию"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_separator_1" />
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_purple_button"
+            android:text="Создать" />
 
-        <ImageView
-            android:id="@+id/fragment_create_organization_avatar"
-            android:layout_width="62dp"
-            android:layout_height="62dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:src="@drawable/ic_registration_image_placeholder"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_text" />
-
-        <TextView
-            android:id="@+id/fragment_event_page_location_address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:text="Добавьте логотип вашей организации"
-            android:textColor="@color/prompt_color"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_avatar" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Название вашей организации"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_address" />
-
-
-        <EditText
-            android:id="@+id/fragment_create_organization_name_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_gradient_dark_grey_button"
-            android:drawablePadding="16dp"
-            android:hint="Напишите название..."
-            android:padding="20dp"
-            android:textColor="@color/white"
-            android:textColorHint="#9D9E9E"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_2" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Об организации"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_name_edit_text" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:text="Какие уникальные навыки вы применяете? Расскажите, кто вы, чем занимаетесь, почему любите свое дело и что о нем знаете."
-            android:textColor="@color/prompt_color"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_3" />
-
-        <EditText
-            android:id="@+id/fragment_create_organization_edit_text_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="120dp"
-            android:gravity="start"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_gradient_dark_grey_button"
-            android:drawablePadding="16dp"
-            android:hint="Расскажите о себе..."
-            android:padding="20dp"
-            android:paddingBottom="40dp"
-            android:textColor="@color/white"
-            android:textColorHint="#9D9E9E"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_4" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Как с вами связаться"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_edit_text_1" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:text="Заполняйте в таком формате как указано на примере"
-            android:textColor="@color/prompt_color"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_5" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Ваш номер телефона"
-            android:textColor="@color/prompt_color"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_6" />
-
-        <EditText
-            android:id="@+id/fragment_create_organization_phone_number_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_gradient_dark_grey_button"
-            android:drawablePadding="16dp"
-            android:hint="+7 (777) 777 77 77"
-            android:padding="20dp"
-            android:paddingBottom="40dp"
-            android:textColor="@color/white"
-            android:textColorHint="#9D9E9E"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_7" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Ваша почта"
-            android:textColor="@color/prompt_color"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_phone_number_edit_text" />
-
-        <EditText
-            android:id="@+id/fragment_create_organization_email_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_gradient_dark_grey_button"
-            android:drawablePadding="16dp"
-            android:hint="example@example.com"
-            android:padding="20dp"
-            android:paddingBottom="40dp"
-            android:textColor="@color/white"
-            android:textColorHint="#9D9E9E"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_8" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_9"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Ваш Whats’app "
-            android:textColor="@color/prompt_color"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_email_edit_text" />
-
-        <EditText
-            android:id="@+id/fragment_create_organization_whatsapp_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_gradient_dark_grey_button"
-            android:drawablePadding="16dp"
-            android:hint="https://wa.me/77064130699"
-            android:padding="20dp"
-            android:paddingBottom="40dp"
-            android:textColor="@color/white"
-            android:textColorHint="#9D9E9E"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_9" />
-
-        <TextView
-            android:id="@+id/fragment_create_organization_title_10"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Ваш Инстаграм"
-            android:textColor="@color/prompt_color"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_whatsapp_edit_text" />
-
-        <EditText
-            android:id="@+id/fragment_create_organization_instagram_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_gradient_dark_grey_button"
-            android:drawablePadding="16dp"
-            android:hint=" @example"
-            android:padding="20dp"
-            android:paddingBottom="40dp"
-            android:textColor="@color/white"
-            android:textColorHint="#9D9E9E"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_10" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

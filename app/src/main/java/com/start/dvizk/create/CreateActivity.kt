@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
-import com.start.dvizk.create.organization.list.presentation.OrgаnizationsListFragment
+import com.start.dvizk.create.organization.list.presentation.OrganizationListFragment
 import org.koin.android.ext.android.inject
 
 class CreateActivity : AppCompatActivity() {
@@ -29,7 +29,7 @@ class CreateActivity : AppCompatActivity() {
 
 			val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
 
-			ft.replace(R.id.fragment_container, OrgаnizationsListFragment())
+			ft.replace(R.id.fragment_container, OrganizationListFragment())
 
 			ft.commit()
 		}
