@@ -36,6 +36,10 @@ class OrganizationAdapter(
 		return events.size
 	}
 
+	fun setListener(listener: OnOrganizationItemClickListener) {
+		this.listener = listener
+	}
+
 	fun setData(events: List<Organization>) {
 		this.events = events
 		notifyDataSetChanged()

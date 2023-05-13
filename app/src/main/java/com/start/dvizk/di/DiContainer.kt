@@ -109,6 +109,7 @@ object DiContainer {
 		return OkHttpClient.Builder()
 			.retryOnConnectionFailure(true)
 			.addInterceptor(interceptor)
+
 //            .addInterceptor {
 //                val requestBuilder = it.request().newBuilder()
 //                        .addHeader("Authorization", "Bearer ${EmployeeConstant.TOKEN}")
