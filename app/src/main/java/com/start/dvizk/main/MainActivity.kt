@@ -10,6 +10,7 @@ import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.auth.main.MainAuthFragment
 import com.start.dvizk.create.CreateActivity
+import com.start.dvizk.main.ui.event.favorites.FavoritesFragment
 import com.start.dvizk.main.ui.home.presentation.HomeFragment
 import com.start.dvizk.main.ui.profile.ProfileFragment
 import org.koin.android.ext.android.inject
@@ -41,9 +42,10 @@ class MainActivity : AppCompatActivity() {
 					true
 				}
 				R.id.navigation_favorites -> {
-
-//					ft.replace(R.id.nav_host_fragment_activity_main, NotificationsFragment())
-//					ft.commit()
+					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+					val favoritesFragment = FavoritesFragment()
+					ft.replace(R.id.nav_host_fragment_activity_main, favoritesFragment)
+					ft.commit()
 
 					true
 				}

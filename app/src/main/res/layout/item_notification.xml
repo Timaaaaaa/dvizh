@@ -4,9 +4,7 @@
     android:id="@+id/notification"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="8dp"
-    android:paddingBottom="16dp"
-    android:paddingHorizontal="8dp"
+    android:paddingVertical="12dp"
     tools:background="#171A21">
 
     <ImageView
@@ -42,14 +40,14 @@
         android:id="@+id/item_notification_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="24dp"
         android:text="Title"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/app_font_bd"
         app:layout_constraintBottom_toTopOf="@id/item_notification_subtitle"
         app:layout_constraintStart_toEndOf="@+id/item_notification_icon_bg"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/item_notification_icon_bg" />
 
     <TextView
@@ -60,20 +58,22 @@
         android:text="Subtitle"
         android:textColor="@color/prompt_color"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/app_font_bk"
         app:layout_constraintStart_toStartOf="@+id/item_notification_title"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/item_notification_title" />
 
     <TextView
         android:id="@+id/item_notification_description"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Description"
         android:textColor="@color/prompt_color"
         android:textSize="14sp"
+        android:fontFamily="@font/app_font_bk"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/item_notification_icon_bg"
         app:layout_constraintTop_toBottomOf="@+id/item_notification_icon_bg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
