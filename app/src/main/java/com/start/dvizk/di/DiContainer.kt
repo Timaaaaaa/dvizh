@@ -8,6 +8,7 @@ import com.start.dvizk.create.organization.create.presentation.CreateOrganizatio
 import com.start.dvizk.create.organization.list.data.OrganizationListApi
 import com.start.dvizk.create.organization.list.data.OrganizationListRepository
 import com.start.dvizk.create.organization.list.presentation.OrganizationsListModel
+import com.start.dvizk.create.steps.bottomsheet.BottomSheetSelectListViewModel
 import com.start.dvizk.main.ui.home.data.HomePageApi
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.HomeViewModel
@@ -154,6 +155,12 @@ object DiContainer {
 		viewModel {
 			CreateOrganizationViewModel(
 				createOrganizationRepository = get()
+			)
+		}
+
+		viewModel {
+			BottomSheetSelectListViewModel(
+				homePageRepository = get()
 			)
 		}
 	}

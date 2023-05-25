@@ -14,5 +14,7 @@ data class Category(
 	val name: String,
 	@JsonProperty("image")
 	val image: String,
+	@JsonProperty("is_sub")
+	val is_sub: Boolean,
 	var isSelected: Boolean = false,
 )

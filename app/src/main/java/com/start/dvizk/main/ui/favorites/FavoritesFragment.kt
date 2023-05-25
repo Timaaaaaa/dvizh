@@ -1,4 +1,4 @@
-package com.start.dvizk.main.ui.event.favorites
+package com.start.dvizk.main.ui.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
+import com.start.dvizk.main.ui.home.presentation.model.Category
 
 class FavoritesFragment : Fragment() {
 
@@ -31,9 +32,9 @@ class FavoritesFragment : Fragment() {
 		fragment_favorites_events_recycler_view.layoutManager = LinearLayoutManager(view.context)
 
 		val categories = listOf(
-			Category(R.drawable.ic_logo, "Все", true),
-			Category(R.drawable.ic_logo, "Музыка", false),
-			Category(R.drawable.ic_logo, "Спорт", false)
+			Category(1,2,"Все","",  true),
+			Category(1,2,"Музыка","",  false),
+			Category(1,2,"Спорт","",  false)
 		)
 
 		val favoriteEvents = listOf(

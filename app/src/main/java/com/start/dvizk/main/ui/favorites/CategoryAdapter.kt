@@ -1,4 +1,4 @@
-package com.start.dvizk.main.ui.event.favorites
+package com.start.dvizk.main.ui.favorites
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
+import com.start.dvizk.main.ui.home.presentation.model.Category
 
 class CategoryAdapter(private val list: List<Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
@@ -27,7 +28,6 @@ class CategoryAdapter(private val list: List<Category>) : RecyclerView.Adapter<C
 
 		val category = list[position]
 
-		holder.icon.setImageResource(category.icon)
 		holder.name.text = category.name
 
 		val itemView = holder.icon.rootView

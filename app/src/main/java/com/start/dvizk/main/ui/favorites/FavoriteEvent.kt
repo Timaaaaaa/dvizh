@@ -1,4 +1,4 @@
-package com.start.dvizk.main.ui.event.favorites
+package com.start.dvizk.main.ui.favorites
 
 data class FavoriteEvent(
 	val image: Int,

@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.start.dvizk.R
 
-class LanguageStepFragment : Fragment() {
+class AboutStepFragment : Fragment() {
 
 	private lateinit var next: Button
 	private lateinit var back: Button
@@ -18,7 +19,7 @@ class LanguageStepFragment : Fragment() {
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
-	): View = inflater.inflate(R.layout.fragment_language_step, container, false)
+	): View = inflater.inflate(R.layout.fragment_about_step, container, false)
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
@@ -31,11 +32,7 @@ class LanguageStepFragment : Fragment() {
 		back = view.findViewById(R.id.fragment_create_organization_back)
 
 		next.setOnClickListener {
-			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-			val fragment = CategoryStepFragment()
-			ft.add(R.id.fragment_container,fragment)
-			ft.addToBackStack(null)
-			ft.commit()
+			Toast.makeText(requireContext(), "Soon bro", Toast.LENGTH_LONG).show()
 		}
 
 		back.setOnClickListener {

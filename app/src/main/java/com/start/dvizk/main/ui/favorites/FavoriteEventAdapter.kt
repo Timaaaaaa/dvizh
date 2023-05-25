@@ -1,4 +1,4 @@
-package com.start.dvizk.main.ui.event.favorites
+package com.start.dvizk.main.ui.favorites
 
 import android.view.LayoutInflater
 import android.view.View

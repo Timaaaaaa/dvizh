@@ -41,7 +41,7 @@ class HomeViewModel(
 
 	fun getCategories() {
 		launch(Dispatchers.IO) {
-			val response = homePageRepository.getCategories()
+			val response = homePageRepository.getCategories(null)
 
 			launch(Dispatchers.Main) {
 				when (response) {

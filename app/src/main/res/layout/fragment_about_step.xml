@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/fragment_create_organization_back_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_arrow_white_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_create_organization_title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Создайте Движ"
+        android:textColor="@color/white"
+        android:textColorHint="#9D9E9E"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_create_organization_back_image"
+        app:layout_constraintEnd_toStartOf="@id/fragment_create_organization_title_step_text_view"
+        app:layout_constraintStart_toEndOf="@id/fragment_create_organization_back_image"
+        app:layout_constraintTop_toTopOf="@id/fragment_create_organization_back_image" />
+
+    <TextView
+        android:id="@+id/fragment_create_organization_title_step_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="1/22"
+        android:textColor="@color/white"
+        android:textColorHint="#9D9E9E"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_create_organization_title_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_create_organization_title_text_view"
+        app:layout_constraintTop_toTopOf="@id/fragment_create_organization_title_text_view" />
+
+    <View
+        android:id="@+id/fragment_create_organization_separator_1"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_step_text_view" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_separator_1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/fragment_event_page_location_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="Чем мы займёмся?"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:text="Опишите мероприятие так, чтобы люди точно захотели принять в нём участие. Пусть это будет рассказ с завязкой, кульминацией и финалом."
+                android:textColor="@color/prompt_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_text" />
+
+            <TextView
+                android:id="@+id/fragment_create_organization_title_7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:text="1. Сначала расскажите, чем планируете заняться с участниками. Какие уникальные детали отличают ваше мероприятие от подобных?
+\n\n2. После этого углубитесь в детали. С чего вы начнете? Как будете вовлекать участников вашего события?
+\n\n3. Расскажите, что останется у людей после мероприятия? Может друзья или особые знания? Больше уважения к вашей культуре? Завершите описание убедительным аргументом."
+                android:textColor="@color/prompt_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_5" />
+
+            <EditText
+                android:id="@+id/fragment_create_organization_edit_text_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                android:drawablePadding="16dp"
+                android:gravity="start"
+                android:hint="Какое мероприятие вы проводите?\nБольше конкретики"
+                android:minHeight="120dp"
+                android:padding="20dp"
+                android:paddingBottom="40dp"
+                android:textColor="@color/white"
+                android:textColorHint="#9D9E9E"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_7" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1F222A"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/fragment_create_organization_back"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_light_grey"
+            android:text="Назад" />
+
+        <Button
+            android:id="@+id/fragment_create_organization_next"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_purple_button"
+            android:text="Далее" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

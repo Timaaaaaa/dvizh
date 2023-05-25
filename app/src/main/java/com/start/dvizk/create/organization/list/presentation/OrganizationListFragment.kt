@@ -16,7 +16,9 @@ import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.steps.TypeStepFragment
 import com.start.dvizk.create.organization.create.presentation.CreateOrgonizationFragment
 import com.start.dvizk.create.organization.create.presentation.model.CurrentStepState
+import com.start.dvizk.create.organization.list.presentation.adapter.OrganizationAdapter
 import com.start.dvizk.create.organization.list.presentation.model.OrganizationListState
+import com.start.dvizk.create.steps.bottomsheet.BottomSheetSelectListFragment
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
