@@ -1,16 +1,16 @@
-package com.start.dvizk.create.steps
+package com.start.dvizk.create.steps.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.start.dvizk.R
+import com.start.dvizk.create.steps.booking.BookingStepFragment
 
-class AboutStepFragment : Fragment() {
+class TimeIntervalStepFragment : Fragment() {
 
 	private lateinit var next: Button
 	private lateinit var back: Button
@@ -19,7 +19,7 @@ class AboutStepFragment : Fragment() {
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
-	): View = inflater.inflate(R.layout.fragment_about_step, container, false)
+	): View = inflater.inflate(R.layout.fragment_time_interval_step, container, false)
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
@@ -32,7 +32,11 @@ class AboutStepFragment : Fragment() {
 		back = view.findViewById(R.id.fragment_create_organization_back)
 
 		next.setOnClickListener {
-			Toast.makeText(requireContext(), "Soon bro", Toast.LENGTH_LONG).show()
+			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+			val fragment = BookingStepFragment()
+			ft.add(R.id.fragment_container,fragment)
+			ft.addToBackStack(null)
+			ft.commit()
 		}
 
 		back.setOnClickListener {

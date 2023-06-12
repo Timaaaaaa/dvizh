@@ -14,11 +14,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.JsonObject
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.main.MainActivity
-import com.start.dvizk.main.MainPageFragment
 import com.start.dvizk.network.RetrofitClient
 import com.start.dvizk.registration.registr.presentation.RegistrationFragment
 import com.start.dvizk.registration.registr.presentation.model.User

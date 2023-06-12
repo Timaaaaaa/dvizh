@@ -2,21 +2,18 @@ package com.start.dvizk.create.organization.list.data
 
 import com.start.dvizk.create.organization.list.presentation.model.CurrentStep
 import com.start.dvizk.create.organization.list.presentation.model.Organization
-import com.start.dvizk.main.ui.home.presentation.model.Category
-import com.start.dvizk.main.ui.home.presentation.model.Event
-import com.start.dvizk.network.ApiErrorExceptionFactory
 import com.start.dvizk.network.Response
 import org.json.JSONObject
 
-class OrganizationListRepository(
-	private val organizationListApi: OrganizationListApi
+class OrganizationRepository(
+	private val organizationApi: OrganizationApi
 ) {
 
-	fun getPopularEvents(
+	fun getOrganizationList(
 		userId: Int
 	): Response<MutableList<Organization>, String> {
 		try {
-			val response = organizationListApi
+			val response = organizationApi
 				.getOrganizationList(
 					user_id = userId
 				)
@@ -38,7 +35,7 @@ class OrganizationListRepository(
 		organizationId: Int
 	): Response<CurrentStep, String> {
 		try {
-			val response = organizationListApi
+			val response = organizationApi
 				.getCurrentStep(
 					token = "Bearer $token",
 					organization_id = organizationId

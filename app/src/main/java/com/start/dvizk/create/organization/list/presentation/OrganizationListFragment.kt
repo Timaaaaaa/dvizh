@@ -12,19 +12,21 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
+import com.start.dvizk.arch.EventCreateRouter
 import com.start.dvizk.arch.data.SharedPreferencesRepository
-import com.start.dvizk.create.steps.TypeStepFragment
 import com.start.dvizk.create.organization.create.presentation.CreateOrgonizationFragment
 import com.start.dvizk.create.organization.create.presentation.model.CurrentStepState
 import com.start.dvizk.create.organization.list.presentation.adapter.OrganizationAdapter
 import com.start.dvizk.create.organization.list.presentation.model.OrganizationListState
-import com.start.dvizk.create.steps.bottomsheet.BottomSheetSelectListFragment
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+const val STEP_NUMBER_KEY = "step_number_key"
+const val EVENT_ID_KEY = "event_id_key"
+
 class OrganizationListFragment : Fragment() {
 
-	private val viewModel: OrganizationsListModel by viewModel()
+	private val viewModel: OrganizationsListViewModel by viewModel()
 	private val sharedPreferencesRepository: SharedPreferencesRepository by inject()
 
 	private lateinit var createOrganization: Button
@@ -49,7 +51,7 @@ class OrganizationListFragment : Fragment() {
 		viewModel.organizationListStateLiveData.observe(viewLifecycleOwner, ::popularListInit)
 		viewModel.currentStepStateLiveData.observe(viewLifecycleOwner, ::popularListInit)
 
-		viewModel.getPopularEvents(SharedPreferencesRepository(requireContext()).getUserId().toInt())
+		viewModel.getOrganizationList(SharedPreferencesRepository(requireContext()).getUserId().toInt())
 	}
 
 	private fun initView(view: View) {
@@ -105,9 +107,13 @@ class OrganizationListFragment : Fragment() {
 			}
 			is CurrentStepState.Success -> {
 				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-				val homeFragment = TypeStepFragment()
-				ft.add(R.id.fragment_container,homeFragment)
-				ft.addToBackStack("OrganizationListFragment")
+				val fragment = EventCreateRouter.getCreateStepFragment(state.step.name)
+				fragment.arguments = Bundle().apply {
+					putInt(STEP_NUMBER_KEY, state.step.number_step)
+					putInt(EVENT_ID_KEY, state.step.event_id)
+				}
+				ft.add(R.id.fragment_container,fragment)
+				ft.addToBackStack(null)
 				ft.commit()
 			}
 		}

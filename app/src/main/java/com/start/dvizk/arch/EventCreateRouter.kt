@@ -1,7 +1,9 @@
 package com.start.dvizk.arch
 
 import androidx.fragment.app.Fragment
-import com.start.dvizk.create.steps.TypeStepFragment
+import com.start.dvizk.create.steps.language.LanguageStepFragment
+import com.start.dvizk.create.steps.language.LanguageStepViewModel
+import com.start.dvizk.create.steps.type.presentation.TypeStepFragment
 
 object EventCreateRouter {
 
@@ -10,7 +12,7 @@ object EventCreateRouter {
 			TypeStepFragment()
 		}
 		"languages" -> {
-			TypeStepFragment()
+			LanguageStepFragment()
 		}
 		"category" -> {
 			TypeStepFragment()

@@ -62,6 +62,11 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 		viewModel.getPopularEvents()
 		viewModel.getCategories()
 		viewModel.getUpcomingEvents(1,1)
+
+		// Просто чтобы из логов взять данные
+		println("Token " + sharedPreferencesRepository.getUserToken() + "\n" +
+				"UserId " + sharedPreferencesRepository.getUserId()
+		)
 	}
 
 	override fun onItemClick(data: Event) {

@@ -1,4 +1,4 @@
-package com.start.dvizk.create.steps
+package com.start.dvizk.create.steps.classification
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,9 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.start.dvizk.R
+import com.start.dvizk.create.steps.guestcount.GusetCountStepFragment
 
-class TypeStepFragment : Fragment() {
+class ClassificationStepFragment : Fragment() {
 
 	private lateinit var next: Button
 	private lateinit var back: Button
@@ -18,7 +19,7 @@ class TypeStepFragment : Fragment() {
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
-	): View = inflater.inflate(R.layout.fragment_type_step, container, false)
+	): View = inflater.inflate(R.layout.fragment_classification_step, container, false)
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
@@ -32,7 +33,7 @@ class TypeStepFragment : Fragment() {
 
 		next.setOnClickListener {
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-			val fragment = LanguageStepFragment()
+			val fragment = GusetCountStepFragment()
 			ft.add(R.id.fragment_container,fragment)
 			ft.addToBackStack(null)
 			ft.commit()

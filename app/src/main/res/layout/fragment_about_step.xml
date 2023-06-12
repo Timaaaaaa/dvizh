@@ -62,7 +62,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp">
 
             <TextView
                 android:id="@+id/fragment_event_page_location_text"
@@ -108,8 +109,8 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
                 android:text="1. Сначала расскажите, чем планируете заняться с участниками. Какие уникальные детали отличают ваше мероприятие от подобных?
-\n\n2. После этого углубитесь в детали. С чего вы начнете? Как будете вовлекать участников вашего события?
-\n\n3. Расскажите, что останется у людей после мероприятия? Может друзья или особые знания? Больше уважения к вашей культуре? Завершите описание убедительным аргументом."
+\n2. После этого углубитесь в детали. С чего вы начнете? Как будете вовлекать участников вашего события?
+\n. Расскажите, что останется у людей после мероприятия? Может друзья или особые знания? Больше уважения к вашей культуре? Завершите описание убедительным аргументом."
                 android:textColor="@color/prompt_color"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +124,6 @@
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_gradient_dark_grey_button"
-                android:drawablePadding="16dp"
                 android:gravity="start"
                 android:hint="Какое мероприятие вы проводите?\nБольше конкретики"
                 android:minHeight="120dp"
@@ -131,7 +131,7 @@
                 android:paddingBottom="40dp"
                 android:textColor="@color/white"
                 android:textColorHint="#9D9E9E"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_7" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

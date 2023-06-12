@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.start.dvizk.arch.CustomMutableLiveData
 import com.start.dvizk.create.organization.create.presentation.model.CurrentStepState
-import com.start.dvizk.create.organization.list.data.OrganizationListRepository
+import com.start.dvizk.create.organization.list.data.OrganizationRepository
 import com.start.dvizk.create.organization.list.presentation.adapter.OnOrganizationItemClickListener
 import com.start.dvizk.create.organization.list.presentation.model.Organization
 import com.start.dvizk.create.organization.list.presentation.model.OrganizationListState
@@ -14,8 +14,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class OrganizationsListModel(
-	private val organizationListRepository: OrganizationListRepository,
+class OrganizationsListViewModel(
+	private val organizationRepository: OrganizationRepository,
 	override val coroutineContext: CoroutineContext = Dispatchers.Main
 ) : ViewModel(),
 	CoroutineScope,
@@ -26,9 +26,9 @@ class OrganizationsListModel(
 
 	var organizationId: Int = 0
 
-	fun getPopularEvents(userId: Int) {
+	fun getOrganizationList(userId: Int) {
 		launch(Dispatchers.IO) {
-			val response = organizationListRepository.getPopularEvents(userId)
+			val response = organizationRepository.getOrganizationList(userId)
 
 			launch(Dispatchers.Main) {
 				when (response) {
@@ -43,8 +43,10 @@ class OrganizationsListModel(
 
 	fun getCurrentStep(token: String) {
 		launch(Dispatchers.IO) {
-			val response = organizationListRepository.getCurrentStep(token = token, organizationId = organizationId)
-
+			val response = organizationRepository.getCurrentStep(
+				token = token,
+				organizationId = organizationId
+			)
 			launch(Dispatchers.Main) {
 				when (response) {
 					is Response.Success -> currentStepStateLiveData.value =

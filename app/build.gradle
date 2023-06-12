@@ -78,4 +78,6 @@ dependencies {
 
     // Carousel (Image Slider)
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
+
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
 }

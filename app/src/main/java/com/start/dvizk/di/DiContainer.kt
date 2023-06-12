@@ -5,10 +5,15 @@ import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.organization.create.data.CreateOrganizationApi
 import com.start.dvizk.create.organization.create.data.CreateOrganizationRepository
 import com.start.dvizk.create.organization.create.presentation.CreateOrganizationViewModel
-import com.start.dvizk.create.organization.list.data.OrganizationListApi
-import com.start.dvizk.create.organization.list.data.OrganizationListRepository
-import com.start.dvizk.create.organization.list.presentation.OrganizationsListModel
+import com.start.dvizk.create.organization.list.data.OrganizationApi
+import com.start.dvizk.create.organization.list.data.OrganizationRepository
+import com.start.dvizk.create.organization.list.presentation.OrganizationsListViewModel
 import com.start.dvizk.create.steps.bottomsheet.BottomSheetSelectListViewModel
+import com.start.dvizk.create.steps.data.EventCreateApi
+import com.start.dvizk.create.steps.data.EventCreateRepository
+import com.start.dvizk.create.steps.language.LanguageStepViewModel
+import com.start.dvizk.create.steps.language.LanguagesListApi
+import com.start.dvizk.create.steps.type.presentation.TypeStepViewModel
 import com.start.dvizk.main.ui.home.data.HomePageApi
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.HomeViewModel
@@ -32,7 +37,6 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 internal const val APP_RETROFIT = "app_retrofit"
 internal const val APP_RETROFIT_HTTP_CLIENT = "app_retrofit_http_client"
@@ -79,8 +83,8 @@ object DiContainer {
 
 		factory {
 			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
-			OrganizationListRepository(
-				organizationListApi = appRetrofit.create(OrganizationListApi::class.java),
+			OrganizationRepository(
+				organizationApi = appRetrofit.create(OrganizationApi::class.java),
 			)
 		}
 
@@ -88,6 +92,13 @@ object DiContainer {
 			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
 			CreateOrganizationRepository(
 				createOrganizationApi = appRetrofit.create(CreateOrganizationApi::class.java),
+			)
+		}
+
+		factory {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			EventCreateRepository(
+				eventCreateApi = appRetrofit.create(EventCreateApi::class.java),
 			)
 		}
 
@@ -147,8 +158,8 @@ object DiContainer {
 		}
 
 		viewModel {
-			OrganizationsListModel(
-				organizationListRepository = get()
+			OrganizationsListViewModel(
+				organizationRepository = get()
 			)
 		}
 
@@ -161,6 +172,19 @@ object DiContainer {
 		viewModel {
 			BottomSheetSelectListViewModel(
 				homePageRepository = get()
+			)
+		}
+
+		viewModel {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			LanguageStepViewModel(
+				languagesListApi = appRetrofit.create(LanguagesListApi::class.java),
+			)
+		}
+
+		viewModel {
+			TypeStepViewModel(
+				eventCreateRepository = get()
 			)
 		}
 	}

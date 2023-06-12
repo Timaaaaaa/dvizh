@@ -31,4 +31,24 @@
         <item name="android:background">@drawable/bg_top_rounded_dark</item>
     </style>
 
+    <style name="CalendarHeader">
+        <item name="android:textColor">@color/calendar_header_text_color</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="CalendarWeekDay">
+        <item name="android:textColor">@color/calendar_weekday_text_color</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="CalendarDate">
+        <item name="android:textColor">@color/calendar_date_text_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="CustomCalendarView" parent="Widget.MaterialComponents.MaterialCalendar">
+        <item name="mcv_arrowColor">@android:color/white</item>
+        <item name="mcv_titleAnimationOrientation">horizontal</item>
+    </style>
+
 </resources>

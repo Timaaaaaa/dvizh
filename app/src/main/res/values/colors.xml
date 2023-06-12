@@ -10,6 +10,7 @@
     <color name="app_accent">#FF3700B3</color>
 
     <color name="nav_focus_color">#584DF4</color>
+    <color name="calendar_selector_color">#2315ED</color>
     <color name="nav_unfocus_color">#979797</color>
     <color name="nav_bg">#181A20</color>
     <color name="event_bg">#1F222A</color>
@@ -30,4 +31,9 @@
 
     <color name="prompt_color">#CDCDCE</color>
     <color name="app_background">#181A20</color>
+    <color name="grey_light_for_border">#35383F</color>
+
+    <color name="calendar_header_text_color">#FFFFFFFF</color>
+    <color name="calendar_weekday_text_color">#FFFFFFFF</color>
+    <color name="calendar_date_text_color">#FFFFFFFF</color>
 </resources>

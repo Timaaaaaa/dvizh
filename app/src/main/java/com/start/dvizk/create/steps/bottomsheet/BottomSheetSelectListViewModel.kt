@@ -6,8 +6,6 @@ import com.start.dvizk.arch.CustomMutableLiveData
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
-import com.start.dvizk.main.ui.home.presentation.model.PopularEvetsState
-import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
 import com.start.dvizk.network.Response
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -63,9 +61,9 @@ class BottomSheetSelectListViewModel(
 	fun navigateBack() {
 		if (isSubCategoryList) {
 			isSubCategoryList = false
-			navigation.value = Navigation.onSubCategoryBack
+			navigation.value = Navigation.OnSubCategoryBack
 		} else {
-			navigation.value = Navigation.onCategoryBack
+			navigation.value = Navigation.OnCategoryBack
 		}
 	}
 }
