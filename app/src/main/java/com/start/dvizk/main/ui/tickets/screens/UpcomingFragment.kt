@@ -37,7 +37,7 @@ class UpcomingFragment : Fragment() {
 
 		if (myTickets.isNotEmpty()) {
 			fragment_my_tickets_upcoming_empty.visibility = View.GONE
-
+			fragment_my_tickets_upcoming_recycler.visibility = View.VISIBLE
 			val adapter = MyTicketsAdapter(myTickets)
 			fragment_my_tickets_upcoming_recycler.adapter = adapter
 			fragment_my_tickets_upcoming_recycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
