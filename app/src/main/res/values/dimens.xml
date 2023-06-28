@@ -7,4 +7,6 @@
     <dimen name="big_event_image_radius">40dp</dimen>
     <dimen name="big_event_default_image_radius">20dp</dimen>
 
+    <dimen name="my_ticket_image_radius">20dp</dimen>
+
 </resources>

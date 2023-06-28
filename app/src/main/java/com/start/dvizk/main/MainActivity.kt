@@ -12,6 +12,7 @@ import com.start.dvizk.auth.main.MainAuthFragment
 import com.start.dvizk.create.CreateActivity
 import com.start.dvizk.main.ui.favorites.FavoritesFragment
 import com.start.dvizk.main.ui.home.presentation.HomeFragment
+import com.start.dvizk.main.ui.tickets.MyTicketsFragment
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
@@ -55,9 +56,10 @@ class MainActivity : AppCompatActivity() {
 					true
 				}
 				R.id.navigation_my_tickets -> {
-
-//					ft.replace(R.id.nav_host_fragment_activity_main, NotificationsFragment())
-//					ft.commit()
+					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+					val myTicketsFragment = MyTicketsFragment()
+					ft.replace(R.id.nav_host_fragment_activity_main, myTicketsFragment)
+					ft.commit()
 
 					true
 				}

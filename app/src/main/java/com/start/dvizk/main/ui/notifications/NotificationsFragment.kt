@@ -16,7 +16,6 @@ import com.start.dvizk.auth.profile.ProfileAuthFragment
 import com.start.dvizk.databinding.FragmentNotificationsBinding
 import com.start.dvizk.main.ui.home.presentation.HomeFragment
 
-
 class NotificationsFragment : Fragment() {
 
 	private lateinit var fragment_notifications_notifications: RecyclerView

@@ -1,6 +1,5 @@
 package com.start.dvizk.main.ui.notifications
 
-import android.app.Notification
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
 
-class NotificationAdapter(private val mList: List<com.start.dvizk.main.ui.notifications.Notification>) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
+class NotificationAdapter(private val list: List<com.start.dvizk.main.ui.notifications.Notification>) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -20,12 +19,12 @@ class NotificationAdapter(private val mList: List<com.start.dvizk.main.ui.notifi
 	}
 
 	override fun getItemCount(): Int {
-		return mList.size
+		return list.size
 	}
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-		val notification = mList[position]
+		val notification = list[position]
 
 		holder.icon.setImageResource(notification.icon)
 		if (!notification.notViewed) {

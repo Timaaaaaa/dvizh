@@ -21,7 +21,7 @@
         android:layout_height="12dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/not_viewed"
+        android:src="@drawable/ic_not_viewed"
         app:layout_constraintTop_toTopOf="@id/item_notification_icon_bg"
         app:layout_constraintStart_toEndOf="@id/item_notification_icon" />
 
