@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.tickets.MyTicket
@@ -39,6 +40,7 @@ class UpcomingFragment : Fragment() {
 
 			val adapter = MyTicketsAdapter(myTickets)
 			fragment_my_tickets_upcoming_recycler.adapter = adapter
+			fragment_my_tickets_upcoming_recycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 		} else {
 			fragment_my_tickets_upcoming_empty.visibility = View.VISIBLE
 
