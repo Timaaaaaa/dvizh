@@ -176,9 +176,8 @@ object DiContainer {
 		}
 
 		viewModel {
-			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
 			LanguageStepViewModel(
-				languagesListApi = appRetrofit.create(LanguagesListApi::class.java),
+				eventCreateRepository = get(),
 			)
 		}
 

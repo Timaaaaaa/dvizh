@@ -7,11 +7,11 @@ import com.start.dvizk.create.steps.type.presentation.TypeStepFragment
 
 object EventCreateRouter {
 
-	fun getCreateStepFragment(stepName: String): Fragment = when (stepName) {
+	fun getCreateStepFragment(stepName: String?): Fragment = when (stepName) {
 		"type" -> {
 			TypeStepFragment()
 		}
-		"languages" -> {
+		"language" -> {
 			LanguageStepFragment()
 		}
 		"category" -> {

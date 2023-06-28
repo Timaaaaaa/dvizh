@@ -10,13 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.start.dvizk.R
+import com.start.dvizk.arch.EventCreateRouter
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
-import com.start.dvizk.create.organization.list.presentation.OrganizationsListViewModel
 import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
-import com.start.dvizk.create.steps.language.LanguageStepFragment
-import com.start.dvizk.registration.registr.presentation.RegistrationState
-import com.start.dvizk.registration.varification.presentation.VerificationCodeFragment
+import com.start.dvizk.create.steps.data.model.RequestResponseState
+import com.start.dvizk.create.steps.data.model.StepDataApiResponse
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -67,14 +66,6 @@ class TypeStepFragment : Fragment() {
 					type = type
 				)
 			}
-
-
-			val ft: FragmentTransaction =
-				requireActivity().supportFragmentManager.beginTransaction()
-			val fragment = LanguageStepFragment()
-			ft.add(R.id.fragment_container, fragment)
-			ft.addToBackStack(null)
-			ft.commit()
 		}
 
 		back.setOnClickListener {
@@ -101,20 +92,34 @@ class TypeStepFragment : Fragment() {
 	}
 
 	private fun initObserver() {
-		viewModel.registrationStateLiveData.observe(viewLifecycleOwner, ::handleState)
+		viewModel.requestResponseStateLiveData.observe(viewLifecycleOwner, ::handleState)
 	}
 
-	private fun handleState(state: RegistrationState) {
+	private fun handleState(state: RequestResponseState) {
 		when (state) {
-			is RegistrationState.Failed -> {
+			is RequestResponseState.Failed -> {
 				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
 			}
-			is RegistrationState.Loading -> {
+			is RequestResponseState.Loading -> {
 
 			}
-			is RegistrationState.Success -> {
-				Toast.makeText(requireContext(), "Запрос успешно отправлен", Toast.LENGTH_LONG).show()
+			is RequestResponseState.Success -> {
+				val response = state.value as? StepDataApiResponse ?: return responseFailed()
+
+				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+				val fragment = EventCreateRouter.getCreateStepFragment(response.data.nextStep.name)
+				fragment.arguments = Bundle().apply {
+					putInt(STEP_NUMBER_KEY, response.data.nextStep.numberStep)
+					putInt(EVENT_ID_KEY, response.data.eventId)
+				}
+				ft.add(R.id.fragment_container,fragment)
+				ft.addToBackStack(null)
+				ft.commit()
 			}
 		}
+	}
+
+	private fun responseFailed() {
+		Toast.makeText(requireContext(), "Ошибка сервера попробуйте позже", Toast.LENGTH_LONG).show()
 	}
 }
