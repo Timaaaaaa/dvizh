@@ -6,16 +6,79 @@
     android:layout_height="match_parent"
     tools:background="@color/app_background">
 
-    <TextView
-        android:id="@+id/fragment_my_tickets_title"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_my_tickets_canceled_recycler"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="3"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:fontFamily="@font/app_font_bd"
+        android:layout_marginHorizontal="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_my_tickets_canceled_empty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/fragment_my_tickets_canceled_empty_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_girl_reading_book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fragment_my_tickets_canceled_empty_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:text="Пусто"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/app_font_bd"
+            app:layout_constraintTop_toBottomOf="@id/fragment_my_tickets_canceled_empty_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/fragment_my_tickets_canceled_empty_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="24dp"
+            android:text="Похоже, у вас еще нет билета. Начните поиск событий прямо сейчас, нажав кнопку ниже"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/fragment_my_tickets_canceled_empty_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/fragment_my_tickets_canceled_empty_find_events_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="24dp"
+            android:text="Найти мероприятии"
+            android:textColor="@color/app_accent"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:fontFamily="@font/app_font_bd"
+            android:background="@drawable/bg_purple_line_bottom"
+            app:layout_constraintTop_toBottomOf="@id/fragment_my_tickets_canceled_empty_subtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,4 @@
-package com.start.dvizk.main.ui.tickets
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonProperty
+package com.start.dvizk.main.ui.tickets.model
 
 //@JsonIgnoreProperties(ignoreUnknown = true)
 //data class MyTicket(
@@ -15,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 //	val location: String
 //)
 
-data class MyTicket(
+data class MyUpcomingTicket(
 	val image: Int,
 	val title: String,
 	val date: String,

@@ -15,18 +15,10 @@ class PagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
 	override fun getItem(position: Int): Fragment {
 
 		return when (position) {
-			0 -> {
-				UpcomingFragment()
-			}
-			1 -> {
-				FinishedFragment()
-			}
-			2 -> {
-				CanceledFragment()
-			}
-			else -> {
-				UpcomingFragment()
-			}
+			0 -> UpcomingFragment()
+			1 -> FinishedFragment()
+			2 -> CanceledFragment()
+			else -> UpcomingFragment()
 		}
 	}
 

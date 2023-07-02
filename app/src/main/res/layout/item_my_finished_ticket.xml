@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="14dp"
+        android:padding="10dp"
         android:background="@drawable/bg_gradient_dark_grey_card"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,102 +18,102 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <ImageView
-            android:id="@+id/item_my_ticket_image"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:id="@+id/item_my_finished_ticket_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/dj"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/item_my_ticket_title"
+            android:id="@+id/item_my_finished_ticket_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="14dp"
             android:text="Мастер класс по искусству"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:fontFamily="@font/app_font_bd"
-            app:layout_constraintStart_toEndOf="@id/item_my_ticket_image"
+            app:layout_constraintStart_toEndOf="@id/item_my_finished_ticket_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/item_my_ticket_date"
+            android:id="@+id/item_my_finished_ticket_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             android:text="24 Мар · 15:00 - 17:00"
             android:textColor="@color/app_accent"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:fontFamily="@font/app_font_bk"
-            app:layout_constraintStart_toStartOf="@id/item_my_ticket_title"
+            app:layout_constraintStart_toStartOf="@id/item_my_finished_ticket_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_my_ticket_title" />
+            app:layout_constraintTop_toBottomOf="@id/item_my_finished_ticket_title" />
 
         <ImageView
-            android:id="@+id/item_my_ticket_geo_icon"
+            android:id="@+id/item_my_finished_ticket_geo_icon"
             android:layout_width="12dp"
             android:layout_height="14.49dp"
-            android:layout_marginTop="13.33dp"
+            android:layout_marginTop="12dp"
             android:src="@drawable/ic_geo"
-            app:layout_constraintStart_toStartOf="@id/item_my_ticket_title"
-            app:layout_constraintTop_toBottomOf="@id/item_my_ticket_date" />
+            app:layout_constraintStart_toStartOf="@id/item_my_finished_ticket_title"
+            app:layout_constraintTop_toBottomOf="@id/item_my_finished_ticket_date" />
 
         <TextView
-            android:id="@+id/item_my_ticket_location"
+            android:id="@+id/item_my_finished_ticket_location"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
             android:layout_marginStart="10dp"
+            android:fontFamily="@font/app_font_bk"
             android:text="Атакент парк, Алматы"
             android:textColor="@color/white"
             android:textSize="12sp"
-            android:fontFamily="@font/app_font_bk"
-            app:layout_constraintTop_toTopOf="@id/item_my_ticket_geo_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/item_my_ticket_geo_icon" />
-
+            app:layout_constraintStart_toEndOf="@id/item_my_finished_ticket_geo_icon"
+            app:layout_constraintTop_toBottomOf="@id/item_my_finished_ticket_date" />
         <View
-            android:id="@+id/item_my_ticket_separator"
+            android:id="@+id/item_my_finished_ticket_separator"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="23dp"
             android:background="@drawable/bg_gradient_dark_grey_button"
-            app:layout_constraintTop_toBottomOf="@id/item_my_ticket_image"
+            app:layout_constraintTop_toBottomOf="@id/item_my_finished_ticket_location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/item_my_ticket_cancel_ticket_button"
+            android:id="@+id/item_my_finished_ticket_cancel_ticket_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="9dp"
             android:background="@drawable/bg_purple_rounded_corners_fill_dark"
-            android:text="Отменить билет"
+            android:text="Оставить отзыв"
             android:textAllCaps="false"
             android:textColor="@color/app_accent"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:fontFamily="@font/app_font_bk"
-            app:layout_constraintTop_toBottomOf="@id/item_my_ticket_separator"
+            app:layout_constraintTop_toBottomOf="@id/item_my_finished_ticket_separator"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/item_my_ticket_view_ticket_button"/>
+            app:layout_constraintEnd_toStartOf="@id/item_my_finished_ticket_view_ticket_button"/>
 
         <Button
-            android:id="@+id/item_my_ticket_view_ticket_button"
+            android:id="@+id/item_my_finished_ticket_view_ticket_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="9dp"
             android:background="@drawable/bg_purple_button"
             android:text="Посмотреть e-билет"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:fontFamily="@font/app_font_bk"
-            app:layout_constraintTop_toBottomOf="@id/item_my_ticket_separator"
-            app:layout_constraintStart_toEndOf="@id/item_my_ticket_cancel_ticket_button"
+            app:layout_constraintTop_toBottomOf="@id/item_my_finished_ticket_separator"
+            app:layout_constraintStart_toEndOf="@id/item_my_finished_ticket_cancel_ticket_button"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

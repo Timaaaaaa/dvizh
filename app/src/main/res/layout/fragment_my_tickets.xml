@@ -7,13 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="24dp"
-    android:paddingHorizontal="24dp"
     android:background="@color/app_background">
 
     <TextView
         android:id="@+id/fragment_my_tickets_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:text="Мои билеты"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -26,6 +26,7 @@
         android:id="@+id/fragment_my_tickets_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="5dp"
         app:tabTextColor="@color/white"
         app:tabSelectedTextColor="@color/app_accent"
