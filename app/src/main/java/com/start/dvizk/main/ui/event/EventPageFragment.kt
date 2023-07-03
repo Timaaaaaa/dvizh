@@ -60,7 +60,7 @@ class EventPageFragment : Fragment() {
 		val data1 = ArrayList<DetailsInfo>()
 
 		val rwIcons = arrayOf(
-			R.drawable.ic_calendar,
+			R.drawable.ic_calendar_accent,
 			R.drawable.ic_message,
 			R.drawable.ic_ticket,
 			R.drawable.ic_geo

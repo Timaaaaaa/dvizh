@@ -18,7 +18,7 @@
         android:id="@+id/icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/ic_calendar"
+        android:src="@drawable/ic_calendar_accent"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="@id/icon_bg"
         app:layout_constraintStart_toStartOf="@id/icon_bg"
