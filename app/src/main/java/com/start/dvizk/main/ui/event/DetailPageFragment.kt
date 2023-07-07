@@ -15,7 +15,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.start.dvizk.R
 
-class EventPageFragment : Fragment() {
+class DetailPageFragment : Fragment() {
 
 	private lateinit var fragment_event_page_profile_organizer_avatar: ImageView
 	private lateinit var fragment_event_page_detail_infos: RecyclerView
@@ -28,7 +28,7 @@ class EventPageFragment : Fragment() {
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		return inflater.inflate(R.layout.fragment_event_page, container, false)
+		return inflater.inflate(R.layout.fragment_detail_page, container, false)
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,38 +52,15 @@ class EventPageFragment : Fragment() {
 
 		// Recyclers
 		fragment_event_page_detail_infos = view.findViewById(R.id.fragment_event_page_detail_infos)
-		fragment_event_page_detail_infos.layoutManager = LinearLayoutManager(view.context)
+		fragment_event_page_detail_infos.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
 		fragment_event_page_items_checklist =
 			view.findViewById(R.id.fragment_event_page_items_checklist)
 		fragment_event_page_items_checklist.layoutManager = LinearLayoutManager(view.context)
 
-		val data1 = ArrayList<DetailsInfo>()
-
-		val rwIcons = arrayOf(
-			R.drawable.ic_calendar_accent,
-			R.drawable.ic_message,
-			R.drawable.ic_ticket,
-			R.drawable.ic_geo
+		var detailsInfos = mutableListOf<DetailsInfo>(
+			DetailsInfo("Алматы, Дворец Республики", "Декабрь 24, 2022", "20:00 - 23:00", "Казахский, Русский", "5000 ₸ - 10.000 ₸"),
+			DetailsInfo("Актобе", "Декабрь 24, 2022", "20:00 - 23:00", "Казахский, Русский", "5000 ₸ - 10.000 ₸")
 		)
-		val rwTitles = arrayOf("Декабрь 24, 2022", "Язык", "$20.00 - $100.00", "Алматы, Казахстан")
-		val rwSubtitles1 = arrayOf(
-			"Начало: 20:00",
-			"Казахский, Русский",
-			"Цена билета зависит от пакета",
-			"Тимирязева 60"
-		)
-		val rwSubtitles2 = arrayOf("Длительность: 3 часа", "", "", "")
-
-		for (i in 1..4) {
-			data1.add(
-				DetailsInfo(
-					rwIcons[i - 1],
-					rwTitles[i - 1],
-					rwSubtitles1[i - 1],
-					rwSubtitles2[i - 1]
-				)
-			)
-		}
 
 		val data2 = ArrayList<CheckList>()
 
@@ -104,7 +81,7 @@ class EventPageFragment : Fragment() {
 			)
 		}
 
-		val rwAdapter = DetailsInfoAdapter(data1)
+		val rwAdapter = DetailsInfoAdapter(detailsInfos)
 		fragment_event_page_detail_infos.adapter = rwAdapter
 		val clAdapter = CheckListAdapter(data2)
 		fragment_event_page_items_checklist.adapter = clAdapter

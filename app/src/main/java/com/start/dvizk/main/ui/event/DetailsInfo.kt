@@ -1,8 +1,9 @@
 package com.start.dvizk.main.ui.event
 
 data class DetailsInfo(
-	val icon: Int,
-	val title: String,
-	val subtitle1: String,
-	val subtitle2: String
+	val location: String,
+	val date: String,
+	val time: String,
+	val language: String,
+	val price: String
 )

@@ -3,12 +3,11 @@ package com.start.dvizk.main.ui.event
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
 
-class DetailsInfoAdapter(private val mList: List<DetailsInfo>) : RecyclerView.Adapter<DetailsInfoAdapter.ViewHolder>() {
+class DetailsInfoAdapter(private val detailsInfoTickets: MutableList<DetailsInfo>) : RecyclerView.Adapter<DetailsInfoAdapter.ViewHolder>() {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -19,27 +18,27 @@ class DetailsInfoAdapter(private val mList: List<DetailsInfo>) : RecyclerView.Ad
 	}
 
 	override fun getItemCount(): Int {
-		return mList.size
+		return detailsInfoTickets.size
 	}
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
-		val detailsInfo = mList[position]
-
-		holder.icon.setImageResource(detailsInfo.icon)
-		holder.title.text = detailsInfo.title
-		holder.subtitle1.text = detailsInfo.subtitle1
-		holder.subtitle2.text = detailsInfo.subtitle2
-
-		if (holder.subtitle2.text.isEmpty()) {
-			holder.subtitle2.visibility = View.GONE
-		}
+		val detailsInfo = detailsInfoTickets[position]
+		holder.bind(detailsInfo, position)
 	}
 
-	inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-		val icon: ImageView = view.findViewById(R.id.icon)
-		val title: TextView = view.findViewById(R.id.title)
-		val subtitle1: TextView = view.findViewById(R.id.subtitle_1)
-		val subtitle2: TextView = view.findViewById(R.id.subtitle_2)
+	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+		fun bind(detailsInfo: DetailsInfo, position: Int) {
+			val location: TextView = itemView.findViewById(R.id.item_details_info_location)
+			val date: TextView = itemView.findViewById(R.id.item_details_info_date)
+			val time: TextView = itemView.findViewById(R.id.item_details_info_time)
+			val language: TextView = itemView.findViewById(R.id.item_details_info_language)
+			val price: TextView = itemView.findViewById(R.id.item_details_info_price)
+
+			location.text = detailsInfo.location
+			date.text = detailsInfo.date
+			time.text = detailsInfo.time
+			language.text = detailsInfo.language
+			price.text = detailsInfo.price
+		}
 	}
 }

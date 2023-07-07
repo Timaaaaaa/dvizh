@@ -15,17 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.google.android.material.snackbar.Snackbar
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
-import com.start.dvizk.main.ui.event.EventPageFragment
+import com.start.dvizk.main.ui.event.DetailPageFragment
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.main.ui.home.presentation.model.Event
 import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
 import com.start.dvizk.main.ui.home.presentation.model.PopularEvetsState
 import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
-import com.start.dvizk.main.ui.notifications.Notification
 import com.start.dvizk.main.ui.notifications.NotificationsFragment
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -72,7 +70,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 	override fun onItemClick(data: Event) {
 		val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
-		ft.add(R.id.nav_host_fragment_activity_main, EventPageFragment())
+		ft.add(R.id.nav_host_fragment_activity_main, DetailPageFragment())
 		ft.addToBackStack("")
 		ft.commit()
 	}
