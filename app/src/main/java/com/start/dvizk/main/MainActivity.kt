@@ -12,6 +12,7 @@ import com.start.dvizk.auth.main.MainAuthFragment
 import com.start.dvizk.create.CreateActivity
 import com.start.dvizk.main.ui.favorites.FavoritesFragment
 import com.start.dvizk.main.ui.home.presentation.HomeFragment
+import com.start.dvizk.main.ui.profile.ProfileFragment
 import com.start.dvizk.main.ui.tickets.MyTicketsFragment
 import org.koin.android.ext.android.inject
 
@@ -73,7 +74,10 @@ class MainActivity : AppCompatActivity() {
 						return@setOnItemSelectedListener true
 					}
 
-
+					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+					val profileFragment = ProfileFragment()
+					ft.replace(R.id.nav_host_fragment_activity_main, profileFragment)
+					ft.commit()
 
 					true
 				}
