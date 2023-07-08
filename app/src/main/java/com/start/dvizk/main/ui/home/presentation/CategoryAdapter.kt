@@ -36,7 +36,7 @@ class CategoryAdapter(private val resources: Resources): RecyclerView.Adapter<Ca
 		notifyDataSetChanged()
 	}
 
-	fun setListener(listener: HomeFragment) {
+	fun setListener(listener: OnCategoryItemClickListener) {
 		this.listener = listener
 	}
 
