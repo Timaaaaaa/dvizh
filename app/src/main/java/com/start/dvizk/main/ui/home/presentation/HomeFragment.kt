@@ -17,7 +17,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
-import com.start.dvizk.main.ui.event.DetailPageFragment
+import com.start.dvizk.main.ui.detail.DetailPageFragment
+import com.start.dvizk.main.ui.home.presentation.model.AllUpcomingEventsFragment
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.main.ui.home.presentation.model.Event
@@ -39,6 +40,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 	private lateinit var fragment_home_user_photo: ImageView
 	private lateinit var fragment_home_upcoming_events_progress_bar: ProgressBar
 	private lateinit var title: TextView
+	private lateinit var fragment_home_upcoming_title_show: TextView
 	private lateinit var notificationIcon: ImageView
 
 	private lateinit var popularAdapter: BigEventAdapter
@@ -77,6 +79,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 
 	private fun initView(view: View) {
 		title = view.findViewById(R.id.fragment_home_user_nickname)
+		fragment_home_upcoming_title_show = view.findViewById(R.id.fragment_home_upcoming_title_show)
 		popularRecyclerView = view.findViewById(R.id.fragment_home_popular)
 		categoryRecyclerView = view.findViewById(R.id.fragment_home_category_recycler_view)
 		upcomingEventsRecyclerView = view.findViewById(R.id.fragment_home_upcoming_events_recycler_view)
@@ -88,6 +91,14 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
 			ft.add(R.id.nav_host_fragment_activity_main, NotificationsFragment())
+			ft.addToBackStack("")
+			ft.commit()
+		}
+
+		fragment_home_upcoming_title_show.setOnClickListener {
+			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+
+			ft.add(R.id.nav_host_fragment_activity_main, AllUpcomingEventsFragment())
 			ft.addToBackStack("")
 			ft.commit()
 		}

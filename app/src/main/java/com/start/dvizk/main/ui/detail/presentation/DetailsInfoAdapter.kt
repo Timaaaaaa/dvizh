@@ -1,4 +1,4 @@
-package com.start.dvizk.main.ui.event
+package com.start.dvizk.main.ui.detail.presentation
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
+import com.start.dvizk.main.ui.detail.data.DetailsInfoDataModal
 
-class DetailsInfoAdapter(private val detailsInfoTickets: MutableList<DetailsInfo>) : RecyclerView.Adapter<DetailsInfoAdapter.ViewHolder>() {
+class DetailsInfoAdapter(private val detailsInfoTickets: MutableList<DetailsInfoDataModal>) : RecyclerView.Adapter<DetailsInfoAdapter.ViewHolder>() {
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -27,7 +28,7 @@ class DetailsInfoAdapter(private val detailsInfoTickets: MutableList<DetailsInfo
 	}
 
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-		fun bind(detailsInfo: DetailsInfo, position: Int) {
+		fun bind(detailsInfo: DetailsInfoDataModal, position: Int) {
 			val location: TextView = itemView.findViewById(R.id.item_details_info_location)
 			val date: TextView = itemView.findViewById(R.id.item_details_info_date)
 			val time: TextView = itemView.findViewById(R.id.item_details_info_time)

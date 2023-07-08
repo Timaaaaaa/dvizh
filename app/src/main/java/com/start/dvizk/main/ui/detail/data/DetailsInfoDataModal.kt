@@ -1,6 +1,6 @@
-package com.start.dvizk.main.ui.event
+package com.start.dvizk.main.ui.detail.data
 
-data class DetailsInfo(
+data class DetailsInfoDataModal(
 	val location: String,
 	val date: String,
 	val time: String,

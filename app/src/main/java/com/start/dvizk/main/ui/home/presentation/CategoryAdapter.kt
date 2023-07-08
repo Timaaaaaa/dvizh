@@ -9,11 +9,8 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.home.presentation.model.Category
-import com.start.dvizk.main.ui.home.presentation.model.Event
-import okhttp3.internal.notify
 
 class CategoryAdapter(private val resources: Resources): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
@@ -39,7 +36,7 @@ class CategoryAdapter(private val resources: Resources): RecyclerView.Adapter<Ca
 		notifyDataSetChanged()
 	}
 
-	fun setListener(listener: OnCategoryItemClickListener) {
+	fun setListener(listener: HomeFragment) {
 		this.listener = listener
 	}
 
