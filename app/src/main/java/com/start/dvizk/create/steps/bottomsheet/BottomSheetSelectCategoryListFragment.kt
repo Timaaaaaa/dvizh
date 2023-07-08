@@ -1,5 +1,6 @@
 package com.start.dvizk.create.steps.bottomsheet
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,13 @@ import com.start.dvizk.R
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import org.koin.android.ext.android.inject
 
-class BottomSheetSelectListFragment : BottomSheetDialogFragment() {
+class BottomSheetSelectCategoryListFragment : BottomSheetDialogFragment() {
 
 	lateinit var adapter: CategoryCheckAdapter
-	private val viewModel: BottomSheetSelectListViewModel by inject()
+	private val viewModel: BottomSheetSelectCategoryListViewModel by inject()
 	private lateinit var categoryRecyclerView: RecyclerView
 	private lateinit var backButton: ImageView
+	private lateinit var listener: OnSelectCategoryBottomSheetDismiss
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -41,11 +43,21 @@ class BottomSheetSelectListFragment : BottomSheetDialogFragment() {
 		viewModel.getCategories(null)
 	}
 
+	override fun onDismiss(dialog: DialogInterface) {
+		listener.onDismissGetCategoryList(viewModel.categoryList)
+		super.onDismiss(dialog)
+	}
+
+	fun setListener(listener: OnSelectCategoryBottomSheetDismiss) {
+		this.listener = listener
+	}
+
 	private fun initView(view: View) {
 		categoryRecyclerView = view.findViewById(R.id.fragment_bottom_sheet_category)
 		backButton = view.findViewById(R.id.fragment_notifications_return_button)
 
-		categoryRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+		categoryRecyclerView.layoutManager =
+			LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 		adapter = CategoryCheckAdapter(resources)
 		adapter.setListener(viewModel)
 		categoryRecyclerView.adapter = adapter

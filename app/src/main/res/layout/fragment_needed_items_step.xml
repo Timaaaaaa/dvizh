@@ -62,13 +62,19 @@
         app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_step_text_view" />
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_separator_1">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
 
         <TextView
@@ -100,19 +106,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_event_page_location_text" />
 
-        <EditText
-            android:id="@+id/fragment_create_organization_edit_text_1"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_needed_items_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/bg_gradient_dark_grey_button"
-            android:gravity="center_vertical"
-            android:hint="Удостоверение личности"
-            android:padding="20dp"
-            android:textColor="@color/white"
-            android:textColorHint="#9D9E9E"
-            android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_5" />
 
         <Button
@@ -129,10 +128,11 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_edit_text_1" />
+            app:layout_constraintTop_toBottomOf="@id/fragment_needed_items_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.core.widget.NestedScrollView>
     <LinearLayout
         android:id="@+id/view"
         android:layout_width="match_parent"

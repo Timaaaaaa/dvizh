@@ -9,4 +9,8 @@
 
     <dimen name="my_ticket_image_radius">20dp</dimen>
 
+    <dimen name="event_main_image_radius">15dp</dimen>
+
+    <dimen name="item_width">120dp</dimen>
+
 </resources>
