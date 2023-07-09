@@ -18,11 +18,10 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.detail.data.CheckListDataModal
 import com.start.dvizk.main.ui.detail.data.DetailsInfoDataModal
-import com.start.dvizk.main.ui.detail.presentation.CancelRulesFragment
+import com.start.dvizk.main.ui.detail.presentation.rules.CancelRulesFragment
 import com.start.dvizk.main.ui.detail.presentation.CheckListAdapter
 import com.start.dvizk.main.ui.detail.presentation.DetailsInfoAdapter
-import com.start.dvizk.main.ui.detail.presentation.EventRulesFragment
-import com.start.dvizk.main.ui.notifications.NotificationsFragment
+import com.start.dvizk.main.ui.detail.presentation.rules.EventRulesFragment
 
 class DetailPageFragment : Fragment() {
 

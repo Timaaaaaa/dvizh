@@ -14,6 +14,8 @@ import com.start.dvizk.create.steps.data.EventCreateRepository
 import com.start.dvizk.create.steps.language.LanguageStepViewModel
 import com.start.dvizk.create.steps.language.LanguagesListApi
 import com.start.dvizk.create.steps.type.presentation.TypeStepViewModel
+import com.start.dvizk.main.ui.detail.data.EventDetailApi
+import com.start.dvizk.main.ui.detail.data.EventDetailRepository
 import com.start.dvizk.main.ui.home.data.HomePageApi
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.HomeViewModel
@@ -104,6 +106,13 @@ object DiContainer {
 
 		factory<ApiErrorExceptionFactory> {
 			DefaultApiErrorExceptionFactory() as ApiErrorExceptionFactory
+		}
+
+		factory {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			EventDetailRepository(
+				eventDetailApi = appRetrofit.create(EventDetailApi::class.java)
+			)
 		}
 	}
 
