@@ -3,6 +3,7 @@ package com.start.dvizk.create.steps.bottomsheet
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.start.dvizk.arch.CustomMutableLiveData
+import com.start.dvizk.create.steps.bottomsheet.universal.model.SelectItem
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
@@ -12,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class BottomSheetSelectListViewModel(
+class BottomSheetSelectCategoryListViewModel(
 	private val homePageRepository: HomePageRepository,
 	override val coroutineContext: CoroutineContext = Dispatchers.Main
 ) : ViewModel(),
@@ -23,7 +24,7 @@ class BottomSheetSelectListViewModel(
 	val navigation: MutableLiveData<Navigation> = CustomMutableLiveData()
 
 	private var isSubCategoryList = false
-	private val categoiesIdList = mutableListOf<Long>()
+	val categoryList = mutableListOf<Category>()
 
 	fun getCategories(parent_id: Int?) {
 		categoriesListState.value = CategoriesListState.Loading
@@ -51,10 +52,10 @@ class BottomSheetSelectListViewModel(
 			return
 		}
 
-		if (categoiesIdList.contains(data.id)) {
-			categoiesIdList.remove(data.id)
+		if (categoryList.contains(data)) {
+			categoryList.remove(data)
 		} else {
-			categoiesIdList.add(data.id)
+			categoryList.add(data)
 		}
 	}
 
@@ -66,4 +67,5 @@ class BottomSheetSelectListViewModel(
 			navigation.value = Navigation.OnCategoryBack
 		}
 	}
+
 }

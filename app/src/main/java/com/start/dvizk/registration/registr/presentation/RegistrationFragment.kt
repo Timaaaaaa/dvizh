@@ -172,8 +172,7 @@ class RegistrationFragment :
 				ft.commit()
 			}
 			profileImageLoader.id -> {
-				if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
-					!= PackageManager.PERMISSION_GRANTED) {
+				if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 					ActivityCompat.requestPermissions(requireActivity(),
 						arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
 						MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE)

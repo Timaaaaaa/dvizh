@@ -138,7 +138,7 @@
                 app:layout_constraintEnd_toEndOf="@id/fragment_location_step_city"
                 app:layout_constraintTop_toTopOf="@id/fragment_location_step_city" />
 
-            <TextView
+            <EditText
                 android:id="@+id/fragment_location_step_street"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,13 +153,14 @@
                 android:textSize="14sp"
                 app:layout_constraintTop_toBottomOf="@id/fragment_location_step_city" />
 
-            <TextView
+            <EditText
                 android:id="@+id/fragment_location_step_flat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
+                android:inputType="number"
                 android:background="@drawable/bg_gradient_dark_grey_button"
                 android:hint="Квартира, блок, строение"
                 android:padding="20dp"

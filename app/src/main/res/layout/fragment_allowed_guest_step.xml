@@ -133,16 +133,6 @@
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_6" />
 
-        <ImageView
-            android:id="@+id/fragment_registration_user_birthday_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_triangle_down"
-            app:layout_constraintBottom_toBottomOf="@+id/fragment_create_organization_edit_text_1"
-            app:layout_constraintEnd_toEndOf="@id/fragment_create_organization_edit_text_1"
-            app:layout_constraintTop_toTopOf="@id/fragment_create_organization_edit_text_1" />
-
         <CheckBox
             android:id="@+id/fragment_allowed_guest_with_child_check_box"
             android:layout_width="match_parent"
