@@ -32,6 +32,7 @@ import com.start.dvizk.create.steps.type.presentation.TypeStepViewModel
 import com.start.dvizk.main.ui.detail.data.EventDetailApi
 import com.start.dvizk.main.ui.detail.data.EventDetailRepository
 import com.start.dvizk.create.steps.visitperson.AllowedGuestStepViewModel
+import com.start.dvizk.main.ui.detail.presentation.EventDetailViewModel
 import com.start.dvizk.main.ui.home.data.HomePageApi
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.HomeViewModel
@@ -311,6 +312,12 @@ object DiContainer {
 		viewModel {
 			EventRuleStepViewModel(
 				eventCreateRepository = get()
+			)
+		}
+
+		viewModel {
+			EventDetailViewModel(
+				eventDetailRepository = get()
 			)
 		}
 	}

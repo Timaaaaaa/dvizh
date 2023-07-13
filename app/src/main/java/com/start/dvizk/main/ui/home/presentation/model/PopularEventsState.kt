@@ -1,16 +1,14 @@
 package com.start.dvizk.main.ui.home.presentation.model
 
-import com.google.gson.JsonObject
+sealed class PopularEventsState {
 
-sealed class PopularEvetsState {
-
-    object Loading : PopularEvetsState()
+    object Loading : PopularEventsState()
 
     data class Failed(
         val message: String
-    ) : PopularEvetsState()
+    ) : PopularEventsState()
 
     data class Success(
             val events: List<Event>
-    ) : PopularEvetsState()
+    ) : PopularEventsState()
 }

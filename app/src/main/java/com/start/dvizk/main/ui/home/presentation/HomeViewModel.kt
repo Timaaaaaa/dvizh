@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.start.dvizk.arch.CustomMutableLiveData
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
-import com.start.dvizk.main.ui.home.presentation.model.PopularEvetsState
+import com.start.dvizk.main.ui.home.presentation.model.PopularEventsState
 import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
 import com.start.dvizk.network.Response
 import kotlinx.coroutines.CoroutineScope
@@ -19,7 +19,7 @@ class HomeViewModel(
 ) : ViewModel(),
 	CoroutineScope {
 
-	val popularEventsStateLiveData: MutableLiveData<PopularEvetsState> = CustomMutableLiveData()
+	val popularEventsStateLiveData: MutableLiveData<PopularEventsState> = CustomMutableLiveData()
 	val upcomingEventsStateLiveData: MutableLiveData<UpcomingEvetsState> = CustomMutableLiveData()
 	val categoriesListState: MutableLiveData<CategoriesListState> = CustomMutableLiveData()
 
@@ -31,9 +31,9 @@ class HomeViewModel(
 			launch(Dispatchers.Main) {
 				when (response) {
 					is Response.Success -> popularEventsStateLiveData.value =
-						PopularEvetsState.Success(response.result)
+						PopularEventsState.Success(response.result)
 					is Response.Error -> popularEventsStateLiveData.value =
-						PopularEvetsState.Failed(response.error.toString())
+						PopularEventsState.Failed(response.error.toString())
 				}
 			}
 		}

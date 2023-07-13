@@ -3,7 +3,7 @@ package com.start.dvizk.main.ui.detail.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.start.dvizk.arch.CustomMutableLiveData
-import com.start.dvizk.create.organization.list.presentation.model.OrganizationListState
+import com.start.dvizk.create.steps.data.model.RequestResponseState
 import com.start.dvizk.main.ui.detail.data.EventDetailRepository
 import com.start.dvizk.network.Response
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +17,24 @@ class EventDetailViewModel(
 ) : ViewModel(),
 	CoroutineScope {
 
-	val organizationListStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
+	val eventDetailsStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
+	val cancellationRulesStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
+	val eventRulesStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
+
+	fun getEventDetails(eventId: Int) {
+		launch(Dispatchers.IO) {
+			val response = eventDetailRepository.getEventDetails(eventId)
+
+			launch(Dispatchers.Main) {
+				when (response) {
+					is Response.Success -> eventDetailsStateLiveData.value =
+						RequestResponseState.Success(response.result)
+					is Response.Error -> eventDetailsStateLiveData.value =
+						RequestResponseState.Failed(response.error)
+				}
+			}
+		}
+	}
 
 	fun getCancellationRules(eventId: Int) {
 		launch(Dispatchers.IO) {
@@ -25,10 +42,25 @@ class EventDetailViewModel(
 
 			launch(Dispatchers.Main) {
 				when (response) {
-					is Response.Success -> organizationListStateLiveData.value =
-						OrganizationListState.Success(response.result)
-					is Response.Error -> organizationListStateLiveData.value =
-						OrganizationListState.Failed(response.error.toString())
+					is Response.Success -> cancellationRulesStateLiveData.value =
+						RequestResponseState.Success(response.result)
+					is Response.Error -> cancellationRulesStateLiveData.value =
+						RequestResponseState.Failed(response.error)
+				}
+			}
+		}
+	}
+
+	fun getEventRules(eventId: Int) {
+		launch(Dispatchers.IO) {
+			val response = eventDetailRepository.getEventRules(eventId)
+
+			launch(Dispatchers.Main) {
+				when (response) {
+					is Response.Success -> eventRulesStateLiveData.value =
+						RequestResponseState.Success(response.result)
+					is Response.Error -> eventRulesStateLiveData.value =
+						RequestResponseState.Failed(response.error)
 				}
 			}
 		}

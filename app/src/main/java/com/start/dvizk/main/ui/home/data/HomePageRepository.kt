@@ -79,8 +79,7 @@ class HomePageRepository(
 
 			return Response.Error(message)
 		} catch (e: Exception) {
-
-			return Response.Error(e.localizedMessage.toString())
+			return Response.Error(e.localizedMessage!!.toString())
 		}
 	}
 }

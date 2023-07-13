@@ -17,17 +17,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
-import com.start.dvizk.main.ui.detail.DetailPageFragment
+import com.start.dvizk.main.ui.detail.presentation.EventDetailsPageFragment
 import com.start.dvizk.main.ui.home.presentation.model.AllUpcomingEventsFragment
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.main.ui.home.presentation.model.Event
 import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
-import com.start.dvizk.main.ui.home.presentation.model.PopularEvetsState
+import com.start.dvizk.main.ui.home.presentation.model.PopularEventsState
 import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
 import com.start.dvizk.main.ui.notifications.NotificationsFragment
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+	const val EVENT_ID = "event_id"
 
 class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListener {
 
@@ -71,8 +73,11 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 
 	override fun onItemClick(data: Event) {
 		val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-
-		ft.add(R.id.nav_host_fragment_activity_main, DetailPageFragment())
+		val fragment = EventDetailsPageFragment()
+		fragment.arguments = Bundle().apply {
+			putInt(EVENT_ID, data.id.toInt())
+		}
+		ft.add(R.id.nav_host_fragment_activity_main, fragment)
 		ft.addToBackStack("")
 		ft.commit()
 	}
@@ -134,14 +139,14 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 
 	}
 
-	private fun popularListInit(state: PopularEvetsState) {
+	private fun popularListInit(state: PopularEventsState) {
 		when (state) {
-			is PopularEvetsState.Failed -> {
+			is PopularEventsState.Failed -> {
 				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
 			}
-			is PopularEvetsState.Loading -> {
+			is PopularEventsState.Loading -> {
 			}
-			is PopularEvetsState.Success -> {
+			is PopularEventsState.Success -> {
 				popularAdapter.setData(state.events)
 			}
 		}

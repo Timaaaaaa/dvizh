@@ -1,4 +1,4 @@
-package com.start.dvizk.main.ui.detail
+package com.start.dvizk.main.ui.detail.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -10,47 +10,46 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.start.dvizk.R
 import com.start.dvizk.create.steps.data.model.RequestResponseState
-import com.start.dvizk.main.ui.detail.data.model.EventRulesDataModel
+import com.start.dvizk.main.ui.detail.data.model.CancellationRulesDataModel
 import com.start.dvizk.main.ui.detail.presentation.EventDetailViewModel
 import com.start.dvizk.main.ui.home.presentation.EVENT_ID
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EventRulesFragment : Fragment() {
+class CancellationRulesFragment : Fragment() {
 
 	private val viewModel: EventDetailViewModel by viewModel()
 
-	private lateinit var fragment_event_rules_return_button: ImageView
-	private lateinit var fragment_event_rules_text: TextView
+	private lateinit var fragment_cancel_rules_return_button: ImageView
+	private lateinit var fragment_cancel_rules_text: TextView
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View? {
-		return inflater.inflate(R.layout.fragment_event_rules, container, false)
+		return inflater.inflate(R.layout.fragment_cancellation_rules, container, false)
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-
 		initView(view)
 		initObserver()
 
 		val eventId = requireArguments().getInt(EVENT_ID)
-		viewModel.getEventRules(eventId)
+		viewModel.getCancellationRules(eventId)
 	}
 
 	private fun initView(view: View) {
-		fragment_event_rules_return_button = view.findViewById(R.id.fragment_event_rules_return_button)
-		fragment_event_rules_text = view.findViewById(R.id.fragment_event_rules_text)
+		fragment_cancel_rules_return_button = view.findViewById(R.id.fragment_cancel_rules_return_button)
+		fragment_cancel_rules_text = view.findViewById(R.id.fragment_cancel_rules_text)
 
-		fragment_event_rules_return_button.setOnClickListener {
+		fragment_cancel_rules_return_button.setOnClickListener {
 			requireActivity().supportFragmentManager.popBackStack()
 		}
 	}
 
 	private fun initObserver() {
-		viewModel.eventRulesStateLiveData.observe(viewLifecycleOwner, ::handleState)
+		viewModel.cancellationRulesStateLiveData.observe(viewLifecycleOwner, ::handleState)
 	}
 
 	private fun handleState(state: RequestResponseState) {
@@ -62,9 +61,9 @@ class EventRulesFragment : Fragment() {
 
 			}
 			is RequestResponseState.Success -> {
-				val response = state.value as? EventRulesDataModel ?: return
+				val response = state.value as? CancellationRulesDataModel ?: return
 
-				fragment_event_rules_text.text = response.rules
+				fragment_cancel_rules_text.text = response.cancellation_rules
 			}
 		}
 	}
