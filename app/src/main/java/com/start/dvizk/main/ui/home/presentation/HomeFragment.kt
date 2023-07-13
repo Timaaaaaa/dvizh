@@ -1,5 +1,6 @@
 package com.start.dvizk.main.ui.home.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
+import com.start.dvizk.main.MainActivity
 import com.start.dvizk.main.ui.detail.DetailPageFragment
 import com.start.dvizk.main.ui.home.presentation.model.AllUpcomingEventsFragment
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
@@ -26,8 +28,10 @@ import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
 import com.start.dvizk.main.ui.home.presentation.model.PopularEvetsState
 import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
 import com.start.dvizk.main.ui.notifications.NotificationsFragment
+import com.start.dvizk.search.SearchActivity
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.w3c.dom.Text
 
 class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListener {
 
@@ -42,6 +46,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 	private lateinit var title: TextView
 	private lateinit var fragment_home_upcoming_title_show: TextView
 	private lateinit var notificationIcon: ImageView
+	private lateinit var searchView: View
 
 	private lateinit var popularAdapter: BigEventAdapter
 	private lateinit var categoryAdapter: CategoryAdapter
@@ -86,6 +91,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 		fragment_home_user_photo = view.findViewById(R.id.fragment_home_user_photo)
 		fragment_home_upcoming_events_progress_bar = view.findViewById(R.id.fragment_home_upcoming_events_progress_bar)
 		notificationIcon = view.findViewById(R.id.fragment_home_notification)
+		searchView = view.findViewById(R.id.fragment_home_search_edit_text)
 
 		notificationIcon.setOnClickListener {
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
@@ -101,6 +107,11 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 			ft.add(R.id.nav_host_fragment_activity_main, AllUpcomingEventsFragment())
 			ft.addToBackStack("")
 			ft.commit()
+		}
+
+		searchView.setOnClickListener {
+			val intent = Intent(requireContext(), SearchActivity::class.java)
+			startActivity(intent)
 		}
 
 		title.text = sharedPreferencesRepository.getUserName()

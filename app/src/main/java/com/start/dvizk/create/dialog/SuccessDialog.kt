@@ -46,10 +46,6 @@ class SuccessDialog : DialogFragment() {
         }
     }
 
-    fun setListener(genderSelectionListener: GenderSelectionListener) {
-
-    }
-
     override fun show(manager: FragmentManager, tag: String?) {
         val fragmentTransaction = manager.beginTransaction()
         fragmentTransaction.add(this, tag)

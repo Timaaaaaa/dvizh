@@ -39,6 +39,10 @@
         <activity
             android:screenOrientation="portrait"
             android:name=".create.CreateActivity" />
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".search.SearchActivity" />
     </application>
 
 </manifest>
