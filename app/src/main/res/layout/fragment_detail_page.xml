@@ -26,6 +26,10 @@
                 android:layout_width="0dp"
                 android:layout_height="455dp"
                 app:iss_auto_cycle="false"
+                app:iss_placeholder="@drawable/logo"
+                app:iss_error_image="@drawable/logo"
+                app:iss_selected_dot="@drawable/ic_dot_selected"
+                app:iss_unselected_dot="@drawable/ic_dot_unselected"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -85,7 +89,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="24dp"
                 android:scaleType="center"
                 android:src="@drawable/ic_send"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +100,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Oiu Music Fest"
+
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:fontFamily="@font/app_font_bd"
@@ -125,7 +129,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_detail_page_separator_1"
                 app:layout_constraintStart_toStartOf="@id/fragment_detail_page_return_button"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="@id/fragment_detail_page_send_button" />
 
             <ImageView
                 android:id="@+id/fragment_detail_page_geo_icon"
@@ -142,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginStart="8dp"
-                android:text="Алматы, Дворец Республики"
+
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:fontFamily="@font/app_font_bk"
@@ -197,7 +201,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Возле замечательного парка имени Ломаносова, рядом имеется большое количество отелей и магазинов, что не заставит вас заскучать!"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
                     android:fontFamily="@font/app_font_md"
@@ -242,8 +245,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Минимальный возраст : 18 лет
-                    Дополнительные требования: людям с сердечной недостаточностью участие в данном мероприятии запрещено!"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
                     android:fontFamily="@font/app_font_md"
@@ -289,7 +290,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Готовы выиграть нашу виртуальную домашнюю игру по поиску мусора? Присоединяйтесь к Alley Kat Adventures в увлекательной, уникальной и интерактивной игре, которая выведет вас за пределы зоны комфорта, чтобы выполнять творческие, сложные и дурацкие миссии за очки и забавные виртуальные призы! Отлично подходит для корпоративных команд, семей, одиночных искателей приключений, свиданий, дней рождения и других особых случаев и т. Д.! Нравитс… читать дальше"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
                     android:fontFamily="@font/app_font_md"
@@ -335,7 +335,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Отлично подходит для корпоративных команд, семей, одиночных искателей приключений, свиданий, дней рождения и других особых случаев и т. Д.! Нравитс… читать дальше"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
                     android:fontFamily="@font/app_font_md"
@@ -415,15 +414,16 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:scaleType="centerCrop"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintTop_toTopOf="@id/fragment_detail_page_organizer_info"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/fragment_detail_page_organizer_info"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/fragment_detail_page_organizer_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/fragment_detail_page_organizer_avatar">
@@ -432,7 +432,6 @@
                         android:id="@+id/fragment_detail_page_organizer_name"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Destroy Lonely"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:fontFamily="@font/app_font_bd"
@@ -458,16 +457,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="36dp"
                         android:paddingHorizontal="15dp"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="10dp"
                         android:background="@drawable/bg_purple_button"
                         android:text="Подписаться"
                         android:textSize="14sp"
                         android:textColor="@color/white"
                         android:textAllCaps="false"
                         android:fontFamily="@font/app_font_bd"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/fragment_detail_page_organizer_name"
                         app:layout_constraintStart_toEndOf="@id/fragment_detail_page_organizer_name"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_detail_page_organizer_status"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -475,14 +475,13 @@
                     android:id="@+id/fragment_detail_page_organizer_description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="Мы - Alley Kat Adventures: глобальная компания по дизайну мероприятий, базирующаяся в Остине, штат Техас. Основатель компании Кэт, организатор множества экстремальных массовых мероприятий по охоте за мусором в Северной Америке…  читать дальше"
+                    android:layout_marginTop="24dp"
                     android:textColor="@color/prompt_color"
                     android:textSize="16sp"
                     android:fontFamily="@font/app_font_md"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_organizer_info" />
+                    app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_organizer_avatar" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -642,7 +641,8 @@
                 app:layout_constraintEnd_toEndOf="@id/fragment_detail_page_send_button" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fragment_detail_page_next_event"
+                android:visibility="gone"
+                android:id="@+id/fragment_detail_page_similar_event"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -653,79 +653,78 @@
                 app:layout_constraintEnd_toEndOf="@id/fragment_detail_page_send_button">
 
                 <ImageView
-                    android:id="@+id/fragment_detail_page_next_event_image"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:id="@+id/fragment_detail_page_similar_event_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:src="@drawable/dj"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/fragment_detail_page_next_event_title"
+                    android:id="@+id/fragment_detail_page_similar_event_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="14dp"
                     android:text="Мастер класс по искусству"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/app_font_bd"
-                    app:layout_constraintStart_toEndOf="@id/fragment_detail_page_next_event_image"
+                    app:layout_constraintStart_toEndOf="@id/fragment_detail_page_similar_event_image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/fragment_detail_page_next_event_date"
+                    android:id="@+id/fragment_detail_page_similar_event_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:text="24 Мар · 15:00 - 17:00"
                     android:textColor="@color/app_accent"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     android:fontFamily="@font/app_font_bk"
-                    app:layout_constraintStart_toStartOf="@id/fragment_detail_page_next_event_title"
+                    app:layout_constraintStart_toStartOf="@id/fragment_detail_page_similar_event_title"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_next_event_title" />
+                    app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_similar_event_title" />
 
                 <ImageView
-                    android:id="@+id/fragment_detail_page_next_event_geo_image"
+                    android:id="@+id/fragment_detail_page_similar_event_geo_icon"
                     android:layout_width="12dp"
                     android:layout_height="14.49dp"
-                    android:layout_marginTop="13.33dp"
+                    android:layout_marginTop="12dp"
                     android:src="@drawable/ic_geo"
-                    app:layout_constraintStart_toStartOf="@id/fragment_detail_page_next_event_title"
-                    app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_next_event_date" />
+                    app:layout_constraintStart_toStartOf="@id/fragment_detail_page_similar_event_title"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_similar_event_date" />
 
                 <TextView
-                    android:id="@+id/fragment_detail_page_next_event_location"
+                    android:id="@+id/fragment_detail_page_similar_event_location"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/app_font_bk"
                     android:text="Атакент парк, Алматы"
                     android:textColor="@color/white"
                     android:textSize="12sp"
-                    android:fontFamily="@font/app_font_bk"
-                    app:layout_constraintTop_toTopOf="@id/fragment_detail_page_next_event_geo_image"
-                    app:layout_constraintStart_toEndOf="@id/fragment_detail_page_next_event_geo_image"
-                    app:layout_constraintEnd_toStartOf="@id/fragment_detail_page_next_event_like_image"/>
+                    app:layout_constraintEnd_toStartOf="@id/fragment_detail_page_similar_event_like_icon"
+                    app:layout_constraintStart_toEndOf="@id/fragment_detail_page_similar_event_geo_icon"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_similar_event_date" />
 
                 <ImageView
-                    android:id="@+id/fragment_detail_page_next_event_like_image"
+                    android:id="@+id/fragment_detail_page_similar_event_like_icon"
                     android:layout_width="20dp"
                     android:layout_height="18.5dp"
-                    android:layout_marginStart="24dp"
                     android:src="@drawable/ic_like_accent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/fragment_detail_page_next_event_location"
-                    app:layout_constraintTop_toTopOf="@id/fragment_detail_page_next_event_location" />
+                    app:layout_constraintTop_toTopOf="@id/fragment_detail_page_similar_event_geo_icon" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
-                app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_next_event" />
+                app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_similar_event" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

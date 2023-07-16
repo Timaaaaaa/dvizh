@@ -26,12 +26,14 @@ import com.start.dvizk.create.steps.data.model.RequestResponseState
 import com.start.dvizk.main.ui.detail.data.model.CheckListDataModel
 import com.start.dvizk.main.ui.detail.data.model.DetailsInfoDataModel
 import com.start.dvizk.main.ui.detail.data.model.EventDetailDataModel
+import com.start.dvizk.main.ui.detail.presentation.adapter.CheckListAdapter
+import com.start.dvizk.main.ui.detail.presentation.adapter.DetailsInfoAdapter
 import com.start.dvizk.main.ui.detail.presentation.rules.CancellationRulesFragment
 import com.start.dvizk.main.ui.detail.presentation.rules.EventRulesFragment
 import com.start.dvizk.main.ui.home.presentation.EVENT_ID
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EventDetailsPageFragment : Fragment() {
+class EventDetailsFragment : Fragment() {
 
 	private val viewModel: EventDetailViewModel by viewModel()
 
@@ -81,8 +83,7 @@ class EventDetailsPageFragment : Fragment() {
 		initLists()
 		initObserver()
 
-		viewModel.getEventDetails(95)
-//		viewModel.getEventDetails(requireArguments().getInt(EVENT_ID))
+		viewModel.getEventDetails(requireArguments().getInt(EVENT_ID))
 	}
 
 	private fun initView(view: View) {
@@ -192,7 +193,7 @@ class EventDetailsPageFragment : Fragment() {
 			is RequestResponseState.Success -> {
 				val response = state.value as? EventDetailDataModel ?: return
 
-				val name = response.name ?: "null"
+				val name = response.name.toString()
 				fragment_detail_page_header_title.text = name
 
 				response.images?.forEach {
@@ -200,30 +201,54 @@ class EventDetailsPageFragment : Fragment() {
 				}
 				fragment_detail_page_carousel.setImageList(images, ScaleTypes.CENTER_CROP)
 
+				val start = response.datetime?.start.toString()
+				val duration = response.datetime?.duration.toString()
+				val end: (String, String) -> String = { startTime, timeToAdd ->
+					val (startHours, startMinutes) = startTime.split(":").map { it.toInt() }
+
+					val (hoursPart, minutesPart) = timeToAdd.split(" ")
+					val addHours = hoursPart.toIntOrNull() ?: 0
+					val addMinutes = minutesPart.toIntOrNull() ?: 0
+
+					val totalMinutes = startHours * 60 + startMinutes
+					val totalMinutesToAdd = addHours * 60 + addMinutes
+					val newTotalMinutes = totalMinutes + totalMinutesToAdd
+					val newHours = (newTotalMinutes / 60) % 24
+					val newMinutes = newTotalMinutes % 60
+					val formattedTime = "%02d:%02d".format(newHours, newMinutes)
+					formattedTime
+				}
+
 				detailsInformation.add(
 					DetailsInfoDataModel(
 						response.location?.city.toString(),
-						response.dateTime?.date.toString(),
-						"${response.dateTime?.start.toString()} - ${response.dateTime?.duration.toString()}",
-						response.languages?.joinToString { it!! } ?: "null",
+						response.datetime?.date.toString(),
+						"$start - ${end(start, duration)}",
+						"${response.requirements?.age.toString()}+",
+						response.languages?.joinToString { it!! }.toString(),
 						response.price.toString()
 					)
 				)
 				detailsInfoAdapter.setData(detailsInformation)
 
-				val location = "${response.location?.city ?: "null"}, ${response.location?.apartment ?: "null"}"
-				val findingInformation = response.location?.findingInformation ?: "null"
+				val country = response.location?.country.toString()
+				val location = "${response.location?.city.toString()}, ${response.location?.apartment.toString()}"
+				val findingInformation = response.location?.findingInformation
 				fragment_detail_page_geo_title.text = location
-				fragment_detail_page_location_address.text = findingInformation
+				if (findingInformation != null) {
+					fragment_detail_page_location_address.text = findingInformation
+				} else {
+					fragment_detail_page_location_address.text = "$country, $location"
+				}
 
-				val requirements = "Минимальный возраст: ${response.requirements?.age ?: "null"}" +
-						"\nДополнительные требования: ${response.requirements?.additional_requirements ?: "null"}"
+				val requirements = "Минимальный возраст: ${response.requirements?.age.toString()}" +
+						"\nДополнительные требования: ${response.requirements?.additional_requirements.toString()}"
 				fragment_detail_page_who_can_participate_requirements.text = requirements
 
-				val description = response.description ?: "null"
+				val description = response.description.toString()
 				fragment_detail_page_program_of_event_activities.text = description
 
-				val additionalServices = response.additional_services ?: "null"
+				val additionalServices = response.additional_services.toString()
 				fragment_detail_page_organizer_services_info.text = additionalServices
 
 				response.necessary_items?.forEach {
@@ -231,9 +256,9 @@ class EventDetailsPageFragment : Fragment() {
 				}
 				checkListAdapter.setData(checkList)
 
-				val organizationImage = response.organization?.image ?: "null"
-				val organizationName = response.organization?.name ?: "null"
-				val organizationDescription = response.organization?.description ?: "null"
+				val organizationImage = response.organization?.image.toString()
+				val organizationName = response.organization?.name.toString()
+				val organizationDescription = response.organization?.description.toString()
 				Glide.with(this)
 					.asBitmap()
 					.load(organizationImage)

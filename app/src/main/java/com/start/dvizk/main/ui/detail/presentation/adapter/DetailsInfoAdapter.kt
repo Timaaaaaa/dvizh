@@ -1,4 +1,4 @@
-package com.start.dvizk.main.ui.detail.presentation
+package com.start.dvizk.main.ui.detail.presentation.adapter
 
 import android.content.res.Resources
 import android.view.LayoutInflater
@@ -42,12 +42,14 @@ class DetailsInfoAdapter(
 			val location: TextView = itemView.findViewById(R.id.item_details_info_location)
 			val date: TextView = itemView.findViewById(R.id.item_details_info_date)
 			val time: TextView = itemView.findViewById(R.id.item_details_info_time)
+			val age: TextView = itemView.findViewById(R.id.item_details_info_age)
 			val language: TextView = itemView.findViewById(R.id.item_details_info_language)
 			val price: TextView = itemView.findViewById(R.id.item_details_info_price)
 
 			location.text = detailsInfo.location
 			date.text = detailsInfo.date
 			time.text = detailsInfo.time
+			age.text = detailsInfo.age
 			language.text = detailsInfo.language
 			price.text = detailsInfo.price
 		}

@@ -4,7 +4,7 @@ data class EventDetailDataModel(
 	val id: Int,
 	val images: List<String?>?,
 	val name: String?,
-	val dateTime: DateTime?,
+	val datetime: DateTime?,
 	val languages: List<String?>?,
 	val price: String?,
 	val location: Location?,

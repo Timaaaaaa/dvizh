@@ -1,4 +1,4 @@
-package com.start.dvizk.main.ui.detail.presentation
+package com.start.dvizk.main.ui.detail.presentation.adapter
 
 import android.content.res.Resources
 import android.view.LayoutInflater

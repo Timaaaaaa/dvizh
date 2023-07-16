@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
-import com.start.dvizk.main.ui.detail.presentation.EventDetailsPageFragment
+import com.start.dvizk.main.ui.detail.presentation.EventDetailsFragment
 import com.start.dvizk.main.ui.home.presentation.model.AllUpcomingEventsFragment
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
@@ -73,7 +73,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 
 	override fun onItemClick(data: Event) {
 		val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-		val fragment = EventDetailsPageFragment()
+		val fragment = EventDetailsFragment()
 		fragment.arguments = Bundle().apply {
 			putInt(EVENT_ID, data.id.toInt())
 		}
