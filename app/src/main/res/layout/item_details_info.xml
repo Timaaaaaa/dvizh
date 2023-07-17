@@ -1,11 +1,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="310dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="15dp"
     android:paddingVertical="15dp"
-    android:layout_marginEnd="24dp"
     android:background="@drawable/bg_purple_rounded_corners_fill_dark_grey">
 
     <ImageView
@@ -22,9 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/app_font_bk"
-        android:text="Актобе"
         android:textColor="@color/white"
-        android:textSize="13sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/item_details_info_geo_icon"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +34,7 @@
         android:layout_height="16dp"
         android:layout_marginTop="11dp"
         android:src="@drawable/ic_calendar_accent"
-        app:layout_constraintTop_toBottomOf="@id/item_details_info_geo_icon"
+        app:layout_constraintTop_toBottomOf="@id/item_details_info_location"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -45,9 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/app_font_bk"
-        android:text="Декабрь 24, 2022"
         android:textColor="@color/white"
-        android:textSize="13sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toTopOf="@id/item_details_info_calendar_icon"
         app:layout_constraintStart_toEndOf="@id/item_details_info_geo_icon"
         app:layout_constraintBottom_toBottomOf="@id/item_details_info_calendar_icon" />
@@ -71,13 +68,33 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:fontFamily="@font/app_font_bk"
-        android:text="20:00 - 23:00"
         android:textColor="@color/white"
-        android:textSize="13sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toTopOf="@id/item_details_info_calendar_icon"
         app:layout_constraintStart_toEndOf="@id/item_details_info_circle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/item_details_info_calendar_icon" />
+
+    <ImageView
+        android:id="@+id/item_details_info_age_icon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="11dp"
+        android:src="@drawable/ic_age"
+        app:layout_constraintTop_toBottomOf="@id/item_details_info_calendar_icon"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/item_details_info_age"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/app_font_bk"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@id/item_details_info_age_icon"
+        app:layout_constraintStart_toEndOf="@id/item_details_info_geo_icon"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/item_details_info_message_icon"
@@ -85,7 +102,7 @@
         android:layout_height="16dp"
         android:layout_marginTop="33.5dp"
         android:src="@drawable/ic_message"
-        app:layout_constraintTop_toBottomOf="@id/item_details_info_calendar_icon"
+        app:layout_constraintTop_toBottomOf="@id/item_details_info_age"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -94,9 +111,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:fontFamily="@font/app_font_bk"
-        android:text="Казахский, Русский"
         android:textColor="@color/white"
-        android:textSize="13sp"
+        android:textSize="16sp"
         app:layout_constraintTop_toTopOf="@id/item_details_info_message_icon"
         app:layout_constraintStart_toEndOf="@id/item_details_info_geo_icon"
         app:layout_constraintEnd_toStartOf="@id/item_details_info_price"
@@ -108,9 +124,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_ticket_price"
         android:fontFamily="@font/app_font_bk"
-        android:text="5000 ₸ - 10.000 ₸"
+
         android:textColor="@color/app_accent"
-        android:textSize="13sp"
+        android:textSize="14sp"
         app:layout_constraintTop_toTopOf="@id/item_details_info_message_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/item_details_info_message_icon" />

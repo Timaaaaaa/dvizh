@@ -29,7 +29,10 @@ import com.start.dvizk.create.steps.photo.PhotoStepViewModel
 import com.start.dvizk.create.steps.price.PriceStepViewModel
 import com.start.dvizk.create.steps.service.AdditionalServiceStepViewModel
 import com.start.dvizk.create.steps.type.presentation.TypeStepViewModel
+import com.start.dvizk.main.ui.detail.data.EventDetailApi
+import com.start.dvizk.main.ui.detail.data.EventDetailRepository
 import com.start.dvizk.create.steps.visitperson.AllowedGuestStepViewModel
+import com.start.dvizk.main.ui.detail.presentation.EventDetailViewModel
 import com.start.dvizk.main.ui.home.data.HomePageApi
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.HomeViewModel
@@ -124,6 +127,13 @@ object DiContainer {
 
 		factory<ApiErrorExceptionFactory> {
 			DefaultApiErrorExceptionFactory() as ApiErrorExceptionFactory
+		}
+
+		factory {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			EventDetailRepository(
+				eventDetailApi = appRetrofit.create(EventDetailApi::class.java)
+			)
 		}
 	}
 
@@ -302,6 +312,12 @@ object DiContainer {
 		viewModel {
 			EventRuleStepViewModel(
 				eventCreateRepository = get()
+			)
+		}
+
+		viewModel {
+			EventDetailViewModel(
+				eventDetailRepository = get()
 			)
 		}
 	}

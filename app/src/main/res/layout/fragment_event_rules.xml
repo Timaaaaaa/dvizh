@@ -63,8 +63,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Quisque eget rutrum nulla, non lacinia ligula. Phasellus sodales elementum auctor. Nullam ullamcorper mattis purus eu mattis. Nam vel cursus tellus, venenatis posuere orci.Quisque eget rutrum nulla, non lacinia ligula. Phasellus sodales elementum auctor. Nullam ullamcorper mattis purus eu mattis. Nam vel cursus tellus, venenatis posuere orci.Quisque eget rutrum nulla, non lacinia ligula.
-      Phasellus sodales elementum auctor. Nullam ullamcorper mattis purus eu mattis. Nam vel cursus tellus, venenatis posuere orci.Quisque eget rutrum nulla, non lacinia ligula. Phasellus sodales elementum auctor. Nullam ullamcorper mattis purus eu mattis. Nam vel cursus tellus, venenatis posuere orci.Quisque eget rutrum nulla, non lacinia ligula. Phasellus sodales elementum auctor. Nullam ullamcorper mattis purus eu mattis. Nam vel cursus tellus, venenatis posuere orci.Quisque eget rutrum nulla, non lacinia ligula. Phasellus sodales elementum auctor. Nullam ullamcorper mattis purus eu mattis. Nam vel cursus tellus, venenatis posuere orci.Quisque eget rutrum nulla, non lacinia ligula. Phasellus sodales elementum auctor. Nullam ullamcorper mattis purus eu mattis. Nam vel cursus tellus, venenatis posuere orci.Quisque eget rutrum nulla, non lacinia ligula. Phasellus sodales elementum auctor. Nullam ullamcorper mattis purus eu mattis. Nam vel cursus tellus, venenatis posuere orci."
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:fontFamily="@font/app_font_md"
