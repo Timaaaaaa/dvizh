@@ -31,11 +31,17 @@ class CustomDateFragment : Fragment(), SearchCategoryItemClick {
 		return inflater.inflate(R.layout.fragment_custom_date, container, false)
 	}
 
+	override fun onResume() {
+		super.onResume()
+		view?.requestLayout()
+	}
+
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		fragment_search_calendar_custom_days = view.findViewById(R.id.fragment_search_calendar_custom_days)
 
+		fragment_search_calendar_custom_days.isNestedScrollingEnabled = false
 		fragment_search_calendar_custom_days.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 		categoryAdapter = SearchCustomDayAdapter(resources)
 		categoryAdapter.setListener(this)
@@ -44,11 +50,15 @@ class CustomDateFragment : Fragment(), SearchCategoryItemClick {
 		val subsequentItemOffset = resources.getDimensionPixelSize(R.dimen.subsequent_item_offset)
 		val itemDecoration = FirstItemMarginDecoration(firstItemOffset, subsequentItemOffset)
 		fragment_search_calendar_custom_days.addItemDecoration(itemDecoration)
-		categoryAdapter.setData(listOf(
-			Category(1,0,"Выходные","http://161.35.145.58/images/event_category/1676537107.jpg",  false),
-			Category(2,0,"В этой неделе","http://161.35.145.58/images/event_category/1676878543.jpg",  false),
-			Category(3,0,"В этом месеце","http://161.35.145.58/images/event_category/1676878543.jpg",  false),
-		))
+
+		categoryAdapter.
+		setData(
+			listOf(
+			Category(1,0,"Январь","http://161.35.145.58/images/event_category/1676537107.jpg",  false),
+			Category(2,0,"Февраль","http://161.35.145.58/images/event_category/1676878543.jpg",  false),
+			Category(3,0,"Март","http://161.35.145.58/images/event_category/1676878543.jpg",  false),
+		)
+		)
 	}
 
 	override fun onItemClick(category: Category) {

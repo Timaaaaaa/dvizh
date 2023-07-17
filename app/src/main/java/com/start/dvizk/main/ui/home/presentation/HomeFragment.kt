@@ -68,7 +68,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 		initObserver()
 		viewModel.getPopularEvents()
 		viewModel.getCategories()
-		viewModel.getUpcomingEvents(1,1)
+		viewModel.getUpcomingEvents(1,0)
 
 		// Просто чтобы из логов взять данные
 		println("Token " + sharedPreferencesRepository.getUserToken() + "\n" +
@@ -140,6 +140,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 
 		upcomingEventsRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
 		defaultEventAdapter = DefaultEventAdapter(resources)
+		defaultEventAdapter.setListener(this)
 		upcomingEventsRecyclerView.adapter = defaultEventAdapter
 	}
 

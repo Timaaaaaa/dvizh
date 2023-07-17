@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bg_color"
     android:clickable="true"
     android:focusable="true">
@@ -15,8 +16,8 @@
         android:animateLayoutChanges="true"
         android:paddingBottom="24dp"
         app:layout_constraintBottom_toTopOf="@id/search_main"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -74,7 +75,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-
                 <EditText
                     android:id="@+id/fragment_home_search_edit_text"
                     android:layout_width="match_parent"
@@ -130,31 +130,31 @@
 
                 <LinearLayout
                     android:id="@+id/vieq"
-                    android:orientation="vertical"
                     android:layout_width="0dp"
-                    app:layout_constraintTop_toBottomOf="@+id/fragment_search_calendar_header"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_height="wrap_content"
-                    >
+
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_search_calendar_header">
 
                     <com.google.android.material.tabs.TabLayout
                         android:id="@+id/fragment_search_calendar_tabs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        app:tabTextColor="@color/white"
-                        app:tabSelectedTextColor="@color/app_accent"
                         app:tabIndicatorColor="@color/app_accent"
                         app:tabMode="fixed"
+                        app:tabSelectedTextColor="@color/app_accent"
                         app:tabTextAppearance="@style/MyTabLayoutAppearance"
-                        tools:ignore="SpeakableTextPresentCheck"/>
+                        app:tabTextColor="@color/white"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/fragment_search_calendar_pager"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                 </LinearLayout>
@@ -165,9 +165,10 @@
                     android:layout_height="2dp"
                     android:layout_marginTop="12dp"
                     android:background="@color/white"
-                    app:layout_constraintTop_toBottomOf="@id/vieq"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/vieq" />
 
                 <TextView
                     android:id="@+id/fragment_search_calendar_clear"
@@ -179,6 +180,8 @@
                     android:text="Очистить все"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    android:visibility="gone"
+
                     app:layout_constraintBottom_toBottomOf="@id/fragment_search_calendar_next"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/fragment_search_calendar_next" />
@@ -195,6 +198,8 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    android:visibility="gone"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/fragment_create_organization_separator_1" />
 
@@ -265,11 +270,7 @@
                         android:layout_height="36dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="24dp"
-                        android:fontFamily="@font/app_font_bk"
-                        android:src="@drawable/ic_logo"
-                        android:text="Люди с выше 13"
-                        android:textColor="@color/grey_default"
-                        android:textSize="16sp"
+                        android:src="@drawable/ic_circle_plus"
                         app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_adult_des"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/fragment_search_quests_adult" />
@@ -280,7 +281,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="4dp"
                         android:fontFamily="@font/app_font_bk"
-                        android:text="1"
+                        android:text="0"
                         android:textColor="@color/white"
                         android:textSize="24sp"
                         app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_adult_des"
@@ -292,8 +293,7 @@
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_marginEnd="6dp"
-                        android:fontFamily="@font/app_font_bk"
-                        android:src="@drawable/ic_logo"
+                        android:src="@drawable/ic_circle_minus"
                         android:text="Люди с выше 13"
                         android:textColor="@color/grey_default"
                         android:textSize="16sp"
@@ -309,7 +309,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="24dp"
                         android:fontFamily="@font/app_font_bk"
-                        android:text="Студент"
+                        android:text="Детский"
                         android:textColor="@color/white"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -322,7 +322,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="24dp"
                         android:fontFamily="@font/app_font_bk"
-                        android:text="Люди с выше 13"
+                        android:text="От 13 лет"
                         android:textColor="@color/grey_default"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -334,11 +334,7 @@
                         android:layout_height="36dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginEnd="24dp"
-                        android:fontFamily="@font/app_font_bk"
-                        android:src="@drawable/ic_logo"
-                        android:text="Люди с выше 13"
-                        android:textColor="@color/grey_default"
-                        android:textSize="16sp"
+                        android:src="@drawable/ic_circle_plus"
                         app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_stud_des"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@id/fragment_search_quests_stud" />
@@ -349,7 +345,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="4dp"
                         android:fontFamily="@font/app_font_bk"
-                        android:text="1"
+                        android:text="0"
                         android:textColor="@color/white"
                         android:textSize="24sp"
                         app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_stud_des"
@@ -362,8 +358,8 @@
                         android:layout_height="36dp"
                         android:layout_marginEnd="6dp"
                         android:fontFamily="@font/app_font_bk"
-                        android:src="@drawable/ic_logo"
-                        android:text="Люди с выше 13"
+                        android:src="@drawable/ic_circle_minus"
+                        android:text="2-12 лет"
                         android:textColor="@color/grey_default"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_stud_des"
@@ -380,10 +376,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/search_main"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="24dp">
+        android:paddingBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
         <View
             android:id="@+id/fragment_detail_page_separator_main"
             android:layout_width="match_parent"
@@ -392,7 +389,7 @@
             android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/fragment_search_clear"
@@ -408,25 +405,71 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/fragment_search_search" />
 
-        <Button
-            android:id="@+id/fragment_search_search"
+<!--        <Button-->
+<!--            android:id="@+id/fragment_search_search"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginHorizontal="25dp"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:background="@drawable/bg_purple_button"-->
+<!--            android:drawableLeft="@drawable/ic_search_white"-->
+<!--            android:fontFamily="@font/app_font_bd"-->
+<!--            android:gravity="center"-->
+<!--            android:minWidth="150dp"-->
+<!--            android:text="Поиск"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@id/fragment_detail_page_separator_main" />-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:background="@drawable/bg_purple_button"
             android:minWidth="150dp"
-            android:fontFamily="@font/app_font_bd"
-            android:drawableLeft="@drawable/ic_search_white"
-            android:text="Поиск"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp"
+            android:id="@+id/fragment_search_search"
+            android:background="@drawable/bg_purple_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/fragment_detail_page_separator_main" />
+
+            app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_separator_main" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title_search_icon"
+                    android:src="@drawable/ic_search_white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title_search"
+                    android:text="Поиск"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/title_search_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

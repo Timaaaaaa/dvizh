@@ -28,6 +28,11 @@ class CalendarFragment : Fragment() {
 		return inflater.inflate(R.layout.fragment_calendar_search, container, false)
 	}
 
+	override fun onResume() {
+		super.onResume()
+		view?.requestLayout()
+	}
+
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 

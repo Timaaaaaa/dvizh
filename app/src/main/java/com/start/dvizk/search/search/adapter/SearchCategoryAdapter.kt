@@ -61,9 +61,11 @@ class SearchCategoryAdapter(private val resources: Resources): RecyclerView.Adap
 			if (categorie.isSelected) {
 				border.background = ResourcesCompat.getDrawable(resources, R.drawable.bg_search_category_border_selected, itemView.context.theme)
 				name.setTextColor(resources.getColor(R.color.white))
+				border.setPadding(4,4,4,4)
 			} else {
 				border.background = ResourcesCompat.getDrawable(resources, R.drawable.bg_search_category_border_unselect, itemView.context.theme)
 				name.setTextColor(resources.getColor(R.color.grey_default))
+				border.setPadding(1,1,1,1)
 			}
 			itemView.setOnClickListener {
 				categories.forEach{

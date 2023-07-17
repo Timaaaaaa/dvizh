@@ -46,6 +46,7 @@ import com.start.dvizk.registration.registr.data.RegistrationRepository
 import com.start.dvizk.registration.registr.domain.VerificationRepository
 import com.start.dvizk.registration.registr.presentation.RegistrationViewModel
 import com.start.dvizk.registration.varification.presentation.VerificationViewModel
+import com.start.dvizk.search.search.presentation.SearchViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.android.inject
@@ -318,6 +319,12 @@ object DiContainer {
 		viewModel {
 			EventDetailViewModel(
 				eventDetailRepository = get()
+			)
+		}
+
+		viewModel {
+			SearchViewModel(
+				homePageRepository = get()
 			)
 		}
 	}

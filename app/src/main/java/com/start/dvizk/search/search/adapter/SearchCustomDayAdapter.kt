@@ -4,11 +4,9 @@ import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.search.search.presentation.SearchCategoryItemClick
@@ -19,7 +17,7 @@ class SearchCustomDayAdapter(private val resources: Resources): RecyclerView.Ada
 	private var listener: SearchCategoryItemClick? = null
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-		val view = LayoutInflater.from(parent.context).inflate(R.layout.item_search_custom_day, parent, false)
+		val view = LayoutInflater.from(parent.context).inflate(R.layout.item_search_custom_month, parent, false)
 		return ViewHolder(view)
 	}
 
@@ -43,7 +41,8 @@ class SearchCustomDayAdapter(private val resources: Resources): RecyclerView.Ada
 
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-		private var name: TextView = itemView.findViewById(R.id.item_custom_day_title)
+		private var name: TextView = itemView.findViewById(R.id.item_custom_month_title)
+		private var subtitle: TextView = itemView.findViewById(R.id.item_custom_year)
 		private var mainView: View = itemView.findViewById(R.id.item_custom_day_view)
 
 
@@ -53,10 +52,13 @@ class SearchCustomDayAdapter(private val resources: Resources): RecyclerView.Ada
 			if (categorie.isSelected) {
 				mainView.background = ResourcesCompat.getDrawable(resources, R.drawable.bg_search_category_border_selected, itemView.context.theme)
 				name.setTextColor(resources.getColor(R.color.white))
+				subtitle.setTextColor(resources.getColor(R.color.white))
 			} else {
 				mainView.background = ResourcesCompat.getDrawable(resources, R.drawable.bg_search_category_border_unselect, itemView.context.theme)
 				name.setTextColor(resources.getColor(R.color.grey_default))
+				subtitle.setTextColor(resources.getColor(R.color.grey_default))
 			}
+
 			itemView.setOnClickListener {
 				categories.forEach{
 					if(it.id == categorie.id) {
