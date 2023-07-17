@@ -8,14 +8,21 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.start.dvizk.R
-import com.start.dvizk.main.ui.home.presentation.CategoryAdapter
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
+import com.start.dvizk.main.ui.tickets.adapter.PagerAdapter
+import com.start.dvizk.search.search.adapter.SearchCalendarPagerAdapter
+import com.start.dvizk.search.search.adapter.SearchCategoryAdapter
 import java.util.*
 
 class SearchFragment :
@@ -28,13 +35,15 @@ class SearchFragment :
 	private lateinit var fragment_home_search_edit_text: View
 	private lateinit var fragment_search_calendar_header: View
 	private lateinit var fragment_search_category_list: RecyclerView
-	private lateinit var calendarView: MaterialCalendarView
 
 	private lateinit var fragment_search_calendar_next: Button
 	private lateinit var fragment_create_organization_separator_1: View
 	private lateinit var fragment_search_calendar_clear: TextView
 
 	private lateinit var view_quest: View
+
+	private lateinit var fragment_search_calendar_pager: ViewPager2
+	private lateinit var fragment_search_calendar_tabs: TabLayout
 
 	private lateinit var categoryAdapter: SearchCategoryAdapter
 
@@ -57,7 +66,18 @@ class SearchFragment :
 		fragment_create_organization_separator_1 = view.findViewById(R.id.fragment_create_organization_separator_1)
 		fragment_search_calendar_clear = view.findViewById(R.id.fragment_search_calendar_clear)
 		view_quest = view.findViewById(R.id.view_quest)
-		initCalendar(view)
+
+
+		fragment_search_calendar_pager = view.findViewById(R.id.fragment_search_calendar_pager)
+		val adapter = SearchCalendarPagerAdapter(this)
+		fragment_search_calendar_pager.adapter = adapter
+
+		val tabTitles = listOf("Выбрать даты", "Я гибкий")
+
+		fragment_search_calendar_tabs = view.findViewById(R.id.fragment_search_calendar_tabs)
+		TabLayoutMediator(fragment_search_calendar_tabs, fragment_search_calendar_pager) { tab, position ->
+			tab.text = tabTitles[position]
+		}.attach()
 
 		fragment_search_category_list.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 		categoryAdapter = SearchCategoryAdapter(resources)
@@ -88,14 +108,13 @@ class SearchFragment :
 				fragment_home_search_edit_text.visibility = View.GONE
 				fragment_search_category_list.visibility = View.GONE
 
-				calendarView.visibility = View.VISIBLE
 				fragment_create_organization_separator_1.visibility = View.VISIBLE
 				fragment_search_calendar_clear.visibility = View.VISIBLE
 				fragment_search_calendar_next.visibility = View.VISIBLE
 
 			}
 			fragment_search_calendar_next.id -> {
-				calendarView.visibility = View.GONE
+
 				fragment_create_organization_separator_1.visibility = View.GONE
 				fragment_search_calendar_clear.visibility = View.GONE
 				fragment_search_calendar_next.visibility = View.GONE
@@ -107,33 +126,5 @@ class SearchFragment :
 
 	override fun onItemClick(category: Category) {
 
-	}
-
-	fun initCalendar(view: View) {
-		calendarView = view.findViewById(R.id.fragment_search_calendar_view)
-
-		val currentDate = Calendar.getInstance()
-		val year = currentDate.get(Calendar.YEAR)
-		val month = currentDate.get(Calendar.MONTH)
-		val day = currentDate.get(Calendar.DAY_OF_MONTH)
-
-		val minDate = CalendarDay.from(year, month, day)
-		calendarView.state().edit()
-			.setMinimumDate(minDate)
-			.commit()
-
-		calendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_RANGE)
-
-		calendarView.setHeaderTextAppearance(R.style.CalendarHeader)
-		calendarView.setWeekDayTextAppearance(R.style.CalendarWeekDay)
-		calendarView.setDateTextAppearance(R.style.CalendarDate)
-		calendarView.selectionColor = R.color.purple_200
-
-		calendarView.setOnDateChangedListener { widget, date, selected ->
-			if (selected) {
-
-
-			}
-		}
 	}
 }

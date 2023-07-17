@@ -1,4 +1,4 @@
-package com.start.dvizk.search.search.presentation
+package com.start.dvizk.search.search.adapter
 
 import android.content.res.Resources
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.home.presentation.model.Category
+import com.start.dvizk.search.search.presentation.SearchCategoryItemClick
 
 class SearchCategoryAdapter(private val resources: Resources): RecyclerView.Adapter<SearchCategoryAdapter.ViewHolder>() {
 
