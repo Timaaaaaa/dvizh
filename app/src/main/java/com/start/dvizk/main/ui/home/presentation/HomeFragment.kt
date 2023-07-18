@@ -18,18 +18,17 @@ import com.bumptech.glide.request.RequestOptions
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.main.ui.detail.presentation.EventDetailsFragment
-import com.start.dvizk.main.ui.home.presentation.model.AllUpcomingEventsFragment
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.main.ui.home.presentation.model.Event
 import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
 import com.start.dvizk.main.ui.home.presentation.model.PopularEventsState
-import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
+import com.start.dvizk.main.ui.home.presentation.model.UpcomingEventsState
 import com.start.dvizk.main.ui.notifications.NotificationsFragment
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-	const val EVENT_ID = "event_id"
+const val EVENT_ID = "event_id"
 
 class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListener {
 
@@ -129,6 +128,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 
 		upcomingEventsRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
 		defaultEventAdapter = DefaultEventAdapter(resources)
+		defaultEventAdapter.setListener(this)
 		upcomingEventsRecyclerView.adapter = defaultEventAdapter
 	}
 
@@ -165,16 +165,16 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 		}
 	}
 
-	private fun upcomingListInit(state: UpcomingEvetsState) {
+	private fun upcomingListInit(state: UpcomingEventsState) {
 		when (state) {
-			is UpcomingEvetsState.Failed -> {
+			is UpcomingEventsState.Failed -> {
 				fragment_home_upcoming_events_progress_bar.visibility = View.GONE
 				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
 			}
-			is UpcomingEvetsState.Loading -> {
+			is UpcomingEventsState.Loading -> {
 				fragment_home_upcoming_events_progress_bar.visibility = View.VISIBLE
 			}
-			is UpcomingEvetsState.Success -> {
+			is UpcomingEventsState.Success -> {
 
 				fragment_home_upcoming_events_progress_bar.visibility = View.GONE
 				defaultEventAdapter.setData(state.events)

@@ -6,7 +6,7 @@ import com.start.dvizk.arch.CustomMutableLiveData
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.PopularEventsState
-import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
+import com.start.dvizk.main.ui.home.presentation.model.UpcomingEventsState
 import com.start.dvizk.network.Response
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +20,7 @@ class HomeViewModel(
 	CoroutineScope {
 
 	val popularEventsStateLiveData: MutableLiveData<PopularEventsState> = CustomMutableLiveData()
-	val upcomingEventsStateLiveData: MutableLiveData<UpcomingEvetsState> = CustomMutableLiveData()
+	val upcomingEventsStateLiveData: MutableLiveData<UpcomingEventsState> = CustomMutableLiveData()
 	val categoriesListState: MutableLiveData<CategoriesListState> = CustomMutableLiveData()
 
 
@@ -58,16 +58,16 @@ class HomeViewModel(
 		page: Int,
 		categoryId: Int,
 	) {
-		upcomingEventsStateLiveData.value = UpcomingEvetsState.Loading
+		upcomingEventsStateLiveData.value = UpcomingEventsState.Loading
 		launch(Dispatchers.IO) {
 			val response = homePageRepository.getUpcomingEvents(page = page,categoryId = categoryId)
 
 			launch(Dispatchers.Main) {
 				when (response) {
 					is Response.Success -> upcomingEventsStateLiveData.value =
-						UpcomingEvetsState.Success(response.result)
+						UpcomingEventsState.Success(response.result)
 					is Response.Error -> upcomingEventsStateLiveData.value =
-						UpcomingEvetsState.Failed(response.error.toString())
+						UpcomingEventsState.Failed(response.error.toString())
 				}
 			}
 		}

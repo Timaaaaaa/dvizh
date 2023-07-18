@@ -50,6 +50,16 @@
         app:layout_constraintStart_toStartOf="@id/fragment_upcoming_events_page_return_button"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/fragment_upcoming_events_page_progress_bar"
+        android:layout_width="0dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_upcoming_events_page_category_recycler_view" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_upcoming_events_page_event_recycler_view"
         android:layout_width="0dp"
