@@ -36,6 +36,9 @@ import com.start.dvizk.main.ui.detail.presentation.EventDetailViewModel
 import com.start.dvizk.main.ui.home.data.HomePageApi
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.HomeViewModel
+import com.start.dvizk.main.ui.profile.data.ProfileApi
+import com.start.dvizk.main.ui.profile.data.ProfileRepository
+import com.start.dvizk.main.ui.profile.presentation.ProfileViewModel
 import com.start.dvizk.network.ApiErrorExceptionFactory
 import com.start.dvizk.network.DefaultApiErrorExceptionFactory
 import com.start.dvizk.registration.createpassword.presentation.PasswordGenerationViewModel
@@ -48,15 +51,12 @@ import com.start.dvizk.registration.registr.presentation.RegistrationViewModel
 import com.start.dvizk.registration.varification.presentation.VerificationViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import org.koin.java.KoinJavaComponent.get
-import org.koin.java.KoinJavaComponent.inject
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
@@ -133,6 +133,13 @@ object DiContainer {
 			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
 			EventDetailRepository(
 				eventDetailApi = appRetrofit.create(EventDetailApi::class.java)
+			)
+		}
+
+		factory {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			ProfileRepository(
+				profileApi = appRetrofit.create(ProfileApi::class.java)
 			)
 		}
 	}
@@ -318,6 +325,12 @@ object DiContainer {
 		viewModel {
 			EventDetailViewModel(
 				eventDetailRepository = get()
+			)
+		}
+
+		viewModel {
+			ProfileViewModel(
+				profileRepository = get()
 			)
 		}
 	}
