@@ -15,7 +15,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.steps.data.model.RequestResponseState
-import com.start.dvizk.main.ui.home.presentation.AllUpcomingEventsFragment
 import com.start.dvizk.main.ui.home.presentation.HomeFragment
 import com.start.dvizk.main.ui.profile.data.model.User
 import org.koin.android.ext.android.inject
