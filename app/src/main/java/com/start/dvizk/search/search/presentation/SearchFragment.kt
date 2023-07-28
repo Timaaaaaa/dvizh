@@ -26,7 +26,7 @@ import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
-import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
+import com.start.dvizk.main.ui.home.presentation.model.UpcomingEventsState
 import com.start.dvizk.search.list.SearchListFragment
 import com.start.dvizk.search.search.adapter.SearchCalendarPagerAdapter
 import com.start.dvizk.search.search.adapter.SearchCategoryAdapter
@@ -322,16 +322,16 @@ class SearchFragment :
 		}
 	}
 
-	private fun upcomingListInit(state: UpcomingEvetsState) {
+	private fun upcomingListInit(state: UpcomingEventsState) {
 		when (state) {
-			is UpcomingEvetsState.Failed -> {
+			is UpcomingEventsState.Failed -> {
 
 				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
 			}
-			is UpcomingEvetsState.Loading -> {
+			is UpcomingEventsState.Loading -> {
 
 			}
-			is UpcomingEvetsState.Success -> {
+			is UpcomingEventsState.Success -> {
 				println("---------" + state.events.toString())
 
 				val fragment = SearchListFragment()
