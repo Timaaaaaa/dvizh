@@ -44,15 +44,12 @@ class AllUpcomingEventsFragment : Fragment() {
 		val subsequentItemOffset = resources.getDimensionPixelSize(R.dimen.subsequent_item_offset)
 		val itemDecoration = FirstItemMarginDecoration(firstItemOffset, subsequentItemOffset)
 		fragment_upcoming_events_page_category_recycler_view.addItemDecoration(itemDecoration)
-		fragment_upcoming_events_page_category_recycler_view.layoutManager =
-			LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-		categoryAdapter = CategoryAdapter(resources)
-		fragment_upcoming_events_page_category_recycler_view.adapter = categoryAdapter
 
-		fragment_upcoming_events_page_event_recycler_view = view.findViewById(R.id.fragment_upcoming_events_page_event_recycler_view)
 		fragment_upcoming_events_page_event_recycler_view.layoutManager =
 			GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
 		defaultEventAdapter = DefaultEventAdapter(resources)
 		fragment_upcoming_events_page_event_recycler_view.adapter = defaultEventAdapter
+
+
 	}
 }

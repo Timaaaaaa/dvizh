@@ -11,6 +11,7 @@ sealed class UpcomingEvetsState {
     ) : UpcomingEvetsState()
 
     data class Success(
-            val events: List<Event>
+            val events: List<Event>,
+            val total: Int,
     ) : UpcomingEvetsState()
 }

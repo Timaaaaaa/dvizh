@@ -8,4 +8,6 @@ import com.google.gson.JsonObject
 data class EventResponse(
 	@JsonProperty("events")
 	val events: List<Event>,
+	@JsonProperty("nbTotal")
+	val nbTotal: Int,
 )

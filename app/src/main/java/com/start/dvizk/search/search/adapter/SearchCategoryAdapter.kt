@@ -69,13 +69,20 @@ class SearchCategoryAdapter(private val resources: Resources): RecyclerView.Adap
 			}
 			itemView.setOnClickListener {
 				categories.forEach{
+					if (categorie.id == 0L) {
+						it.isSelected = false
+						categories.first().isSelected = true
+						notifyDataSetChanged()
+					}
 					if(it.id == categorie.id) {
 						it.isSelected = !it.isSelected
+						categories.first().isSelected = false
+						notifyItemChanged(position)
+						notifyItemChanged(0)
+						return@forEach
 					}
-
-					notifyItemChanged(position)
 				}
-				listener?.onItemClick(categorie)
+				listener?.onCategoryItemClick(categorie)
 			}
 		}
 	}

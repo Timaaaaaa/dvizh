@@ -1,12 +1,14 @@
 package com.start.dvizk.main.ui.home.data
 
 import com.start.dvizk.main.ui.home.presentation.model.Category
-import com.start.dvizk.main.ui.home.presentation.model.Event
 import com.start.dvizk.main.ui.home.presentation.model.EventResponse
+import com.start.dvizk.search.search.presentation.model.RequestModel
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface HomePageApi {
@@ -25,5 +27,12 @@ interface HomePageApi {
 	fun getUpcomingEvents(
 		@Query("category_id") categoryId: Int,
 		@Query("page") page: Int,
+	): Call<EventResponse>
+
+	@Headers("Content-Type: application/json")
+	@POST("/api/v2/event")
+	fun getSearchedEvents(
+		@Header("Authorization") token: String,
+		@Body request: RequestModel
 	): Call<EventResponse>
 }

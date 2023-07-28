@@ -8,13 +8,14 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
-import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.search.search.presentation.SearchCategoryItemClick
+import com.start.dvizk.search.search.presentation.SelectedParams
+import com.start.dvizk.search.search.presentation.model.MonthModel
 
 class SearchCustomDayAdapter(private val resources: Resources): RecyclerView.Adapter<SearchCustomDayAdapter.ViewHolder>() {
 
-	private var categories = listOf<Category>()
-	private var listener: SearchCategoryItemClick? = null
+	private var categories = listOf<MonthModel>()
+	private var listener: SelectedParams? = null
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 		val view = LayoutInflater.from(parent.context).inflate(R.layout.item_search_custom_month, parent, false)
@@ -30,12 +31,12 @@ class SearchCustomDayAdapter(private val resources: Resources): RecyclerView.Ada
 		return categories.size
 	}
 
-	fun setData(categories: List<Category>) {
+	fun setData(categories: List<MonthModel>) {
 		this.categories = categories
 		notifyDataSetChanged()
 	}
 
-	fun setListener(listener: SearchCategoryItemClick) {
+	fun setListener(listener: SelectedParams) {
 		this.listener = listener
 	}
 
@@ -46,8 +47,9 @@ class SearchCustomDayAdapter(private val resources: Resources): RecyclerView.Ada
 		private var mainView: View = itemView.findViewById(R.id.item_custom_day_view)
 
 
-		fun bind(categorie: Category, listener: SearchCategoryItemClick?, position: Int) {
-			name.text = categorie.name
+		fun bind(categorie: MonthModel, listener: SelectedParams?, position: Int) {
+			name.text = categorie.monthName
+			subtitle.text = categorie.year.toString()
 
 			if (categorie.isSelected) {
 				mainView.background = ResourcesCompat.getDrawable(resources, R.drawable.bg_search_category_border_selected, itemView.context.theme)
@@ -60,14 +62,14 @@ class SearchCustomDayAdapter(private val resources: Resources): RecyclerView.Ada
 			}
 
 			itemView.setOnClickListener {
-				categories.forEach{
+				categories.forEach {
 					if(it.id == categorie.id) {
 						it.isSelected = !it.isSelected
 					}
 
 					notifyItemChanged(position)
 				}
-				listener?.onItemClick(categorie)
+				listener?.onMonthListSelected(categorie)
 			}
 		}
 	}

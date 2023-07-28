@@ -10,32 +10,37 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.start.dvizk.R
+import com.start.dvizk.arch.EventCreateRouter
 import com.start.dvizk.arch.data.SharedPreferencesRepository
-import com.start.dvizk.main.ui.home.presentation.HomeViewModel
+import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
+import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
+import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.main.ui.home.presentation.model.FirstItemMarginDecoration
-import com.start.dvizk.main.ui.tickets.adapter.PagerAdapter
+import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
+import com.start.dvizk.search.list.SearchListFragment
 import com.start.dvizk.search.search.adapter.SearchCalendarPagerAdapter
 import com.start.dvizk.search.search.adapter.SearchCategoryAdapter
+import com.start.dvizk.search.search.presentation.model.DateRange
+import com.start.dvizk.search.search.presentation.model.MonthModel
+import com.start.dvizk.search.search.presentation.model.TicketQuantities
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 class SearchFragment :
 		Fragment(),
 		OnClickListener,
-		SearchCategoryItemClick
+		SearchCategoryItemClick,
+	SelectedParams
 {
 
 	private val viewModel: SearchViewModel by viewModel()
@@ -58,6 +63,8 @@ class SearchFragment :
 	private lateinit var fragment_search_quests_adult_count: TextView
 	private lateinit var fragment_search_quests_header: TextView
 
+	private lateinit var search_button: View
+
 
 	private lateinit var view_quest: View
 
@@ -68,6 +75,12 @@ class SearchFragment :
 
 	private var adultCount = 0
 	private var childCount = 0
+	private var cats = mutableListOf<Category>()
+	private var selectedCats = mutableListOf<Int>()
+	private var monthList = mutableListOf<Int>()
+	private var dateRangeCurrent: DateRange? = null
+	private var ticketQuantities: TicketQuantities? = null
+	private var isCalendarParams = true
 
 	override fun onCreateView(
 			inflater: LayoutInflater, container: ViewGroup?,
@@ -80,6 +93,9 @@ class SearchFragment :
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
+		viewModel.categoriesListState.observe(viewLifecycleOwner, ::categoriesListInit)
+		viewModel.upcomingEventsStateLiveData.observe(viewLifecycleOwner, ::upcomingListInit)
+
 		fragment_search_calendar_header = view.findViewById(R.id.fragment_search_calendar_header)
 		fragment_home_search_edit_text = view.findViewById(R.id.fragment_home_search_edit_text)
 		fragment_bottom_sheet_category = view.findViewById(R.id.fragment_bottom_sheet_category)
@@ -88,6 +104,7 @@ class SearchFragment :
 		fragment_create_organization_separator_1 = view.findViewById(R.id.fragment_create_organization_separator_1)
 		fragment_search_calendar_clear = view.findViewById(R.id.fragment_search_calendar_clear)
 		vieq = view.findViewById(R.id.vieq)
+		search_button = view.findViewById(R.id.fragment_search_search)
 		fragment_search_quests_header = view.findViewById(R.id.fragment_search_quests_header)
 
 		fragment_search_quests_stud_plus = view.findViewById(R.id.fragment_search_quests_stud_plus)
@@ -100,7 +117,8 @@ class SearchFragment :
 		view_quest = view.findViewById(R.id.view_quest)
 
 		fragment_search_calendar_pager = view.findViewById(R.id.fragment_search_calendar_pager)
-		val adapter = SearchCalendarPagerAdapter(this)
+		val adapter = SearchCalendarPagerAdapter(this, )
+		adapter.setListener(this)
 		fragment_search_calendar_pager.adapter = adapter
 
 		val tabTitles = listOf("Выбрать даты", "Я гибкий")
@@ -118,6 +136,14 @@ class SearchFragment :
 			}
 		}
 
+		fragment_search_calendar_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+			override fun onPageSelected(position: Int) {
+
+				isCalendarParams = position == 0
+				super.onPageSelected(position)
+			}
+		})
+
 		fragment_search_category_list.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 		categoryAdapter = SearchCategoryAdapter(resources)
 		categoryAdapter.setListener(this)
@@ -127,12 +153,6 @@ class SearchFragment :
 		val itemDecoration = FirstItemMarginDecoration(firstItemOffset, subsequentItemOffset)
 		fragment_search_category_list.addItemDecoration(itemDecoration)
 
-		var cats = mutableListOf<Category>(
-			Category(1,0,"Все","http://161.35.145.58/images/event_category/1676537107.jpg",  false),
-			Category(2,0,"Музыка","http://161.35.145.58/images/event_category/1676878543.jpg",  false),
-			Category(3,0,"Спорт","http://161.35.145.58/images/event_category/1676878543.jpg",  false),
-		)
-		categoryAdapter.setData(cats)
 
 		fragment_bottom_sheet_category.setOnClickListener(this)
 		fragment_search_calendar_header.setOnClickListener(this)
@@ -142,6 +162,7 @@ class SearchFragment :
 		fragment_search_quests_stud_minus.setOnClickListener(this)
 		fragment_search_quests_adult_minus.setOnClickListener(this)
 		fragment_search_quests_header.setOnClickListener(this)
+		search_button.setOnClickListener(this)
 
 		fragment_home_search_edit_text.addTextChangedListener(object : TextWatcher {
 			override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -159,6 +180,8 @@ class SearchFragment :
 				// Ничего не делаем
 			}
 		})
+
+		viewModel.getCategories()
 	}
 
 	override fun onClick(view: View?) {
@@ -220,10 +243,110 @@ class SearchFragment :
 				fragment_search_calendar_next.visibility = View.GONE
 				view_quest.visibility = View.VISIBLE
 			}
+			search_button.id -> {
+
+				if (cats.isEmpty()) {
+					return
+				}
+				selectedCats.clear()
+				cats.forEach {
+					if (it.isSelected) {
+						selectedCats.add(it.id.toInt())
+					}
+				}
+
+				ticketQuantities = TicketQuantities(
+					adult = adultCount,
+					child = childCount
+				)
+
+				if (isCalendarParams) {
+					viewModel.getSearchedEvents(
+						token = sharedPreferencesRepository.getUserToken(),
+						categories = selectedCats,
+						dateRange = dateRangeCurrent,
+						ticketQuantities = ticketQuantities,
+						page = 1
+					)
+				} else {
+					viewModel.getSearchedEvents(
+						token = sharedPreferencesRepository.getUserToken(),
+						categories = selectedCats,
+						months = monthList,
+						ticketQuantities = ticketQuantities,
+						page = 1
+					)
+				}
+
+			}
 		}
 	}
 
-	override fun onItemClick(category: Category) {
+	override fun onCategoryItemClick(category: Category) {
+		if (category.isSelected){
+			selectedCats.add(category.id.toInt())
+		} else {
+			selectedCats.remove(category.id.toInt())
+		}
+	}
 
+	private fun categoriesListInit(state: CategoriesListState) {
+		when (state) {
+			is CategoriesListState.Failed -> {
+				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
+			}
+			is CategoriesListState.Loading -> {
+			}
+			is CategoriesListState.Success -> {
+				cats = state.categories.toMutableList()
+
+				if(cats.isEmpty()) {
+					return
+				}
+
+				selectedCats.add(cats.first().id.toInt())
+				categoryAdapter.setData(state.categories)
+			}
+		}
+	}
+
+	override fun onDateRangeSelected(dateRange: DateRange) {
+		dateRangeCurrent = dateRange
+	}
+
+	override fun onMonthListSelected(month: MonthModel) {
+		if (month.isSelected) {
+			monthList.add(month.id)
+		} else {
+			monthList.remove(month.id)
+		}
+	}
+
+	private fun upcomingListInit(state: UpcomingEvetsState) {
+		when (state) {
+			is UpcomingEvetsState.Failed -> {
+
+				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
+			}
+			is UpcomingEvetsState.Loading -> {
+
+			}
+			is UpcomingEvetsState.Success -> {
+				println("---------" + state.events.toString())
+
+				val fragment = SearchListFragment()
+				val args = Bundle()
+
+				args.putParcelableArrayList("SEARCH_RESULT_LIST", ArrayList(state.events))
+				args.putInt("SEARCH_INT", state.total)
+
+				fragment.arguments = args
+				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+
+				ft.add(R.id.fragment_container, fragment)
+				ft.addToBackStack(null)
+				ft.commit()
+			}
+		}
 	}
 }

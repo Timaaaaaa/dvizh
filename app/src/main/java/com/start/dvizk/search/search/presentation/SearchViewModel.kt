@@ -5,7 +5,10 @@ import androidx.lifecycle.ViewModel
 import com.start.dvizk.arch.CustomMutableLiveData
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.model.CategoriesListState
+import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
 import com.start.dvizk.network.Response
+import com.start.dvizk.search.search.presentation.model.DateRange
+import com.start.dvizk.search.search.presentation.model.TicketQuantities
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +21,7 @@ class SearchViewModel(
 	CoroutineScope {
 
 	val categoriesListState: MutableLiveData<CategoriesListState> = CustomMutableLiveData()
+	val upcomingEventsStateLiveData: MutableLiveData<UpcomingEvetsState> = CustomMutableLiveData()
 
 	fun getCategories() {
 		launch(Dispatchers.IO) {
@@ -33,4 +37,36 @@ class SearchViewModel(
 			}
 		}
 	}
+
+
+	fun getSearchedEvents(
+		token: String?,
+		categories: List<Int>?,
+		page: Int?,
+		months: List<Int> = emptyList(),
+		ticketQuantities: TicketQuantities?,
+		dateRange: DateRange? = null
+	) {
+		upcomingEventsStateLiveData.value = UpcomingEvetsState.Loading
+		launch(Dispatchers.IO) {
+			val response = homePageRepository.getSearchedEvents(
+				dateRange = dateRange,
+				token = token,
+				categories = categories,
+				page = page,
+				months = months.ifEmpty { null },
+				ticketQuantities = ticketQuantities
+			)
+
+			launch(Dispatchers.Main) {
+				when (response) {
+					is Response.Success -> upcomingEventsStateLiveData.value =
+						UpcomingEvetsState.Success(response.result.events, response.result.nbTotal)
+					is Response.Error -> upcomingEventsStateLiveData.value =
+						UpcomingEvetsState.Failed(response.error.toString())
+				}
+			}
+		}
+	}
+
 }

@@ -16,12 +16,18 @@ import com.start.dvizk.main.ui.tickets.adapter.CanceledTicketsAdapter
 import com.start.dvizk.search.search.adapter.SearchCategoryAdapter
 import com.start.dvizk.search.search.adapter.SearchCustomDayAdapter
 import com.start.dvizk.search.search.presentation.SearchCategoryItemClick
+import com.start.dvizk.search.search.presentation.SelectedParams
+import com.start.dvizk.search.search.presentation.model.MonthModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CustomDateFragment : Fragment(), SearchCategoryItemClick {
 
 	private lateinit var fragment_search_calendar_custom_days: RecyclerView
 
 	private lateinit var categoryAdapter: SearchCustomDayAdapter
+
+	private var listener: SelectedParams? = null
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -44,7 +50,7 @@ class CustomDateFragment : Fragment(), SearchCategoryItemClick {
 		fragment_search_calendar_custom_days.isNestedScrollingEnabled = false
 		fragment_search_calendar_custom_days.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 		categoryAdapter = SearchCustomDayAdapter(resources)
-		categoryAdapter.setListener(this)
+		listener?.let { categoryAdapter.setListener(it) }
 		fragment_search_calendar_custom_days.adapter = categoryAdapter
 		val firstItemOffset = resources.getDimensionPixelSize(R.dimen.first_item_offset)
 		val subsequentItemOffset = resources.getDimensionPixelSize(R.dimen.subsequent_item_offset)
@@ -53,15 +59,51 @@ class CustomDateFragment : Fragment(), SearchCategoryItemClick {
 
 		categoryAdapter.
 		setData(
-			listOf(
-			Category(1,0,"Январь","http://161.35.145.58/images/event_category/1676537107.jpg",  false),
-			Category(2,0,"Февраль","http://161.35.145.58/images/event_category/1676878543.jpg",  false),
-			Category(3,0,"Март","http://161.35.145.58/images/event_category/1676878543.jpg",  false),
-		)
+			getMonthsList()
 		)
 	}
 
-	override fun onItemClick(category: Category) {
+	override fun onCategoryItemClick(category: Category) {
 
 	}
+
+	fun getMonthsList(): List<MonthModel> {
+		val monthsList = mutableListOf<MonthModel>()
+		val calendar = Calendar.getInstance()
+
+		// Получаем текущий месяц
+		val currentMonth = calendar.get(Calendar.MONTH)
+		val sdf = SimpleDateFormat("MMMM", Locale.getDefault())
+
+		// Добавляем текущий месяц в список
+		monthsList.add(
+			MonthModel(
+				monthName = sdf.format(calendar.time),
+				year = calendar.get(Calendar.YEAR),
+				monthNumber = calendar.get(Calendar.MONTH),
+				isSelected = false,
+				id = 0
+			)
+		)
+
+		// Добавляем остальные месяцы в список
+		for (i in 1 until 12) {
+			calendar.add(Calendar.MONTH, 1)
+			monthsList.add(
+				MonthModel(
+					monthName = sdf.format(calendar.time),
+					year = calendar.get(Calendar.YEAR),
+					monthNumber = calendar.get(Calendar.MONTH),
+					id = i
+				)
+			)
+		}
+
+		return monthsList
+	}
+
+	fun setListener(listenerCustomDate: SelectedParams?){
+		listener = listenerCustomDate
+	}
+
 }

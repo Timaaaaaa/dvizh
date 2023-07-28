@@ -65,7 +65,7 @@ class HomeViewModel(
 			launch(Dispatchers.Main) {
 				when (response) {
 					is Response.Success -> upcomingEventsStateLiveData.value =
-						UpcomingEvetsState.Success(response.result)
+						UpcomingEvetsState.Success(response.result, 0)
 					is Response.Error -> upcomingEventsStateLiveData.value =
 						UpcomingEvetsState.Failed(response.error.toString())
 				}

@@ -2,8 +2,13 @@ package com.start.dvizk.main.ui.home.data
 
 import com.start.dvizk.main.ui.home.presentation.model.Category
 import com.start.dvizk.main.ui.home.presentation.model.Event
+import com.start.dvizk.main.ui.home.presentation.model.EventResponse
 import com.start.dvizk.network.ApiErrorExceptionFactory
 import com.start.dvizk.network.Response
+import com.start.dvizk.search.search.presentation.model.DateRange
+import com.start.dvizk.search.search.presentation.model.Price
+import com.start.dvizk.search.search.presentation.model.RequestModel
+import com.start.dvizk.search.search.presentation.model.TicketQuantities
 import org.json.JSONObject
 
 class HomePageRepository(
@@ -64,7 +69,8 @@ class HomePageRepository(
 
 			if (response.isSuccessful) {
 				response.body()?.add(
-					0, Category(
+					0,
+					Category(
 						id = 0,
 						parent_id = 0,
 						name = "Все",
@@ -82,4 +88,35 @@ class HomePageRepository(
 			return Response.Error(e.localizedMessage!!.toString())
 		}
 	}
+
+	fun getSearchedEvents(
+		token: String?,
+		categories: List<Int>?,
+		page: Int?,
+		months: List<Int>?,
+		ticketQuantities: TicketQuantities?,
+		dateRange: DateRange? = null
+	): Response<EventResponse, String> {
+		try {
+			val response = homePageApi.getSearchedEvents(
+				token = "Bearer $token",
+				request = RequestModel(
+					page = page,
+					categories = categories,
+					ticketQuantities = ticketQuantities,
+					months = months,
+					dateRange = dateRange
+				)
+			).execute()
+
+			if (response.isSuccessful) return Response.Success(response.body()!!)
+
+			val message = JSONObject(response.errorBody()?.string()!!).getString("message")
+
+			return Response.Error(message)
+		} catch (e: Exception) {
+			return Response.Error(e.localizedMessage!!.toString())
+		}
+	}
+
 }

@@ -10,15 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.tickets.model.MyCanceledTicket
 import com.start.dvizk.main.ui.tickets.adapter.CanceledTicketsAdapter
+import com.start.dvizk.search.search.presentation.SelectedParams
+import com.start.dvizk.search.search.presentation.model.DateRange
 import java.util.*
 
 class CalendarFragment : Fragment() {
 
 
 	private lateinit var fragment_search_calendar_view: MaterialCalendarView
+	private var listener: SelectedParams? = null
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -61,11 +65,23 @@ class CalendarFragment : Fragment() {
 		fragment_search_calendar_view.setDateTextAppearance(R.style.CalendarDate)
 		fragment_search_calendar_view.selectionColor = R.color.purple_200
 
-		fragment_search_calendar_view.setOnDateChangedListener { widget, date, selected ->
-			if (selected) {
-
-
+		// Устанавливаем слушатель выбора интервала дат
+		fragment_search_calendar_view.setOnRangeSelectedListener(object : OnRangeSelectedListener {
+			override fun onRangeSelected(widget: MaterialCalendarView, dates: List<CalendarDay>) {
+				if (dates.size >= 2) {
+					listener?.onDateRangeSelected(DateRange(
+						from = "" + dates.first().year + "-" + dates.first().month + "-" + dates.first().day,
+						to = "" + dates.last().year + "-" + dates.last().month + "-" + dates.last().day,
+					))
+					println(dates.first().toString() + "------" + dates.last().toString())
+					// Обработка выбора интервала дат
+					// Вы можете использовать startDate и endDate для дальнейшей обработки
+				}
 			}
-		}
+		})
+	}
+
+	fun setListener(listenerDateRange: SelectedParams?){
+		listener = listenerDateRange
 	}
 }
