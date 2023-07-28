@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ import com.start.dvizk.main.ui.detail.presentation.adapter.DetailsInfoAdapter
 import com.start.dvizk.main.ui.detail.presentation.rules.CancellationRulesFragment
 import com.start.dvizk.main.ui.detail.presentation.rules.EventRulesFragment
 import com.start.dvizk.main.ui.home.presentation.EVENT_ID
+import com.start.dvizk.main.ui.order.presentation.steps.TicketsCountStepFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EventDetailsFragment : Fragment() {
@@ -42,7 +44,6 @@ class EventDetailsFragment : Fragment() {
 	private lateinit var fragment_detail_page_carousel: ImageSlider
 	private val images = mutableListOf<SlideModel>()
 	private lateinit var fragment_detail_page_header_title: TextView
-	private lateinit var fragment_detail_page_geo_title: TextView
 	private lateinit var fragment_detail_page_location_address: TextView
 	private lateinit var fragment_detail_page_who_can_participate_requirements: TextView
 	private lateinit var fragment_detail_page_program_of_event_activities: TextView
@@ -60,13 +61,15 @@ class EventDetailsFragment : Fragment() {
 	private lateinit var fragment_detail_page_rules_of_event_button: Button
 	private lateinit var fragment_detail_page_cancellation_rules_button: Button
 
-	private lateinit var fragment_detail_page_detail_infos: RecyclerView
+	private lateinit var fragment_detail_page_detail_info: RecyclerView
 	private lateinit var detailsInfoAdapter: DetailsInfoAdapter
 	private val detailsInformation = mutableListOf<DetailsInfoDataModel>()
 
 	private lateinit var fragment_detail_page_items_checklist: RecyclerView
 	private lateinit var checkListAdapter: CheckListAdapter
 	private val checkList = mutableListOf<CheckListDataModel>()
+
+	private lateinit var fragment_detail_page_book_event_button: Button
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -88,7 +91,8 @@ class EventDetailsFragment : Fragment() {
 
 	private fun initView(view: View) {
 
-		fragment_detail_page_return_button = view.findViewById(R.id.fragment_detail_page_return_button)
+		fragment_detail_page_return_button =
+			view.findViewById(R.id.fragment_detail_page_return_button)
 		fragment_detail_page_return_button.setOnClickListener {
 			requireActivity().supportFragmentManager.popBackStack()
 		}
@@ -100,11 +104,8 @@ class EventDetailsFragment : Fragment() {
 		fragment_detail_page_header_title =
 			view.findViewById(R.id.fragment_detail_page_header_title)
 
-		fragment_detail_page_detail_infos =
-			view.findViewById(R.id.fragment_detail_page_detail_infos)
-
-		fragment_detail_page_geo_title =
-			view.findViewById(R.id.fragment_detail_page_geo_title)
+		fragment_detail_page_detail_info =
+			view.findViewById(R.id.fragment_detail_page_detail_info)
 
 		fragment_detail_page_location_address =
 			view.findViewById(R.id.fragment_detail_page_location_address)
@@ -147,7 +148,7 @@ class EventDetailsFragment : Fragment() {
 				putInt(EVENT_ID, eventID)
 			}
 			ft.add(R.id.nav_host_fragment_activity_main, fragment)
-			ft.addToBackStack(null)
+			ft.addToBackStack("")
 			ft.commit()
 		}
 
@@ -161,7 +162,16 @@ class EventDetailsFragment : Fragment() {
 				putInt(EVENT_ID, eventID)
 			}
 			ft.add(R.id.nav_host_fragment_activity_main, fragment)
-			ft.addToBackStack(null)
+			ft.addToBackStack("")
+			ft.commit()
+		}
+
+		fragment_detail_page_book_event_button =
+			view.findViewById(R.id.fragment_detail_page_book_event_button)
+		fragment_detail_page_book_event_button.setOnClickListener {
+			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+			ft.add(R.id.nav_host_fragment_activity_main, TicketsCountStepFragment())
+			ft.addToBackStack("")
 			ft.commit()
 		}
 	}
@@ -172,10 +182,10 @@ class EventDetailsFragment : Fragment() {
 		checkListAdapter = CheckListAdapter(resources)
 		fragment_detail_page_items_checklist.adapter = checkListAdapter
 
-		fragment_detail_page_detail_infos.layoutManager =
-			LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+		fragment_detail_page_detail_info.layoutManager =
+			LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 		detailsInfoAdapter = DetailsInfoAdapter(resources)
-		fragment_detail_page_detail_infos.adapter = detailsInfoAdapter
+		fragment_detail_page_detail_info.adapter = detailsInfoAdapter
 	}
 
 	private fun initObserver() {
@@ -201,44 +211,72 @@ class EventDetailsFragment : Fragment() {
 				}
 				fragment_detail_page_carousel.setImageList(images, ScaleTypes.CENTER_CROP)
 
+				val date = response.datetime?.date.toString()
 				val start = response.datetime?.start.toString()
 				val duration = response.datetime?.duration.toString()
-				val end: (String, String) -> String = { startTime, timeToAdd ->
-					val (startHours, startMinutes) = startTime.split(":").map { it.toInt() }
-
-					val (hoursPart, minutesPart) = timeToAdd.split(" ")
-					val addHours = hoursPart.toIntOrNull() ?: 0
-					val addMinutes = minutesPart.toIntOrNull() ?: 0
-
-					val totalMinutes = startHours * 60 + startMinutes
-					val totalMinutesToAdd = addHours * 60 + addMinutes
-					val newTotalMinutes = totalMinutes + totalMinutesToAdd
-					val newHours = (newTotalMinutes / 60) % 24
-					val newMinutes = newTotalMinutes % 60
-					val formattedTime = "%02d:%02d".format(newHours, newMinutes)
-					formattedTime
-				}
 
 				detailsInformation.add(
 					DetailsInfoDataModel(
-						response.location?.city.toString(),
-						response.datetime?.date.toString(),
-						"$start - ${end(start, duration)}",
-						"${response.requirements?.age.toString()}+",
-						response.languages?.joinToString { it!! }.toString(),
-						response.price.toString()
+						R.drawable.ic_calendar_accent,
+						date,
+						start,
+						duration
 					)
 				)
-				detailsInfoAdapter.setData(detailsInformation)
+
+				detailsInformation.add(
+					DetailsInfoDataModel(
+						R.drawable.ic_user,
+						"Одинчоное мероприятие",
+						"no data",
+						""
+					)
+				)
+
+				val languages = response.languages?.joinToString { it!! }.toString()
+
+				detailsInformation.add(
+					DetailsInfoDataModel(
+						R.drawable.ic_message,
+						"Язык",
+						languages,
+						""
+					)
+				)
+
+				val price = response.price.toString()
+
+				detailsInformation.add(
+					DetailsInfoDataModel(
+						R.drawable.ic_ticket,
+						price,
+						"Цена билета фиксированная",
+						""
+					)
+				)
 
 				val country = response.location?.country.toString()
-				val location = "${response.location?.city.toString()}, ${response.location?.apartment.toString()}"
+				val location = response.location?.city.toString()
+				val address = response.location?.apartment.toString()
+
+				detailsInformation.add(
+					DetailsInfoDataModel(
+						R.drawable.ic_geo,
+						"$location, $country",
+						address,
+						""
+					)
+				)
+
+				Log.d("detinfo", detailsInformation.toString())
+
+				detailsInfoAdapter.setData(detailsInformation)
+
 				val findingInformation = response.location?.findingInformation
-				fragment_detail_page_geo_title.text = location
 				if (findingInformation != null) {
 					fragment_detail_page_location_address.text = findingInformation
 				} else {
-					fragment_detail_page_location_address.text = "$country, $location"
+					fragment_detail_page_location_address.text = "$country, $location, $address"
 				}
 
 				val requirements = "Минимальный возраст: ${response.requirements?.age.toString()}" +

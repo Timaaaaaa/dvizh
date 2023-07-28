@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="24dp"
+    android:background="@color/app_background">
+
+    <ImageView
+        android:id="@+id/fragment_order_contact_details_step_return_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:src="@drawable/ic_arrow_white_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_order_contact_details_step_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="24dp"
+        android:text="Оформление заказа"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:fontFamily="@font/app_font_bd"
+        app:layout_constraintTop_toTopOf="@id/fragment_order_contact_details_step_return_button"
+        app:layout_constraintStart_toEndOf="@id/fragment_order_contact_details_step_return_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_order_contact_details_step_return_button" />
+
+    <TextView
+        android:id="@+id/fragment_order_contact_details_step_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Контактные данные"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:fontFamily="@font/app_font_md"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_contact_details_step_title"
+        app:layout_constraintStart_toStartOf="@id/fragment_order_contact_details_step_return_button"
+        app:layout_constraintEnd_toEndOf="@id/fragment_order_contact_details_step_title" />
+
+    <EditText
+        android:id="@+id/fragment_order_contact_details_step_user_name_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Имя пользователя"
+        android:padding="20dp"
+        android:textColorHint="@color/grey_default"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/app_font_md"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_contact_details_step_subtitle"
+        app:layout_constraintStart_toStartOf="@id/fragment_order_contact_details_step_return_button"
+        app:layout_constraintEnd_toEndOf="@id/fragment_order_contact_details_step_title" />
+
+    <EditText
+        android:id="@+id/fragment_order_contact_details_step_user_surname_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Фамилия пользователя"
+        android:padding="20dp"
+        android:textColorHint="@color/grey_default"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/app_font_md"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_contact_details_step_user_name_edit_text"
+        app:layout_constraintStart_toStartOf="@id/fragment_order_contact_details_step_return_button"
+        app:layout_constraintEnd_toEndOf="@id/fragment_order_contact_details_step_title" />
+
+    <TextView
+        android:id="@+id/fragment_order_contact_details_step_user_birthday_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="День рождения"
+        android:inputType="date"
+        android:padding="20dp"
+        android:textColorHint="@color/grey_default"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/app_font_md"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_contact_details_step_user_surname_edit_text"
+        app:layout_constraintStart_toStartOf="@id/fragment_order_contact_details_step_return_button"
+        app:layout_constraintEnd_toEndOf="@id/fragment_order_contact_details_step_title" />
+
+    <ImageView
+        android:id="@+id/fragment_order_contact_details_step_birthday_icon"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_calendar_white"
+        app:layout_constraintTop_toTopOf="@id/fragment_order_contact_details_step_user_birthday_text_view"
+        app:layout_constraintEnd_toEndOf="@id/fragment_order_contact_details_step_user_birthday_text_view"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_order_contact_details_step_user_birthday_text_view" />
+
+    <EditText
+        android:id="@+id/fragment_order_contact_details_step_user_email_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Эл. почта"
+        android:padding="20dp"
+        android:textColorHint="@color/grey_default"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/app_font_md"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_contact_details_step_user_birthday_text_view"
+        app:layout_constraintStart_toStartOf="@id/fragment_order_contact_details_step_return_button"
+        app:layout_constraintEnd_toEndOf="@id/fragment_order_contact_details_step_title" />
+
+    <EditText
+        android:id="@+id/fragment_order_contact_details_step_user_phone_number_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="+7 (000) 000 00 00"
+        android:padding="20dp"
+        android:textColorHint="@color/grey_default"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/app_font_md"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_contact_details_step_user_email_edit_text"
+        app:layout_constraintStart_toStartOf="@id/fragment_order_contact_details_step_return_button"
+        app:layout_constraintEnd_toEndOf="@id/fragment_order_contact_details_step_title" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="19dp"
+        android:paddingBottom="33dp"
+        android:background="@color/event_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/fragment_order_contact_details_step_continue_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/bg_purple_button"
+            android:text="Продолжить 5000₸"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:fontFamily="@font/app_font_bd"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

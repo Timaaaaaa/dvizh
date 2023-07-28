@@ -119,12 +119,11 @@
                     app:layout_constraintEnd_toEndOf="@id/fragment_detail_page_send_button" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/fragment_detail_page_detail_infos"
+                android:id="@+id/fragment_detail_page_detail_info"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:nestedScrollingEnabled="false"
-                tools:itemCount="1"
+                tools:itemCount="5"
                 tools:listitem="@layout/item_details_info"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_detail_page_separator_1"
@@ -132,38 +131,15 @@
                 app:layout_constraintEnd_toEndOf="@id/fragment_detail_page_send_button" />
 
             <ImageView
-                android:id="@+id/fragment_detail_page_geo_icon"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:layout_marginTop="26dp"
-                android:src="@drawable/ic_geo"
-                app:layout_constraintStart_toStartOf="@id/fragment_detail_page_return_button"
-                app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_detail_infos" />
-
-            <TextView
-                android:id="@+id/fragment_detail_page_geo_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="8dp"
-
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:fontFamily="@font/app_font_bk"
-                app:layout_constraintEnd_toEndOf="@id/fragment_detail_page_send_button"
-                app:layout_constraintStart_toEndOf="@id/fragment_detail_page_geo_icon"
-                app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_detail_infos" />
-
-            <ImageView
                 android:id="@+id/fragment_detail_page_map"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="24dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/map"
                 app:layout_constraintEnd_toEndOf="@id/fragment_detail_page_send_button"
                 app:layout_constraintStart_toStartOf="@id/fragment_detail_page_return_button"
-                app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_geo_title" />
+                app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_detail_info" />
 
             <View
                 android:id="@+id/fragment_detail_page_separator_2"

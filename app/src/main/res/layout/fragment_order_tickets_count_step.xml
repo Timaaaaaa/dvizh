@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="24dp"
+    android:background="@color/app_background">
+
+    <ImageView
+        android:id="@+id/fragment_order_tickets_count_step_return_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:src="@drawable/ic_arrow_white_left"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_order_tickets_count_step_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="24dp"
+        android:text="Оформление заказа"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:fontFamily="@font/app_font_bd"
+        app:layout_constraintTop_toTopOf="@id/fragment_order_tickets_count_step_return_button"
+        app:layout_constraintStart_toEndOf="@id/fragment_order_tickets_count_step_return_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_order_tickets_count_step_return_button" />
+
+    <View
+        android:id="@+id/fragment_order_tickets_count_step_separator"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_tickets_count_step_title"
+        app:layout_constraintStart_toStartOf="@id/fragment_order_tickets_count_step_return_button"
+        app:layout_constraintEnd_toEndOf="@id/fragment_order_tickets_count_step_title" />
+
+    <TextView
+        android:id="@+id/fragment_order_tickets_count_step_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Выберите кол-во билетов"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:fontFamily="@font/app_font_bd"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_tickets_count_step_separator"
+        app:layout_constraintStart_toStartOf="@id/fragment_order_tickets_count_step_return_button"
+        app:layout_constraintEnd_toEndOf="@id/fragment_order_tickets_count_step_title" />
+
+    <Button
+        android:id="@+id/fragment_order_tickets_count_step_remove_button"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="36dp"
+        android:text="-"
+        android:textColor="@color/app_accent"
+        android:textSize="32sp"
+        android:fontFamily="@font/app_font_bd"
+        android:background="@drawable/bg_order_dark_grey_button"
+        app:layout_constraintTop_toTopOf="@id/fragment_order_tickets_count_step_count"
+        app:layout_constraintEnd_toStartOf="@id/fragment_order_tickets_count_step_count"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_order_tickets_count_step_count" />
+
+    <TextView
+        android:id="@+id/fragment_order_tickets_count_step_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:text="1"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:fontFamily="@font/app_font_bd"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_tickets_count_step_subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/fragment_order_tickets_count_step_add_button"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="36dp"
+        android:text="+"
+        android:textColor="@color/app_accent"
+        android:textSize="32sp"
+        android:fontFamily="@font/app_font_bd"
+        android:background="@drawable/bg_order_dark_grey_button"
+        app:layout_constraintTop_toTopOf="@id/fragment_order_tickets_count_step_count"
+        app:layout_constraintStart_toEndOf="@id/fragment_order_tickets_count_step_count"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_order_tickets_count_step_count" />
+
+    <CheckBox
+        android:id="@+id/order_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="command mode"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:fontFamily="@font/app_font_bd"
+        app:layout_constraintTop_toBottomOf="@id/fragment_order_tickets_count_step_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="19dp"
+        android:paddingBottom="33dp"
+        android:background="@color/event_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/fragment_order_tickets_count_step_continue_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:background="@drawable/bg_purple_button"
+            android:text="Продолжить 5000₸"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:fontFamily="@font/app_font_bd"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

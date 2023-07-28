@@ -1,17 +1,15 @@
 package com.start.dvizk.main.ui.home.presentation.model
 
-import com.google.gson.JsonObject
+sealed class UpcomingEventsState {
 
-sealed class UpcomingEvetsState {
-
-    object Loading : UpcomingEvetsState()
+    object Loading : UpcomingEventsState()
 
     data class Failed(
         val message: String
-    ) : UpcomingEvetsState()
+    ) : UpcomingEventsState()
 
     data class Success(
             val events: List<Event>,
             val total: Int,
-    ) : UpcomingEvetsState()
+    ) : UpcomingEventsState()
 }

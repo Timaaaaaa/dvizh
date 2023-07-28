@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/app_font_bd"
-                android:text="Group Scriptanit"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="32sp"
@@ -100,7 +100,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/app_font_bd"
-                        android:text="24"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="32sp"
@@ -143,7 +143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/app_font_bd"
-                        android:text="194K"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="32sp"
@@ -186,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/app_font_bd"
-                        android:text="20"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="32sp"
@@ -266,6 +266,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/fragment_profile_page_payments"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -419,6 +420,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/fragment_profile_page_managing_my_events"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -515,6 +517,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/fragment_profile_page_suggest_improvements"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -568,6 +571,7 @@
                 app:layout_constraintTop_toBottomOf="@id/fragment_profile_page_suggest_improvements" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/fragment_profile_page_settings"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -611,6 +615,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/fragment_profile_page_offer"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -654,6 +659,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
                 android:id="@+id/fragment_profile_page_privacy_policy"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

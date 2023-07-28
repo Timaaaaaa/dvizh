@@ -3,132 +3,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="15dp"
-    android:paddingVertical="15dp"
-    android:background="@drawable/bg_purple_rounded_corners_fill_dark_grey">
+    android:paddingTop="24dp"
+    tools:background="@color/app_background">
 
     <ImageView
-        android:id="@+id/item_details_info_geo_icon"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:src="@drawable/ic_geo"
+        android:id="@+id/item_details_info_bg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/bg_circle_icon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/item_details_info_location"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/app_font_bk"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/item_details_info_geo_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/item_details_info_geo_icon" />
-
     <ImageView
-        android:id="@+id/item_details_info_calendar_icon"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="11dp"
+        android:id="@+id/item_details_info_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:src="@drawable/ic_calendar_accent"
-        app:layout_constraintTop_toBottomOf="@id/item_details_info_location"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/item_details_info_bg"
+        app:layout_constraintStart_toStartOf="@id/item_details_info_bg"
+        app:layout_constraintEnd_toEndOf="@id/item_details_info_bg"
+        app:layout_constraintBottom_toBottomOf="@id/item_details_info_bg" />
 
     <TextView
-        android:id="@+id/item_details_info_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/app_font_bk"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@id/item_details_info_calendar_icon"
-        app:layout_constraintStart_toEndOf="@id/item_details_info_geo_icon"
-        app:layout_constraintBottom_toBottomOf="@id/item_details_info_calendar_icon" />
-
-    <TextView
-        android:id="@+id/item_details_info_circle"
+        android:id="@+id/item_details_info_header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/app_font_bk"
-        android:text="●"
+        android:layout_marginStart="24dp"
+        android:text="Декабрь 24, 2022"
         android:textColor="@color/white"
-        android:textSize="13sp"
-        app:layout_constraintTop_toTopOf="@id/item_details_info_calendar_icon"
-        app:layout_constraintStart_toEndOf="@id/item_details_info_date"
-        app:layout_constraintBottom_toBottomOf="@id/item_details_info_calendar_icon" />
-
-    <TextView
-        android:id="@+id/item_details_info_time"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/app_font_bk"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@id/item_details_info_calendar_icon"
-        app:layout_constraintStart_toEndOf="@id/item_details_info_circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/item_details_info_calendar_icon" />
-
-    <ImageView
-        android:id="@+id/item_details_info_age_icon"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="11dp"
-        android:src="@drawable/ic_age"
-        app:layout_constraintTop_toBottomOf="@id/item_details_info_calendar_icon"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/item_details_info_age"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/app_font_bk"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@id/item_details_info_age_icon"
-        app:layout_constraintStart_toEndOf="@id/item_details_info_geo_icon"
+        android:textSize="20sp"
+        android:fontFamily="@font/app_font_bd"
+        app:layout_constraintTop_toTopOf="@id/item_details_info_bg"
+        app:layout_constraintStart_toEndOf="@id/item_details_info_bg"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:id="@+id/item_details_info_message_icon"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="33.5dp"
-        android:src="@drawable/ic_message"
-        app:layout_constraintTop_toBottomOf="@id/item_details_info_age"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
-        android:id="@+id/item_details_info_language"
+        android:id="@+id/item_details_info_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:fontFamily="@font/app_font_bk"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintTop_toTopOf="@id/item_details_info_message_icon"
-        app:layout_constraintStart_toEndOf="@id/item_details_info_geo_icon"
-        app:layout_constraintEnd_toStartOf="@id/item_details_info_price"
-        app:layout_constraintBottom_toBottomOf="@id/item_details_info_message_icon" />
-
-    <TextView
-        android:id="@+id/item_details_info_price"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_ticket_price"
-        android:fontFamily="@font/app_font_bk"
-
-        android:textColor="@color/app_accent"
+        android:layout_marginTop="4dp"
+        android:text="Начало: 20:00"
+        android:textColor="@color/prompt_color"
         android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="@id/item_details_info_message_icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/item_details_info_message_icon" />
+        android:fontFamily="@font/app_font_bk"
+        app:layout_constraintTop_toBottomOf="@id/item_details_info_header"
+        app:layout_constraintStart_toStartOf="@id/item_details_info_header"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/item_details_info_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Длительность: 3 часа"
+        android:textColor="@color/prompt_color"
+        android:textSize="14sp"
+        android:fontFamily="@font/app_font_bk"
+        app:layout_constraintTop_toBottomOf="@id/item_details_info_title"
+        app:layout_constraintStart_toStartOf="@id/item_details_info_header"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

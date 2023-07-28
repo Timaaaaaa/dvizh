@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.start.dvizk.arch.CustomMutableLiveData
 import com.start.dvizk.create.organization.create.data.CreateOrganizationRepository
 import com.start.dvizk.create.organization.create.presentation.model.OrganizationCreatingState
-import com.start.dvizk.main.ui.home.data.HomePageRepository
-import com.start.dvizk.main.ui.home.presentation.model.UpcomingEvetsState
 import com.start.dvizk.network.Response
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
