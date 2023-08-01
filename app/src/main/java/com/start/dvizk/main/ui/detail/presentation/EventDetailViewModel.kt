@@ -20,6 +20,7 @@ class EventDetailViewModel(
 	val eventDetailsStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
 	val cancellationRulesStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
 	val eventRulesStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
+	val orderTicketStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
 
 	fun getEventDetails(eventId: Int) {
 		launch(Dispatchers.IO) {
@@ -60,6 +61,22 @@ class EventDetailViewModel(
 					is Response.Success -> eventRulesStateLiveData.value =
 						RequestResponseState.Success(response.result)
 					is Response.Error -> eventRulesStateLiveData.value =
+						RequestResponseState.Failed(response.error)
+				}
+			}
+		}
+	}
+
+	fun orderFirstStep(datetimeId: Int) {
+		launch(Dispatchers.IO) {
+			orderTicketStateLiveData.value = RequestResponseState.Loading
+			val response = eventDetailRepository.orderFirstStep(datetimeId)
+
+			launch(Dispatchers.Main) {
+				when (response) {
+					is Response.Success -> orderTicketStateLiveData.value =
+						RequestResponseState.Success(response.result)
+					is Response.Error -> orderTicketStateLiveData.value =
 						RequestResponseState.Failed(response.error)
 				}
 			}

@@ -72,4 +72,25 @@ class EventDetailRepository(
 			return Response.Error(ex.localizedMessage?.toString() ?: "")
 		}
 	}
+
+	fun orderFirstStep(
+		datetimeId: Int
+	): Response<String, String> {
+		try {
+			val response = eventDetailApi
+				.orderFirstStep(
+					datetimeId = datetimeId
+				)
+				.execute()
+
+			if (response.isSuccessful) {
+				response.body()?.let { return Response.Success(it.getString("screen")) }
+			}
+			val message = JSONObject(response.errorBody()?.string()!!).getString("message")
+
+			return Response.Error(message)
+		} catch (ex: Exception) {
+			return Response.Error(ex.localizedMessage?.toString() ?: "")
+		}
+	}
 }

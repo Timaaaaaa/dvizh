@@ -169,6 +169,7 @@ class EventDetailsFragment : Fragment() {
 		fragment_detail_page_book_event_button =
 			view.findViewById(R.id.fragment_detail_page_book_event_button)
 		fragment_detail_page_book_event_button.setOnClickListener {
+			//viewModel.orderFirstStep(10)
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 			ft.add(R.id.nav_host_fragment_activity_main, TicketsCountStepFragment())
 			ft.addToBackStack("")
