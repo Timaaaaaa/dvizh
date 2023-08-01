@@ -331,7 +331,7 @@ class SearchFragment :
 			is UpcomingEventsState.Loading -> {
 
 			}
-			is UpcomingEventsState.Success -> {
+			is UpcomingEventsState .Success -> {
 				println("---------" + state.events.toString())
 
 				val fragment = SearchListFragment()
