@@ -38,4 +38,6 @@
     <color name="calendar_header_text_color">#FFFFFFFF</color>
     <color name="calendar_weekday_text_color">#FFFFFFFF</color>
     <color name="calendar_date_text_color">#FFFFFFFF</color>
+
+    <color name="ticket_subtitle_color">#56585C</color>
 </resources>

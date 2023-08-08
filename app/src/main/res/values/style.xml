@@ -53,8 +53,13 @@
 
     <style name="MyTabLayoutAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">16sp</item>
-        <item name="fontFamily">@font/app_font_md</item>
+        <item name="fontFamily">@font/app_font_bd</item>
         <item name="textAllCaps">false</item>
+    </style>
+    
+    <style name="MyRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/app_accent</item>
+        <item name="colorControlActivated">@color/app_accent</item>
     </style>
 
 </resources>

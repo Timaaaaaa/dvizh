@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_my_tickets"
-        android:name="com.start.dvizk.main.ui.tickets.MyTicketsFragment"
+        android:name="com.start.dvizk.main.ui.tickets.mytickets.presentation.MyTicketsFragment"
         android:label="navigation_my_tickets"
         tools:layout="@layout/fragment_my_tickets" />
 

@@ -1,6 +1,6 @@
 package com.start.dvizk.main.ui.profile.data.model
 
-data class User(
+data class UserProfile(
 	val user: ProfileDataModel
 )
 

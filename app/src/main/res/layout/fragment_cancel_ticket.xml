@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="33dp"
+    android:background="@color/app_background">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_cancel_ticket_separator_main">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="24dp"
+            android:paddingHorizontal="24dp">
+
+            <ImageView
+                android:id="@+id/fragment_cancel_ticket_return_button"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_arrow_white_left"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Отмена заказа"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:fontFamily="@font/app_font_bd"
+                app:layout_constraintTop_toTopOf="@id/fragment_cancel_ticket_return_button"
+                app:layout_constraintStart_toEndOf="@id/fragment_cancel_ticket_return_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_cancel_ticket_return_button" />
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Пожалуйста, выберите причину отмены"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/app_font_md"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:id="@+id/fragment_cancel_ticket_separator"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_subtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/fragment_cancel_ticket_radio_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_separator"
+                app:layout_constraintStart_toStartOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/fragment_cancel_ticket_radio_button_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                         />
+
+                    <RadioButton
+                        android:id="@+id/fragment_cancel_ticket_radio_button_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                         />
+
+                    <RadioButton
+                        android:id="@+id/fragment_cancel_ticket_radio_button_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        style="@style/MyRadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/fragment_cancel_ticket_radio_button_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        style="@style/MyRadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/fragment_cancel_ticket_radio_button_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        style="@style/MyRadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/fragment_cancel_ticket_radio_button_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        style="@style/MyRadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/fragment_cancel_ticket_radio_button_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        style="@style/MyRadioButton" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_radio_text_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="15dp"
+                android:text="У меня есть другое событие, поэтому оно сталкивается"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@+font/app_font_md"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_separator"
+                app:layout_constraintStart_toEndOf="@id/fragment_cancel_ticket_radio_group"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_radio_text_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="21.5dp"
+                android:text="Я болен, не могу прийти"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/app_font_md"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_radio_text_1"
+                app:layout_constraintStart_toStartOf="@id/fragment_cancel_ticket_radio_text_1"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_radio_text_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:text="Я очень занят и не могу придти"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/app_font_md"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_radio_text_2"
+                app:layout_constraintStart_toStartOf="@id/fragment_cancel_ticket_radio_text_2"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_radio_text_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:text="У меня нет транспорта до дома"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/app_font_md"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_radio_text_3"
+                app:layout_constraintStart_toStartOf="@id/fragment_cancel_ticket_radio_text_3"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_radio_text_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:text="У меня нет друзей, чтобы прийти"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/app_font_md"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_radio_text_4"
+                app:layout_constraintStart_toStartOf="@id/fragment_cancel_ticket_radio_text_4"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_radio_text_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:text="Я хочу заказать другое мероприятие"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/app_font_md"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_radio_text_5"
+                app:layout_constraintStart_toStartOf="@id/fragment_cancel_ticket_radio_text_5"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_radio_text_7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:text="Я хочу заказать другое мероприятие"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:fontFamily="@font/app_font_md"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_radio_text_6"
+                app:layout_constraintStart_toStartOf="@id/fragment_cancel_ticket_radio_text_6"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_cancel_ticket_other_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Другое"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/app_font_bd"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_radio_group"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <EditText
+                android:id="@+id/fragment_cancel_ticket_other_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="Другая причина..."
+                android:paddingTop="24dp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="59dp"
+                android:textColorHint="@color/grey_default"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:fontFamily="@font/app_font_md"
+                android:background="@drawable/bg_gradient_dark_grey_button"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_other_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="142dp"
+                app:layout_constraintTop_toBottomOf="@id/fragment_cancel_ticket_other_edit_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <View
+        android:id="@+id/fragment_cancel_ticket_separator_main"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginBottom="19dp"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        app:layout_constraintBottom_toTopOf="@id/fragment_cancel_ticket_cancel_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/fragment_cancel_ticket_cancel_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/bg_purple_button"
+        android:text="Отменить бронирование"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:fontFamily="@font/app_font_bd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

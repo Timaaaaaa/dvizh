@@ -13,7 +13,7 @@ import com.start.dvizk.create.CreateActivity
 import com.start.dvizk.main.ui.favorites.FavoritesFragment
 import com.start.dvizk.main.ui.home.presentation.HomeFragment
 import com.start.dvizk.main.ui.profile.presentation.ProfileFragment
-import com.start.dvizk.main.ui.tickets.MyTicketsFragment
+import com.start.dvizk.main.ui.tickets.mytickets.presentation.MyTicketsFragment
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {

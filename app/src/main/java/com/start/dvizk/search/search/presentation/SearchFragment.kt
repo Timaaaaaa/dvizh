@@ -117,7 +117,7 @@ class SearchFragment :
 		view_quest = view.findViewById(R.id.view_quest)
 
 		fragment_search_calendar_pager = view.findViewById(R.id.fragment_search_calendar_pager)
-		val adapter = SearchCalendarPagerAdapter(this, )
+		val adapter = SearchCalendarPagerAdapter(this)
 		adapter.setListener(this)
 		fragment_search_calendar_pager.adapter = adapter
 

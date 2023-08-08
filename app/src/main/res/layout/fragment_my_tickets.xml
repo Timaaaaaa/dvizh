@@ -29,21 +29,22 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="5dp"
         app:tabTextColor="@color/white"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="@color/app_accent"
         app:tabTextAppearance="@style/MyTabLayoutAppearance"
         app:layout_constraintTop_toBottomOf="@+id/fragment_my_tickets_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/fragment_my_tickets_pager"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_my_tickets_tabs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

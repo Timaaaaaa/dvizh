@@ -23,7 +23,7 @@ data class TicketQuantities(
 	val child: Int
 )
 
-	data class DateRange(
+data class DateRange(
 	val from: String? = null,
 	val to: String? = null,
 	val extendedRange: Int = 0
