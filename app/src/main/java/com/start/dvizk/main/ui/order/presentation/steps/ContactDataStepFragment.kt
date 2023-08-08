@@ -11,12 +11,24 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import com.start.dvizk.R
+import com.start.dvizk.arch.data.SharedPreferencesRepository
+import com.start.dvizk.create.dialog.SuccessDialog
+import com.start.dvizk.create.steps.data.model.RequestResponseState
+import com.start.dvizk.main.ui.order.data.model.TicketOrder
+import com.start.dvizk.main.ui.order.presentation.router.OrderTicketScreenRouter
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.util.Calendar
 
 class ContactDataStepFragment : Fragment() {
+
+	private val viewModel: TicketOrderViewModel by sharedViewModel()
+	private val sharedPreferencesRepository: SharedPreferencesRepository by inject()
 
 	private lateinit var fragment_order_contact_details_step_return_button: ImageView
 
@@ -46,6 +58,7 @@ class ContactDataStepFragment : Fragment() {
 		super.onViewCreated(view, savedInstanceState)
 
 		initView(view)
+		viewModel.ticketOwnerDataRequestStateLiveData.observe(viewLifecycleOwner, ::handleState)
 	}
 
 	private fun initView(view: View) {
@@ -94,7 +107,55 @@ class ContactDataStepFragment : Fragment() {
 			birthday = fragment_order_contact_details_step_user_birthday_text_view.text.toString()
 			email = fragment_order_contact_details_step_user_email_edit_text.text.toString()
 			phoneNumber = fragment_order_contact_details_step_user_phone_number_edit_text.text.toString()
-			Snackbar.make(view, "$name $surname, $birthday, $email, $phoneNumber", Snackbar.LENGTH_SHORT).show()
+
+			viewModel.sendTicketOwnerData(
+				token = sharedPreferencesRepository.getUserToken(),
+				ticketOrderId = arguments?.getInt(TICKET_ORDER_ID) ?: 0,
+				name = name,
+				surname = surname,
+				email = email,
+				birthday = birthday,
+				number = phoneNumber,
+			)
 		}
+
+	}
+
+	private fun handleState(state: RequestResponseState) {
+		when (state) {
+			is RequestResponseState.Failed -> {
+				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
+			}
+			is RequestResponseState.Loading -> {
+
+			}
+			is RequestResponseState.Success -> {
+
+
+				val response = state.value as? TicketOrder ?: return responseFailed()
+
+				if(response.screen == "success") {
+					val dialog = SuccessDialog()
+					dialog.show(requireActivity().supportFragmentManager, "GenderSelectionDialog")
+
+					return
+				}
+
+				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+
+				val fragment = OrderTicketScreenRouter.getTicketOrderStepFragment(response.screen)
+				fragment.arguments = Bundle().apply {
+					putInt(TICKET_ORDER_ID, response.order.id)
+					putInt(TICKET_ORDER_SECONDS_LEFT, response.order.seconds_left)
+				}
+				ft.add(R.id.nav_host_fragment_activity_main, fragment)
+				ft.addToBackStack("")
+				ft.commit()
+			}
+		}
+	}
+
+	private fun responseFailed() {
+		Toast.makeText(requireContext(), "Ошибка сервера попробуйте позже", Toast.LENGTH_LONG).show()
 	}
 }

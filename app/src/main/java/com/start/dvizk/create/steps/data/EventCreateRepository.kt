@@ -252,7 +252,7 @@ class EventCreateRepository(
 		val fieldMap = mutableMapOf<String, Any>()
 		dateList.forEachIndexed { index, cat ->
 			fieldMap["datetimes[$index][start]"] = cat.date + " " + cat.startTime + ":00"
-			fieldMap["datetimes[$index][duration]"] = cat.duration + ":00"
+			fieldMap["datetimes[$index][duration]"] = cat.duration.toString()
 		}
 
 		try {

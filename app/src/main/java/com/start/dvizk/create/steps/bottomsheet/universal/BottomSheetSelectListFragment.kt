@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ class BottomSheetSelectListFragment : BottomSheetDialogFragment(), OnSelectListC
 	private var list = mutableListOf<SelectItem>()
 	private lateinit var categoryRecyclerView: RecyclerView
 	private lateinit var backButton: ImageView
+	private lateinit var doneButton: Button
 	private var listener: OnBottomSheetDismissListener? = null
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -67,6 +69,10 @@ class BottomSheetSelectListFragment : BottomSheetDialogFragment(), OnSelectListC
 		categoryRecyclerView.adapter = adapter
 
 		backButton.setOnClickListener {
+			dismiss()
+		}
+		doneButton = view.findViewById(R.id.fragment_create_organization_next)
+		doneButton.setOnClickListener {
 			dismiss()
 		}
 	}

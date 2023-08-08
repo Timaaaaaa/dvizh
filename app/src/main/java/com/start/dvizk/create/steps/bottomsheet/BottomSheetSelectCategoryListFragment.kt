@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ class BottomSheetSelectCategoryListFragment : BottomSheetDialogFragment() {
 	private val viewModel: BottomSheetSelectCategoryListViewModel by inject()
 	private lateinit var categoryRecyclerView: RecyclerView
 	private lateinit var backButton: ImageView
+	private lateinit var doneButton: Button
 	private lateinit var listener: OnSelectCategoryBottomSheetDismiss
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +57,10 @@ class BottomSheetSelectCategoryListFragment : BottomSheetDialogFragment() {
 	private fun initView(view: View) {
 		categoryRecyclerView = view.findViewById(R.id.fragment_bottom_sheet_category)
 		backButton = view.findViewById(R.id.fragment_notifications_return_button)
-
+		doneButton = view.findViewById(R.id.fragment_create_organization_next)
+		doneButton.setOnClickListener {
+			dismiss()
+		}
 		categoryRecyclerView.layoutManager =
 			LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 		adapter = CategoryCheckAdapter(resources)

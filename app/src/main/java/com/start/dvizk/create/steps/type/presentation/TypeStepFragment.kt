@@ -1,9 +1,11 @@
 package com.start.dvizk.create.steps.type.presentation
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -105,7 +107,9 @@ class TypeStepFragment : Fragment() {
 			}
 			is RequestResponseState.Success -> {
 				val response = state.value as? StepDataApiResponse ?: return responseFailed()
-
+				val imm: InputMethodManager =
+					context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+				imm.hideSoftInputFromWindow(view?.windowToken, 0)
 				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 				val fragment = EventCreateRouter.getCreateStepFragment(response.data.nextStep.name)
 				fragment.arguments = Bundle().apply {

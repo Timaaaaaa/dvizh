@@ -97,19 +97,6 @@
         app:layout_constraintStart_toEndOf="@id/fragment_order_tickets_count_step_count"
         app:layout_constraintBottom_toBottomOf="@id/fragment_order_tickets_count_step_count" />
 
-    <CheckBox
-        android:id="@+id/order_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="command mode"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:fontFamily="@font/app_font_bd"
-        app:layout_constraintTop_toBottomOf="@id/fragment_order_tickets_count_step_count"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"

@@ -74,17 +74,19 @@ class EventDetailRepository(
 	}
 
 	fun orderFirstStep(
+		token: String,
 		datetimeId: Int
 	): Response<String, String> {
 		try {
 			val response = eventDetailApi
 				.orderFirstStep(
+					authorization = "Bearer $token",
 					datetimeId = datetimeId
 				)
 				.execute()
 
 			if (response.isSuccessful) {
-				response.body()?.let { return Response.Success(it.getString("screen")) }
+				response.body()?.let { return Response.Success(JSONObject(it.toString()).getString("screen")) }
 			}
 			val message = JSONObject(response.errorBody()?.string()!!).getString("message")
 

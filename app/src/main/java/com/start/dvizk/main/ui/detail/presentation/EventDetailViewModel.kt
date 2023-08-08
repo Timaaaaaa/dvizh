@@ -67,10 +67,13 @@ class EventDetailViewModel(
 		}
 	}
 
-	fun orderFirstStep(datetimeId: Int) {
+	fun orderFirstStep(token: String, datetimeId: Int) {
+		orderTicketStateLiveData.value = RequestResponseState.Loading
 		launch(Dispatchers.IO) {
-			orderTicketStateLiveData.value = RequestResponseState.Loading
-			val response = eventDetailRepository.orderFirstStep(datetimeId)
+			val response = eventDetailRepository.orderFirstStep(
+				token,
+				datetimeId
+			)
 
 			launch(Dispatchers.Main) {
 				when (response) {

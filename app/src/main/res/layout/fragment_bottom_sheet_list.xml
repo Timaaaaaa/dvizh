@@ -34,18 +34,30 @@
 
     <TextView
         android:id="@+id/fragment_notifications_header_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginStart="10dp"
         android:fontFamily="@font/app_font_bd"
+        android:maxLines="2"
         android:text="Выбрать категорию"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/fragment_notifications_return_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fragment_create_organization_next"
+        app:layout_constraintStart_toEndOf="@id/fragment_notifications_return_button"
         app:layout_constraintTop_toTopOf="@id/fragment_notifications_return_button" />
+
+    <Button
+        android:id="@+id/fragment_create_organization_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_purple_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fragment_notifications_header_text"
+        app:layout_constraintBottom_toBottomOf="@id/fragment_notifications_header_text"
+        android:text="Готово" />
 
     <EditText
 
@@ -69,9 +81,10 @@
         android:id="@+id/fragment_bottom_sheet_category"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_home_search_edit_text"
         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -30,8 +31,10 @@ interface EventDetailApi {
 		@Path("event_id") event_id: Int
 	): Call<EventRulesDataModel>
 
+	@FormUrlEncoded
 	@POST("/api/v2/order/step/first")
 	fun orderFirstStep(
+		@Header("Authorization") authorization: String,
 		@Field("datetimeId") datetimeId: Int,
-	): Call<JSONObject>
+	): Call<JsonObject>
 }

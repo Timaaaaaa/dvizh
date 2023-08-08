@@ -1,9 +1,11 @@
 package com.start.dvizk.create.steps.visitperson
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -56,6 +58,11 @@ class AllowedGuestStepFragment : Fragment() {
 		fragment_create_organization_edit_text_4 = view.findViewById(R.id.fragment_create_organization_edit_text_4)
 
 		next.setOnClickListener {
+			if(fragment_create_organization_edit_text_1.text.toString().isEmpty()) {
+				Toast.makeText(requireContext(), "Введите возраст", Toast.LENGTH_LONG).show()
+
+				return@setOnClickListener
+			}
 			arguments?.apply {
 				viewModel.sendEventAllowedGuest(
 					authorization = sharedPreferencesRepository.getUserToken(),
@@ -83,7 +90,9 @@ class AllowedGuestStepFragment : Fragment() {
 			}
 			is RequestResponseState.Success -> {
 				val response = state.value as? StepDataApiResponse ?: return responseFailed()
-
+				val imm: InputMethodManager =
+					context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+				imm.hideSoftInputFromWindow(view?.windowToken, 0)
 				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 				val fragment = EventCreateRouter.getCreateStepFragment(response.data.nextStep.name)
 				fragment.arguments = Bundle().apply {

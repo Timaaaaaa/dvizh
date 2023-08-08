@@ -15,7 +15,7 @@
         android:layout_marginEnd="24dp"
         android:background="@drawable/bg_image_corners_1"
         android:clipToOutline="true"
-        android:src="@drawable/temp_logo"
+        android:src="@drawable/original_logo"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
