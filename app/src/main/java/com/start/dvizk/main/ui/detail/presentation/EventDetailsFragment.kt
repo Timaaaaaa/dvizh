@@ -23,6 +23,9 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.material.snackbar.Snackbar
 import com.start.dvizk.R
+import com.start.dvizk.arch.data.SharedPreferencesRepository
+import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
+import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
 import com.start.dvizk.create.steps.data.model.RequestResponseState
 import com.start.dvizk.main.ui.detail.data.model.CheckListDataModel
 import com.start.dvizk.main.ui.detail.data.model.DetailsInfoDataModel
@@ -32,12 +35,17 @@ import com.start.dvizk.main.ui.detail.presentation.adapter.DetailsInfoAdapter
 import com.start.dvizk.main.ui.detail.presentation.rules.CancellationRulesFragment
 import com.start.dvizk.main.ui.detail.presentation.rules.EventRulesFragment
 import com.start.dvizk.main.ui.home.presentation.EVENT_ID
+import com.start.dvizk.main.ui.order.presentation.router.OrderTicketScreenRouter
 import com.start.dvizk.main.ui.order.presentation.steps.TicketsCountStepFragment
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
+const val ORDER_DATE_TIME_ID = "ORDER_DATETIME_ID"
 
 class EventDetailsFragment : Fragment() {
 
 	private val viewModel: EventDetailViewModel by viewModel()
+	private val sharedPreferencesRepository: SharedPreferencesRepository by inject()
 
 	private lateinit var fragment_detail_page_return_button: ImageView
 
@@ -70,6 +78,7 @@ class EventDetailsFragment : Fragment() {
 	private val checkList = mutableListOf<CheckListDataModel>()
 
 	private lateinit var fragment_detail_page_book_event_button: Button
+	private var eventDetailDataModel: EventDetailDataModel? = null
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -169,11 +178,7 @@ class EventDetailsFragment : Fragment() {
 		fragment_detail_page_book_event_button =
 			view.findViewById(R.id.fragment_detail_page_book_event_button)
 		fragment_detail_page_book_event_button.setOnClickListener {
-			//viewModel.orderFirstStep(10)
-			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-			ft.add(R.id.nav_host_fragment_activity_main, TicketsCountStepFragment())
-			ft.addToBackStack("")
-			ft.commit()
+			viewModel.orderFirstStep(sharedPreferencesRepository.getUserToken(), 168/*160*/)
 		}
 	}
 
@@ -195,6 +200,28 @@ class EventDetailsFragment : Fragment() {
 
 	private fun initObserver() {
 		viewModel.eventDetailsStateLiveData.observe(viewLifecycleOwner, ::handleState)
+		viewModel.orderTicketStateLiveData.observe(viewLifecycleOwner, ::handleOrderState)
+	}
+
+	private fun handleOrderState(state: RequestResponseState) {
+		when (state) {
+			is RequestResponseState.Failed -> {
+				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
+			}
+			is RequestResponseState.Loading -> {
+
+			}
+			is RequestResponseState.Success -> {
+				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+				val fragment = OrderTicketScreenRouter.getTicketOrderStepFragment(state.value as? String ?: "")
+				fragment.arguments = Bundle().apply {
+					putInt(ORDER_DATE_TIME_ID, 168)
+				}
+				ft.add(R.id.nav_host_fragment_activity_main, fragment)
+				ft.addToBackStack("")
+				ft.commit()
+			}
+		}
 	}
 
 	private fun handleState(state: RequestResponseState) {
@@ -207,6 +234,7 @@ class EventDetailsFragment : Fragment() {
 			}
 			is RequestResponseState.Success -> {
 				val response = state.value as? EventDetailDataModel ?: return
+				eventDetailDataModel = response
 
 				val name = response.name.toString()
 				fragment_detail_page_header_title.text = name

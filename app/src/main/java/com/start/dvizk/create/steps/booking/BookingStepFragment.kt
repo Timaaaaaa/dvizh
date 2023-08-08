@@ -1,9 +1,11 @@
 package com.start.dvizk.create.steps.booking
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -98,7 +100,7 @@ class BookingStepFragment : Fragment(), OnBottomSheetDismissListener {
 	}
 
 	fun initData() {
-		for (i in 1..24) {
+		for (i in 1..23) {
 			val name = if (i == 1) "$i час до начала времени" else "$i часа до начала времени"
 			val selectItem = SelectItem(id = i, name = name, isSelect = false)
 			deadlineTimesList.add(selectItem)
@@ -106,7 +108,7 @@ class BookingStepFragment : Fragment(), OnBottomSheetDismissListener {
 	}
 
 	fun initDataTime() {
-		for (hour in 1..24) {
+		for (hour in 1..23) {
 			val formattedHour =
 				hour.toString().padStart(2, '0') // Добавляем ведущий ноль, если час однозначный
 			val time = "$formattedHour:00:00"
@@ -143,7 +145,9 @@ class BookingStepFragment : Fragment(), OnBottomSheetDismissListener {
 			}
 			is RequestResponseState.Success -> {
 				val response = state.value as? StepDataApiResponse ?: return responseFailed()
-
+				val imm: InputMethodManager =
+					context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+				imm.hideSoftInputFromWindow(view?.windowToken, 0)
 				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 				val fragment = EventCreateRouter.getCreateStepFragment(response.data.nextStep.name)
 				fragment.arguments = Bundle().apply {

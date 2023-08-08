@@ -17,7 +17,7 @@
         android:layout_marginEnd="14dp"
         android:background="@drawable/bg_item_event_image_corners"
         android:scaleType="centerCrop"
-        android:src="@drawable/temp_logo"
+        android:src="@drawable/original_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

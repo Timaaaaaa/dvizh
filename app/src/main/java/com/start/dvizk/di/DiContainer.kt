@@ -36,6 +36,9 @@ import com.start.dvizk.main.ui.detail.presentation.EventDetailViewModel
 import com.start.dvizk.main.ui.home.data.HomePageApi
 import com.start.dvizk.main.ui.home.data.HomePageRepository
 import com.start.dvizk.main.ui.home.presentation.HomeViewModel
+import com.start.dvizk.main.ui.order.data.TicketOrderApi
+import com.start.dvizk.main.ui.order.data.TicketOrderRepository
+import com.start.dvizk.main.ui.order.presentation.steps.TicketOrderViewModel
 import com.start.dvizk.main.ui.profile.data.ProfileApi
 import com.start.dvizk.main.ui.profile.data.ProfileRepository
 import com.start.dvizk.main.ui.profile.presentation.ProfileViewModel
@@ -92,6 +95,14 @@ object DiContainer {
 			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
 			HomePageRepository(
 				homePageApi = appRetrofit.create(HomePageApi::class.java),
+				apiErrorExceptionFactory = get()
+			)
+		}
+
+		factory {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			TicketOrderRepository(
+				ticketOrderApi = appRetrofit.create(TicketOrderApi::class.java),
 				apiErrorExceptionFactory = get()
 			)
 		}
@@ -371,6 +382,12 @@ object DiContainer {
 		viewModel {
 			SearchViewModel(
 				homePageRepository = get()
+			)
+		}
+
+		viewModel {
+			TicketOrderViewModel(
+				ticketOrderRepository = get()
 			)
 		}
 	}

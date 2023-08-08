@@ -18,7 +18,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            android:src="@drawable/temp_logo"
+            android:src="@drawable/original_logo"
             android:scaleType="centerCrop"
             android:background="@drawable/bg_item_event_image_corners"
 

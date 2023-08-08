@@ -1,11 +1,13 @@
 package com.start.dvizk.create.steps.calendar
 
+import android.app.Activity
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TimePicker
 import android.widget.Toast
@@ -19,6 +21,11 @@ import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
 import com.start.dvizk.create.organization.list.presentation.SPECIFIC_DATA_KEY
 import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
+import com.start.dvizk.create.steps.bottomsheet.universal.BottomSheetSelectListFragment
+import com.start.dvizk.create.steps.bottomsheet.universal.IS_MULTI_SELECT_KEY
+import com.start.dvizk.create.steps.bottomsheet.universal.OnBottomSheetDismissListener
+import com.start.dvizk.create.steps.bottomsheet.universal.SELECT_LIST_KEY
+import com.start.dvizk.create.steps.bottomsheet.universal.model.SelectItem
 import com.start.dvizk.create.steps.calendar.model.EventDateTimeInterval
 import com.start.dvizk.create.steps.data.model.RequestResponseState
 import com.start.dvizk.create.steps.data.model.StepDataApiResponse
@@ -27,7 +34,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener {
+class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener, OnBottomSheetDismissListener {
 
 	private val viewModel: TimeIntervalStepViewModel by viewModel()
 	private val sharedPreferencesRepository: SharedPreferencesRepository by inject()
@@ -39,7 +46,8 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener {
 	private var listDate = mutableListOf<String>()
 	private var listTimeInterval = mutableListOf<EventDateTimeInterval>()
 	private lateinit var timeIntervalRecyclerView: RecyclerView
-
+	var deadlineTimesListForRequest = mutableListOf<SelectItem>()
+	private lateinit var currentInterval: EventDateTimeInterval
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -50,8 +58,9 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener {
 		super.onViewCreated(view, savedInstanceState)
 
 		initView(view)
+		initData()
+		initDataTime()
 		viewModel.requestResponseStateLiveData.observe(viewLifecycleOwner, ::handleState)
-
 	}
 
 	private fun handleState(state: RequestResponseState) {
@@ -64,7 +73,9 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener {
 			}
 			is RequestResponseState.Success -> {
 				val response = state.value as? StepDataApiResponse ?: return responseFailed()
-
+				val imm: InputMethodManager =
+					context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+				imm.hideSoftInputFromWindow(view?.windowToken, 0)
 				val ft: FragmentTransaction =
 					requireActivity().supportFragmentManager.beginTransaction()
 				val fragment = EventCreateRouter.getCreateStepFragment(response.data.nextStep.name)
@@ -128,8 +139,20 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener {
 		showTimePickerDialog(item, "start")
 	}
 
+	var deadlineTimesList = mutableListOf<SelectItem>()
+
 	override fun onDurationTimeSelect(item: EventDateTimeInterval) {
-		showTimePickerDialog(item, "duration")
+		currentInterval = item
+		deadlineTimesList.forEach {
+			it.isSelect = false
+		}
+		val bottomSheetFragment = BottomSheetSelectListFragment()
+		bottomSheetFragment.setListener(this)
+		val args = Bundle()
+		args.putParcelableArrayList(SELECT_LIST_KEY, ArrayList(deadlineTimesList))
+		args.putBoolean(IS_MULTI_SELECT_KEY, false)
+		bottomSheetFragment.arguments = args
+		bottomSheetFragment.show(parentFragmentManager, "MyBottomSheetFragmentTag")
 	}
 
 	private var selectedTime: Calendar = Calendar.getInstance()
@@ -150,11 +173,6 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener {
 					item.startTime = formattedTime
 					adapter.notifyDataSetChanged()
 				}
-				if (type == "duration") {
-					item.duration = formattedTime
-					item.durationViewText = formatTimeToHoursMinutes(formattedTime)
-					adapter.notifyDataSetChanged()
-				}
 			},
 			hour,
 			minute,
@@ -165,27 +183,41 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener {
 
 	}
 
-	fun formatTimeToHoursMinutes(time: String): String {
-		val parts = time.split(":")
-		val hours = parts[0].toInt()
-		val minutes = parts[1].toInt()
+	override fun onBottomSheetDismiss(ids: List<Int>, parameterName: String) {
 
-		val hoursLabel = if (hours > 0) {
-			when {
-				hours in 2..4 || hours in 22..24 -> "$hours часа"
-				hours == 1 || hours == 21 -> "$hours час"
-				else -> "$hours часов"
+		deadlineTimesList.forEach { time ->
+			time.isSelect = false
+			ids.forEach {
+				if (time.id == it) {
+					time.isSelect = true
+					currentInterval.durationViewText = time.name
+					currentInterval.duration = deadlineTimesListForRequest.find { it.id == time.id }?.name
+				}
 			}
-		} else ""
+		}
 
-		val minutesLabel = if (minutes > 0) {
-			when {
-				minutes in 2..4 || minutes in 22..24 || minutes in 32..34 || minutes in 42..44 || minutes in 52..54 -> "$minutes минуты"
-				minutes == 1 || minutes == 21 || minutes == 31 || minutes == 41 || minutes == 51 -> "$minutes минута"
-				else -> "$minutes минут"
-			}
-		} else ""
+		adapter.notifyDataSetChanged()
+		if (ids.isEmpty()) {
+			currentInterval.durationViewText = ""
 
-		return "$hoursLabel $minutesLabel"
+			return
+		}
+	}
+
+	fun initData() {
+		for (i in 1..23) {
+			val name = if (i == 1) "$i час" else "$i часа"
+			val selectItem = SelectItem(id = i, name = name, isSelect = false)
+			deadlineTimesList.add(selectItem)
+		}
+	}
+
+	fun initDataTime() {
+		for (hour in 1..23) {
+			val formattedHour =
+				hour.toString().padStart(2, '0') // Добавляем ведущий ноль, если час однозначный
+			val time = "$formattedHour:00:00"
+			deadlineTimesListForRequest.add(SelectItem(id = hour, name = time, isSelect = false))
+		}
 	}
 }

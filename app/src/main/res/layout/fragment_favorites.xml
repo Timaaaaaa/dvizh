@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/app_background"
     android:clickable="true"
     android:focusable="true">
@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_favorites_title" />
@@ -49,6 +50,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/app_font_bd"
             android:text="Избранное 42"
+            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +62,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_grid"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/fragment_favorites_subtitle" />
 
@@ -70,6 +73,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="10dp"
             android:src="@drawable/ic_list"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@id/fragment_favorites_subtitle"
             app:layout_constraintEnd_toStartOf="@id/fragment_favorites_grid_icon"
             app:layout_constraintTop_toTopOf="@id/fragment_favorites_subtitle" />
@@ -79,12 +83,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_favorites_events_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_height="0dp"
         android:paddingHorizontal="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_favorites_menu"
         tools:itemCount="4"
         tools:listitem="@layout/item_favorite_event" />
