@@ -8,6 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.home.presentation.model.Event
@@ -53,7 +56,7 @@ class BigEventAdapter(
 			title.text = event.name
 			Glide.with(itemView)
 				.load(event.main_image)
-				.transform(RoundedCorners(resources.getDimensionPixelSize(R.dimen.big_event_image_radius)))
+				.transform(MultiTransformation(FitCenter(), RoundedCorners(resources.getDimensionPixelSize(R.dimen.big_event_default_image_radius))))
 				.into(image)
 
 			itemView.setOnClickListener {

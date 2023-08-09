@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/item_event_image"
-        android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_width="273dp"
+        android:layout_height="181dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -30,7 +30,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
-        android:maxLines="2"
+        android:maxLines="1"
         android:text="Popular"
         android:textColor="@color/white"
         android:textSize="24sp"

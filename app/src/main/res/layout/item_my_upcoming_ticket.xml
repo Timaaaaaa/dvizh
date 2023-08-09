@@ -4,7 +4,7 @@
     android:id="@+id/notification"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="12dp"
+    android:paddingBottom="24dp"
     tools:background="@color/app_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,8 +56,8 @@
 
         <ImageView
             android:id="@+id/item_my_upcoming_ticket_geo_icon"
-            android:layout_width="12dp"
-            android:layout_height="14.49dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginTop="12dp"
             android:src="@drawable/ic_geo"
             app:layout_constraintStart_toStartOf="@id/item_my_upcoming_ticket_title"
@@ -68,9 +68,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="@font/app_font_bk"
             android:text=""
+            android:ellipsize="end"
+            android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"

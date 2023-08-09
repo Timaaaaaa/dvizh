@@ -9,6 +9,7 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -45,6 +46,8 @@ class SearchFragment :
 
 	private val viewModel: SearchViewModel by viewModel()
 	private val sharedPreferencesRepository: SharedPreferencesRepository by inject()
+
+	private lateinit var fragment_search_return_button: ImageView
 
 	private lateinit var fragment_bottom_sheet_category: View
 	private lateinit var fragment_home_search_edit_text: EditText
@@ -95,6 +98,11 @@ class SearchFragment :
 
 		viewModel.categoriesListState.observe(viewLifecycleOwner, ::categoriesListInit)
 		viewModel.upcomingEventsStateLiveData.observe(viewLifecycleOwner, ::upcomingListInit)
+
+		fragment_search_return_button = view.findViewById(R.id.fragment_search_return_button)
+		fragment_search_return_button.setOnClickListener {
+			activity?.finish()
+		}
 
 		fragment_search_calendar_header = view.findViewById(R.id.fragment_search_calendar_header)
 		fragment_home_search_edit_text = view.findViewById(R.id.fragment_home_search_edit_text)

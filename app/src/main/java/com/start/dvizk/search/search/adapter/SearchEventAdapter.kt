@@ -9,11 +9,15 @@ import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.home.presentation.model.Event
 
 class SearchEventAdapter(private val mList: List<Event>, val resources: Resources) : RecyclerView.Adapter<SearchEventAdapter.ViewHolder>() {
+
+	private var list = mutableListOf<Event>()
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -37,7 +41,7 @@ class SearchEventAdapter(private val mList: List<Event>, val resources: Resource
 
 		Glide.with(holder.image)
 			.load(favoriteEvent.main_image)
-			.transform(RoundedCorners(resources.getDimensionPixelSize(R.dimen.big_event_default_image_radius)))
+			.transform(MultiTransformation(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen.big_event_default_image_radius))))
 			.into(holder.image)
 
 		if (favoriteEvent.is_favorite) {
