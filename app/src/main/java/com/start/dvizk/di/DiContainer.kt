@@ -28,6 +28,7 @@ import com.start.dvizk.create.steps.needings.NeededItemsStepViewModel
 import com.start.dvizk.create.steps.photo.PhotoStepViewModel
 import com.start.dvizk.create.steps.price.PriceStepViewModel
 import com.start.dvizk.create.steps.service.AdditionalServiceStepViewModel
+import com.start.dvizk.create.steps.teamcount.TeamCountStepViewModel
 import com.start.dvizk.create.steps.type.presentation.TypeStepViewModel
 import com.start.dvizk.main.ui.detail.data.EventDetailApi
 import com.start.dvizk.main.ui.detail.data.EventDetailRepository
@@ -306,6 +307,12 @@ object DiContainer {
 
 		viewModel {
 			GuestCountStepViewModel(
+				eventCreateRepository = get()
+			)
+		}
+
+		viewModel {
+			TeamCountStepViewModel(
 				eventCreateRepository = get()
 			)
 		}

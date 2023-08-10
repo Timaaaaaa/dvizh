@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -47,6 +48,10 @@ class TypeStepFragment : Fragment() {
 	}
 
 	private fun initView(view: View) {
+		val headerBack: ImageView = view.findViewById(R.id.fragment_type_step_back_image)
+		headerBack.setOnClickListener {
+			requireActivity().supportFragmentManager.popBackStack()
+		}
 		next = view.findViewById(R.id.fragment_type_step_next)
 		back = view.findViewById(R.id.fragment_type_step_back)
 		privateTypeView = view.findViewById(R.id.view2)

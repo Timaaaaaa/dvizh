@@ -434,6 +434,29 @@ class EventCreateRepository(
 		return Response.Error(message)
 	}
 
+	fun sendTeamCount(
+		token: String,
+		numberStep: Int,
+		maximum_number_teams: Int,
+		maximum_number_participants_team: Int,
+		eventId: Int,
+	): Response<StepDataApiResponse, String> {
+		val response = eventCreateApi
+			.sendTeamCount(
+				authorization = "Bearer $token",
+				numberStep = numberStep,
+				maximum_number_participants_team = maximum_number_participants_team,
+				maximum_number_teams = maximum_number_teams,
+				eventId = eventId,
+			)
+			.execute()
+
+
+		if (response.isSuccessful) return Response.Success(response.body()!!)
+		val message = JSONObject(response.errorBody()?.string()!!).getString("message") ?: ""
+		return Response.Error(message)
+	}
+
 	fun sendEventImage(
 		token: String,
 		numberStep: Int,

@@ -210,4 +210,14 @@ interface EventCreateApi {
 		@Header("Authorization") authorization: String,
 		@Path("number_step") numberStep: Int,
 	): Call<StepDataApiResponse>
+
+	@FormUrlEncoded
+	@POST("api/v3/event/{number_step}")
+	fun sendTeamCount(
+		@Field("event_id") eventId: Int,
+		@Field("maximum_number_teams") maximum_number_teams: Int,
+		@Field("maximum_number_participants_team") maximum_number_participants_team: Int,
+		@Header("Authorization") authorization: String,
+		@Path("number_step") numberStep: Int,
+	): Call<StepDataApiResponse>
 }
