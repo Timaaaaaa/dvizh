@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.start.dvizk.arch.CustomMutableLiveData
 import com.start.dvizk.network.Response
-import com.start.dvizk.registration.registr.domain.RegistrationRepository
+import com.start.dvizk.registration.registr.data.RegistrationRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,6 +1,6 @@
 package com.start.dvizk.registration.varification.presentation
 
-import android.graphics.Color
+import android.content.Intent
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -15,14 +15,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
-import com.bumptech.glide.load.engine.Resource
 import com.start.dvizk.R
-import com.start.dvizk.main.MainPageFragment
-import com.start.dvizk.registration.createpassword.PasswordGenerationFragment
+import com.start.dvizk.main.MainActivity
 import com.start.dvizk.registration.customview.CodeVerificationView
-import com.start.dvizk.registration.registr.presentation.RegistrationState
-import com.start.dvizk.registration.registr.presentation.RegistrationViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -35,7 +30,7 @@ class VerificationCodeFragment :
 
 	private lateinit var continueRegistration: Button
 	private lateinit var codeVerificationView: CodeVerificationView
-	private lateinit var fragment_registration_loader: ProgressBar
+	private lateinit var fragment_registration_loader: View
 
 	override fun onCreateView(
 			inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +53,7 @@ class VerificationCodeFragment :
 		spannableString.setSpan(colorSpan, 32, 51, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
 		sendAgainTextView.text = spannableString
 
-		fragment_registration_loader = requireActivity().findViewById(R.id.progressBarLarge)
+		fragment_registration_loader = requireActivity().findViewById(R.id.progress_bar)
 		continueRegistration = view.findViewById(R.id.fragment_verification_code_continue_button)
 		continueRegistration.setOnClickListener(this)
 	}
@@ -93,11 +88,8 @@ class VerificationCodeFragment :
 			}
 			is VerificationState.Success -> {
 				fragment_registration_loader.visibility = View.GONE
-
-				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-				ft.add(R.id.fragment_container, PasswordGenerationFragment())
-				ft.addToBackStack(null)
-				ft.commit()
+				val intent = Intent(requireContext(), MainActivity::class.java)
+				startActivity(intent)
 			}
 		}
 	}

@@ -5,35 +5,44 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".launcher.AppInitialyzer"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/temp_logo"
+        android:icon="@drawable/original_logo"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@drawable/temp_logo"
+        android:roundIcon="@drawable/original_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".auth.AuthActivity"
+            android:name=".main.MainActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
 
-        <activity android:name=".main.MainActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".auth.AuthActivity" />
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".create.CreateActivity" />
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".search.SearchActivity" />
     </application>
 
 </manifest>

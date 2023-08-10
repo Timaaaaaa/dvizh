@@ -1,12 +1,10 @@
 package com.start.dvizk.registration.registr.domain
 
-import com.google.gson.JsonObject
 import com.start.dvizk.network.ApiErrorExceptionFactory
 import com.start.dvizk.network.Response
 import com.start.dvizk.network.asNewResponse
-import com.start.dvizk.registration.registr.data.VerificationApi
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import com.start.dvizk.registration.varification.data.VerificationApi
+import com.start.dvizk.registration.registr.presentation.model.User
 
 class VerificationRepository(
 	private val verificationApi: VerificationApi,
@@ -15,7 +13,7 @@ class VerificationRepository(
 	fun verify(
 		email: String,
 		verificationCode: String
-	): Response<JsonObject, Exception> {
+	): Response<User, Exception> {
 		val response = verificationApi
 			.verify(
 				email =   email,

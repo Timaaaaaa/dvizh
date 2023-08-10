@@ -30,11 +30,10 @@ class MainAuthFragment : Fragment() {
 
 		registrationButton = view.findViewById(R.id.text2)
 
-
 		view.findViewById<Button>(R.id.button1).setOnClickListener {
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
-			ft.add(R.id.fragment_container, ProfileAuthFragment())
+			ft.add(R.id.nav_host_fragment_activity_main, ProfileAuthFragment())
 			ft.addToBackStack(null)
 			ft.commit()
 		}
@@ -42,7 +41,7 @@ class MainAuthFragment : Fragment() {
 		registrationButton.setOnClickListener {
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
-			ft.add(R.id.fragment_container, RegistrationFragment())
+			ft.add(R.id.nav_host_fragment_activity_main, RegistrationFragment())
 			ft.addToBackStack(null)
 			ft.commit()
 		}

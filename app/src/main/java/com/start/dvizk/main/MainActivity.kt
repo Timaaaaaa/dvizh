@@ -1,29 +1,90 @@
 package com.start.dvizk.main
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.start.dvizk.R
-import com.start.dvizk.databinding.ActivityMainBinding
+import com.start.dvizk.arch.data.SharedPreferencesRepository
+import com.start.dvizk.auth.main.MainAuthFragment
+import com.start.dvizk.create.CreateActivity
+import com.start.dvizk.main.ui.favorites.FavoritesFragment
+import com.start.dvizk.main.ui.home.presentation.HomeFragment
+import com.start.dvizk.main.ui.profile.presentation.ProfileFragment
+import com.start.dvizk.main.ui.tickets.MyTicketsFragment
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
-	private lateinit var binding: ActivityMainBinding
+	val prefsRepository: SharedPreferencesRepository by inject()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		val view = layoutInflater.inflate(R.layout.activity_main, null, false)
+		setContentView(view)
 
-		binding = ActivityMainBinding.inflate(layoutInflater)
-		setContentView(binding.root)
+		val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-		val navView: BottomNavigationView = binding.navView
-
-		val navController = findNavController(R.id.nav_host_fragment_activity_main)
-
-		navView.setupWithNavController(navController)
 		window.navigationBarColor = ContextCompat.getColor(this, R.color.nav_bg)
+
+		println("---------------------"+SharedPreferencesRepository(this).getUserToken())
+		println("---------------------"+SharedPreferencesRepository(this).getUserId())
+
+		navView.setOnItemSelectedListener { item ->
+			when (item.itemId) {
+				R.id.navigation_home -> {
+					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+					val homeFragment = HomeFragment()
+					ft.replace(R.id.nav_host_fragment_activity_main,homeFragment)
+					ft.commit()
+
+					true
+				}
+				R.id.navigation_favorites -> {
+					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+					val favoritesFragment = FavoritesFragment()
+					ft.replace(R.id.nav_host_fragment_activity_main, favoritesFragment)
+					ft.commit()
+
+					true
+				}
+				R.id.navigation_qr -> {
+					val intent = Intent(this, CreateActivity::class.java)
+					startActivity(intent)
+
+					true
+				}
+				R.id.navigation_my_tickets -> {
+					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+					val myTicketsFragment = MyTicketsFragment()
+					ft.replace(R.id.nav_host_fragment_activity_main, myTicketsFragment)
+					ft.commit()
+
+					true
+				}
+				R.id.navigation_profile -> {
+
+					if (prefsRepository.getUserToken() == prefsRepository.no_value) {
+						val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+						ft.replace(R.id.nav_host_fragment_activity_main, MainAuthFragment())
+						ft.commit()
+
+						return@setOnItemSelectedListener true
+					}
+
+					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
+					val profileFragment = ProfileFragment()
+					ft.replace(R.id.nav_host_fragment_activity_main, profileFragment)
+					ft.commit()
+
+					true
+				}
+				else -> {
+					true
+				}
+			}
+		}
 	}
 }

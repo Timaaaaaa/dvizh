@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:clickable="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="MissingDefaultResource">
+    android:paddingTop="24dp"
+    android:background="@color/app_background">
+
+    <TextView
+        android:id="@+id/fragment_my_tickets_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:text="Мои билеты"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:fontFamily="@font/app_font_bd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/fragment_my_tickets_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="5dp"
+        app:tabTextColor="@color/white"
+        app:tabSelectedTextColor="@color/app_accent"
+        app:tabTextAppearance="@style/MyTabLayoutAppearance"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_my_tickets_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/fragment_my_tickets_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_my_tickets_tabs"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

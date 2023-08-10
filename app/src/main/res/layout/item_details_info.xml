@@ -1,0 +1,66 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="24dp"
+    tools:background="@color/app_background">
+
+    <ImageView
+        android:id="@+id/item_details_info_bg"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/bg_circle_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/item_details_info_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_calendar_accent"
+        app:layout_constraintTop_toTopOf="@id/item_details_info_bg"
+        app:layout_constraintStart_toStartOf="@id/item_details_info_bg"
+        app:layout_constraintEnd_toEndOf="@id/item_details_info_bg"
+        app:layout_constraintBottom_toBottomOf="@id/item_details_info_bg" />
+
+    <TextView
+        android:id="@+id/item_details_info_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:text="Декабрь 24, 2022"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:fontFamily="@font/app_font_bd"
+        app:layout_constraintTop_toTopOf="@id/item_details_info_bg"
+        app:layout_constraintStart_toEndOf="@id/item_details_info_bg"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/item_details_info_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Начало: 20:00"
+        android:textColor="@color/prompt_color"
+        android:textSize="14sp"
+        android:fontFamily="@font/app_font_bk"
+        app:layout_constraintTop_toBottomOf="@id/item_details_info_header"
+        app:layout_constraintStart_toStartOf="@id/item_details_info_header"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/item_details_info_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Длительность: 3 часа"
+        android:textColor="@color/prompt_color"
+        android:textSize="14sp"
+        android:fontFamily="@font/app_font_bk"
+        app:layout_constraintTop_toBottomOf="@id/item_details_info_title"
+        app:layout_constraintStart_toStartOf="@id/item_details_info_header"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:animateLayoutChanges="true"
+        android:paddingBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@id/search_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <ImageView
+                android:id="@+id/fragment_notifications_return_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_arrow_white_left"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fragment_notifications_header_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/app_font_bd"
+                android:text="Поиск"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/fragment_notifications_return_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fragment_notifications_return_button"
+                app:layout_constraintTop_toTopOf="@id/fragment_notifications_return_button" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragment_bottom_sheet_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/bg_search_parameter_rounded_light_grey"
+                android:paddingVertical="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_notifications_header_text">
+
+                <TextView
+                    android:id="@+id/fragment_search_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/app_font_bd"
+                    android:text="Что вам по душе?"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/fragment_home_search_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="24dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_gradient_dark_grey_button"
+                    android:drawableLeft="@drawable/ic_search"
+                    android:drawablePadding="16dp"
+                    android:hint="Все ивенты..."
+                    android:inputType="text"
+                    android:lines="1"
+                    android:padding="20dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="#9D9E9E"
+                    android:textSize="14sp"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_search_header" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fragment_search_category_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_home_search_edit_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragment_search_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/bg_search_parameter_rounded_light_grey"
+                android:paddingVertical="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_bottom_sheet_category">
+
+                <TextView
+                    android:id="@+id/fragment_search_calendar_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/app_font_bd"
+                    android:text="Когда тусанем?"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/vieq"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_search_calendar_header">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/fragment_search_calendar_tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        app:tabIndicatorColor="@color/app_accent"
+                        app:tabMode="fixed"
+                        app:tabSelectedTextColor="@color/app_accent"
+                        app:tabTextAppearance="@style/MyTabLayoutAppearance"
+                        app:tabTextColor="@color/white"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/fragment_search_calendar_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/fragment_create_organization_separator_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/white"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/vieq" />
+
+                <TextView
+                    android:id="@+id/fragment_search_calendar_clear"
+                    style="line"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/app_font_md"
+                    android:text="Очистить все"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+
+                    app:layout_constraintBottom_toBottomOf="@id/fragment_search_calendar_next"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragment_search_calendar_next" />
+
+                <Button
+                    android:id="@+id/fragment_search_calendar_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_purple_button"
+                    android:minWidth="150dp"
+                    android:text="Далее"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragment_create_organization_separator_1" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fragment_search_quests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_search_parameter_rounded_light_grey"
+                android:paddingVertical="24dp"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_search_calendar">
+
+                <TextView
+                    android:id="@+id/fragment_search_quests_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/app_font_bd"
+                    android:text="С кем тусанем?"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/view_quest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_search_quests_header">
+
+                    <TextView
+                        android:id="@+id/fragment_search_quests_adult"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:fontFamily="@font/app_font_bk"
+                        android:text="Взрослый"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fragment_search_quests_adult_des"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:fontFamily="@font/app_font_bk"
+                        android:text="Люди с выше 13"
+                        android:textColor="@color/grey_default"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_search_quests_adult" />
+
+                    <ImageView
+                        android:id="@+id/fragment_search_quests_adult_plus"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:src="@drawable/ic_circle_plus"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_adult_des"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/fragment_search_quests_adult" />
+
+                    <TextView
+                        android:id="@+id/fragment_search_quests_adult_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="4dp"
+                        android:fontFamily="@font/app_font_bk"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_adult_des"
+                        app:layout_constraintEnd_toStartOf="@id/fragment_search_quests_adult_plus"
+                        app:layout_constraintTop_toTopOf="@id/fragment_search_quests_adult" />
+
+                    <ImageView
+                        android:id="@+id/fragment_search_quests_adult_minus"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="6dp"
+                        android:src="@drawable/ic_circle_minus"
+                        android:text="Люди с выше 13"
+                        android:textColor="@color/grey_default"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_adult_des"
+                        app:layout_constraintEnd_toStartOf="@id/fragment_search_quests_adult_count"
+                        app:layout_constraintTop_toTopOf="@id/fragment_search_quests_adult" />
+
+                    <TextView
+                        android:id="@+id/fragment_search_quests_stud"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="24dp"
+                        android:fontFamily="@font/app_font_bk"
+                        android:text="Детский"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_search_quests_adult_des" />
+
+                    <TextView
+                        android:id="@+id/fragment_search_quests_stud_des"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:fontFamily="@font/app_font_bk"
+                        android:text="От 13 лет"
+                        android:textColor="@color/grey_default"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fragment_search_quests_stud" />
+
+                    <ImageView
+                        android:id="@+id/fragment_search_quests_stud_plus"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp"
+                        android:src="@drawable/ic_circle_plus"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_stud_des"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/fragment_search_quests_stud" />
+
+                    <TextView
+                        android:id="@+id/fragment_search_quests_stud_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="4dp"
+                        android:fontFamily="@font/app_font_bk"
+                        android:text="0"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_stud_des"
+                        app:layout_constraintEnd_toStartOf="@id/fragment_search_quests_stud_plus"
+                        app:layout_constraintTop_toTopOf="@id/fragment_search_quests_stud" />
+
+                    <ImageView
+                        android:id="@+id/fragment_search_quests_stud_minus"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginEnd="6dp"
+                        android:fontFamily="@font/app_font_bk"
+                        android:src="@drawable/ic_circle_minus"
+                        android:text="2-12 лет"
+                        android:textColor="@color/grey_default"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@id/fragment_search_quests_stud_des"
+                        app:layout_constraintEnd_toStartOf="@id/fragment_search_quests_stud_count"
+                        app:layout_constraintTop_toTopOf="@id/fragment_search_quests_stud" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:id="@+id/fragment_detail_page_separator_main"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fragment_search_clear"
+            style="line"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/app_font_md"
+            android:text="Очистить все"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_search_search"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fragment_search_search" />
+
+<!--        <Button-->
+<!--            android:id="@+id/fragment_search_search"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_marginHorizontal="25dp"-->
+<!--            android:layout_marginTop="24dp"-->
+<!--            android:background="@drawable/bg_purple_button"-->
+<!--            android:drawableLeft="@drawable/ic_search_white"-->
+<!--            android:fontFamily="@font/app_font_bd"-->
+<!--            android:gravity="center"-->
+<!--            android:minWidth="150dp"-->
+<!--            android:text="Поиск"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="16sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@id/fragment_detail_page_separator_main" />-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="24dp"
+            android:minWidth="150dp"
+            android:id="@+id/fragment_search_search"
+            android:background="@drawable/bg_purple_button"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/fragment_detail_page_separator_main" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title_search_icon"
+                    android:src="@drawable/ic_search_white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:paddingEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title_search"
+                    android:text="Поиск"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/title_search_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

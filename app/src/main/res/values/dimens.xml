@@ -1,5 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="first_item_offset">24dp</dimen>
+    <dimen name="subsequent_item_offset">2dp</dimen>
+
+    <dimen name="big_event_image_radius">40dp</dimen>
+    <dimen name="big_event_default_image_radius">20dp</dimen>
+
+    <dimen name="my_ticket_image_radius">20dp</dimen>
+
+    <dimen name="event_main_image_radius">15dp</dimen>
+
+    <dimen name="item_width">120dp</dimen>
+
 </resources>
