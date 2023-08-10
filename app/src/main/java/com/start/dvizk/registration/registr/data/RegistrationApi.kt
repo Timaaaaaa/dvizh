@@ -11,7 +11,7 @@ import retrofit2.http.Part
 interface RegistrationApi {
 
 	@Multipart
-	@POST("/api/v2/ticket/register")
+	@POST("/api/v2/user/register")
 	fun registr(
 		@Part("email") email: RequestBody,
 		@Part("password") password: RequestBody,

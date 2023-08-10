@@ -53,5 +53,10 @@ class VerificationViewModel(
 			sharedPreferencesRepository.setUserId(it)
 		}
 		sharedPreferencesRepository.setUserName(user.name)
+		user.image?.let { it1 ->
+			sharedPreferencesRepository.setUserImage(
+				it1
+			)
+		}
 	}
 }

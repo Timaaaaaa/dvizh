@@ -60,7 +60,8 @@ class ProfileFragment : Fragment() {
 			view.findViewById(R.id.fragment_profile_page_profile_avatar)
 
 		Glide.with(this)
-			.load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMHyHnkeJyo587A_tb63tvSMvEy9USpStzZA&usqp=CAU")
+			.load(sharedPreferencesRepository.getUserImage())
+			.placeholder(R.drawable.logo)
 			.apply(RequestOptions.circleCropTransform())
 			.into(fragment_profile_page_profile_avatar)
 

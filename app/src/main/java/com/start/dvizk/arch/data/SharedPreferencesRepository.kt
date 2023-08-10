@@ -5,6 +5,7 @@ import android.content.Context
 class SharedPreferencesRepository(context: Context) : SharedPreferencesContract {
 	override val MY_PREFS_NAME = "MyPrefsFile"
 	override val KEY_USER_NAME = "user_name"
+	override val KEY_USER_IMAGE = "user_image"
 	override val KEY_USER_ID = "user_id"
 	override val KEY_USER_TOKEN = "user_token"
 	override val FIRST_LAUNCH_INSTRUCTIOn = "first_launch_instruction"
@@ -19,6 +20,14 @@ class SharedPreferencesRepository(context: Context) : SharedPreferencesContract 
 
 	fun setUserName(name: String) {
 		prefs.edit().putString(KEY_USER_NAME, name).apply()
+	}
+
+	fun getUserImage(): String {
+		return prefs.getString(KEY_USER_IMAGE, no_value) ?: no_value
+	}
+
+	fun setUserImage(name: String) {
+		prefs.edit().putString(KEY_USER_IMAGE, name).apply()
 	}
 
 	fun getUserId(): Long {

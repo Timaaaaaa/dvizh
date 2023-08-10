@@ -119,7 +119,7 @@ class HomeFragment : Fragment(), OnItemClickListener, OnCategoryItemClickListene
 		}
 
 		title.text = sharedPreferencesRepository.getUserName()
-		Glide.with(this).load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMHyHnkeJyo587A_tb63tvSMvEy9USpStzZA&usqp=CAU").apply(RequestOptions.circleCropTransform()).into(fragment_home_user_photo)
+		Glide.with(this).load(sharedPreferencesRepository.getUserImage()).placeholder(R.drawable.logo).apply(RequestOptions.circleCropTransform()).into(fragment_home_user_photo)
 	}
 
 	private fun initPopularList() {
