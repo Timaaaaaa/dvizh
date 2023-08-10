@@ -58,6 +58,7 @@ class UpcomingFragment : Fragment(), OnTicketClickListener {
 		super.onViewCreated(view, savedInstanceState)
 
 		initView(view)
+		initList(view)
 		initObserver()
 
 		viewModel.getUserUpcomingTickets(page, sharedPreferencesRepository.getUserToken())
@@ -86,53 +87,50 @@ class UpcomingFragment : Fragment(), OnTicketClickListener {
 	}
 
 	private fun initView(view: View) {
-		fragment_my_tickets_upcoming_recycler =
-			view.findViewById(R.id.fragment_my_tickets_upcoming_recycler)
 		fragment_my_tickets_upcoming_empty =
 			view.findViewById(R.id.fragment_my_tickets_upcoming_empty)
 		fragment_my_tickets_upcoming_progressbar =
 			view.findViewById(R.id.fragment_my_tickets_upcoming_progressbar)
 	}
 
-	private fun initObserver() {
-		viewModel.userUpcomingTicketsStateLiveData.observe(viewLifecycleOwner, ::initList)
+	private fun initList(view: View) {
+		fragment_my_tickets_upcoming_recycler =
+			view.findViewById(R.id.fragment_my_tickets_upcoming_recycler)
+
+		upcomingTicketsLayoutManager = LinearLayoutManager(
+			requireContext(),
+			LinearLayoutManager.VERTICAL,
+			false)
+
+		upcomingTicketsAdapter = UpcomingTicketsAdapter(resources)
+		upcomingTicketsAdapter.setListener(this)
+
+		fragment_my_tickets_upcoming_recycler.apply {
+			layoutManager = upcomingTicketsLayoutManager
+			adapter = upcomingTicketsAdapter
+		}
 	}
 
-	private fun initList(state: UpcomingTicketsState) {
+	private fun initObserver() {
+		viewModel.userUpcomingTicketsStateLiveData.observe(viewLifecycleOwner, ::handleState)
+	}
+
+	private fun handleState(state: UpcomingTicketsState) {
 		when (state) {
 			is UpcomingTicketsState.Failed -> {
-				fragment_my_tickets_upcoming_progressbar.visibility = View.GONE
 				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
 			}
-			is UpcomingTicketsState.Loading -> {
-				fragment_my_tickets_upcoming_progressbar.visibility = View.VISIBLE
-			}
+			is UpcomingTicketsState.Loading -> {}
 			is UpcomingTicketsState.Success -> {
 				totalPage = state.totalPage
-				setupPagination(totalPage)
+//				setupPagination(totalPage)
 				val myUpcomingTickets = state.upcomingTickets
 				list.addAll(myUpcomingTickets)
 
 				if (myUpcomingTickets.isNotEmpty()) {
 					fragment_my_tickets_upcoming_empty.visibility = View.GONE
-					fragment_my_tickets_upcoming_progressbar.visibility = View.GONE
-
-					upcomingTicketsLayoutManager = LinearLayoutManager(
-						requireContext(),
-						LinearLayoutManager.VERTICAL,
-						false
-					)
-
-					upcomingTicketsAdapter = UpcomingTicketsAdapter(resources)
-					upcomingTicketsAdapter.setListener(this)
+					fragment_my_tickets_upcoming_recycler.visibility = View.VISIBLE
 					upcomingTicketsAdapter.setData(list)
-
-					fragment_my_tickets_upcoming_recycler.apply {
-						visibility = View.VISIBLE
-						layoutManager = upcomingTicketsLayoutManager
-						adapter = upcomingTicketsAdapter
-					}
-
 				} else {
 					fragment_my_tickets_upcoming_recycler.visibility = View.GONE
 					fragment_my_tickets_upcoming_empty.visibility = View.VISIBLE
@@ -143,7 +141,6 @@ class UpcomingFragment : Fragment(), OnTicketClickListener {
 		}
 	}
 
-	// пока не работает
 	private fun setupPagination(totalPage: Int) {
 		fragment_my_tickets_upcoming_recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 			override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
