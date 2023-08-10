@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:background="@drawable/bg_purple_button"
-            android:text="Продолжить 5000₸"
+            android:text="Приобрести билет"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp"

@@ -183,15 +183,19 @@ class EventDetailsFragment : Fragment() {
 	}
 
 	private fun initLists() {
-		fragment_detail_page_items_checklist.layoutManager =
-			LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 		checkListAdapter = CheckListAdapter(resources)
-		fragment_detail_page_items_checklist.adapter = checkListAdapter
+		fragment_detail_page_items_checklist.apply {
+			layoutManager =
+				LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+			adapter = checkListAdapter
+		}
 
-		fragment_detail_page_detail_info.layoutManager =
-			LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 		detailsInfoAdapter = DetailsInfoAdapter(resources)
-		fragment_detail_page_detail_info.adapter = detailsInfoAdapter
+		fragment_detail_page_detail_info.apply {
+			layoutManager =
+				LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+			adapter = detailsInfoAdapter
+		}
 	}
 
 	private fun initObserver() {

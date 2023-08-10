@@ -1,5 +1,6 @@
 package com.start.dvizk.main.ui.profile.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +15,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
+import com.start.dvizk.create.CreateActivity
 import com.start.dvizk.create.steps.data.model.RequestResponseState
 import com.start.dvizk.main.ui.home.presentation.HomeFragment
-import com.start.dvizk.main.ui.profile.data.model.User
+import com.start.dvizk.main.ui.profile.data.model.ProfileDataModel
+import com.start.dvizk.main.ui.profile.data.model.UserProfile
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,6 +35,7 @@ class ProfileFragment : Fragment() {
 	private lateinit var fragment_profile_page_followers_count: TextView
 	private lateinit var fragment_profile_page_subscriptions_count: TextView
 
+	private lateinit var fragment_profile_page_create_event: ConstraintLayout
 	private lateinit var fragment_profile_page_logout: ConstraintLayout
 
 	override fun onCreateView(
@@ -71,6 +75,13 @@ class ProfileFragment : Fragment() {
 		fragment_profile_page_subscriptions_count =
 			view.findViewById(R.id.fragment_profile_page_subscriptions_count)
 
+		fragment_profile_page_create_event =
+			view.findViewById(R.id.fragment_profile_page_create_event)
+		fragment_profile_page_create_event.setOnClickListener {
+			val intent = Intent(requireActivity(), CreateActivity::class.java)
+			startActivity(intent)
+		}
+
 		fragment_profile_page_logout =
 			view.findViewById(R.id.fragment_profile_page_logout)
 		fragment_profile_page_logout.setOnClickListener {
@@ -95,13 +106,13 @@ class ProfileFragment : Fragment() {
 
 			}
 			is RequestResponseState.Success -> {
-				val response = state.value as? User ?: return
+				val response = state.value as? ProfileDataModel ?: return
 
-				fragment_profile_page_profile_name.text = response.user.name
+				fragment_profile_page_profile_name.text = response.name
 
-				fragment_profile_page_events_count.text = response.user.eventsCount.toString()
-				fragment_profile_page_followers_count.text = response.user.subscribers.toString()
-				fragment_profile_page_subscriptions_count.text = response.user.subscriptions.toString()
+				fragment_profile_page_events_count.text = response.eventsCount.toString()
+				fragment_profile_page_followers_count.text = response.subscribers.toString()
+				fragment_profile_page_subscriptions_count.text = response.subscriptions.toString()
 			}
 		}
 	}

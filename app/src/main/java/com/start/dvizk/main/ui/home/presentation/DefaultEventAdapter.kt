@@ -8,10 +8,26 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.home.presentation.model.Event
+import com.start.dvizk.main.ui.home.presentation.model.EventDateTime
+import com.start.dvizk.main.ui.home.presentation.model.EventLocation
 import okhttp3.internal.notify
+import java.text.SimpleDateFormat
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.LocalTime
+import java.time.Month
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Locale
+import kotlin.time.Duration.Companion.days
 
 class DefaultEventAdapter(
 	private val resources: Resources
@@ -51,15 +67,70 @@ class DefaultEventAdapter(
 		private var address: TextView = itemView.findViewById(R.id.item_event_address_text_view)
 
 		fun bind(event: Event, listener: OnItemClickListener?) {
-			title.text = event.name
+
 			Glide.with(itemView)
 				.load(event.main_image)
-				.transform(RoundedCorners(resources.getDimensionPixelSize(R.dimen.big_event_default_image_radius)))
+				.transform(MultiTransformation(CenterCrop(), RoundedCorners(resources.getDimensionPixelSize(R.dimen.big_event_default_image_radius))))
 				.into(image)
+			title.text = event.name
+			data.text = getDate(event.datetime)
+			address.text = getLocation(event.location)
 
 			itemView.setOnClickListener {
 				listener?.onItemClick(event)
 			}
+		}
+
+		private fun getDate(dateTime: EventDateTime): String {
+			val dateString = dateTime.start
+			val durationString = dateTime.duration
+
+			val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+			val date = LocalDate.parse(dateString.substring(0, 10), dateFormatter)
+
+			val formattedDayOfWeek = when (date.dayOfWeek) {
+				DayOfWeek.MONDAY -> "Пн"
+				DayOfWeek.TUESDAY -> "Вт"
+				DayOfWeek.WEDNESDAY -> "Ср"
+				DayOfWeek.THURSDAY -> "Чт"
+				DayOfWeek.FRIDAY -> "Пт"
+				DayOfWeek.SATURDAY -> "Сб"
+				DayOfWeek.SUNDAY -> "Вс"
+				else -> "ERROR"
+			}
+
+			val dayOfMonth = date.dayOfMonth
+			val formattedMonth = when (date.month) {
+				Month.SEPTEMBER -> "Сентября"
+				Month.OCTOBER -> "Октября"
+				Month.NOVEMBER -> "Ноября"
+				Month.DECEMBER -> "Декабря"
+				Month.JANUARY -> "Января"
+				Month.FEBRUARY -> "Февраля"
+				Month.MARCH -> "Марта"
+				Month.APRIL -> "Апреля"
+				Month.MAY -> "Мая"
+				Month.JUNE -> "Июня"
+				Month.JULY -> "Июля"
+				Month.AUGUST -> "Августа"
+				else -> "ERROR"
+			}
+
+			val startTime = LocalTime.parse(dateString.substring(11, dateString.length), DateTimeFormatter.ISO_LOCAL_TIME)
+			val duration = LocalTime.parse(durationString, DateTimeFormatter.ISO_LOCAL_TIME)
+			val endTime = startTime.plusHours(duration.hour.toLong()).plusMinutes(duration.minute.toLong())
+
+			val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+			val formattedStartTime = startTime.format(timeFormatter)
+			val formattedEndTime = endTime.format(timeFormatter)
+
+			return "$formattedDayOfWeek, $dayOfMonth $formattedMonth · $formattedStartTime - $formattedEndTime"
+		}
+
+		private fun getLocation(location: EventLocation): String {
+			val address = location.apartment
+			val city = location.city.name
+			return "$address, $city"
 		}
 	}
 }

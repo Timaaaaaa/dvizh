@@ -15,7 +15,7 @@ interface OrganizationApi {
 	): Call<OrganizationList>
 
 
-	@GET("/api/v3/user/event/current_step")
+	@GET("/api/v3/ticket/event/current_step")
 	fun getCurrentStep(
 		@Header("Authorization") token: String,
 		@Query("organization_id") organization_id: Int

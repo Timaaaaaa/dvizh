@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,8 @@ import com.start.dvizk.main.ui.home.presentation.model.Event
 import com.start.dvizk.search.search.adapter.SearchEventAdapter
 
 class SearchListFragment : Fragment() {
+
+	private lateinit var search_result_list_header_back: ImageView
 
 	private lateinit var fragment_favorites_events_recycler_view: RecyclerView
 	private lateinit var fragment_favorites_subtitle: TextView
@@ -30,6 +33,11 @@ class SearchListFragment : Fragment() {
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
+
+		search_result_list_header_back = view.findViewById(R.id.search_result_list_header_back)
+		search_result_list_header_back.setOnClickListener {
+			requireActivity().supportFragmentManager.popBackStack()
+		}
 
 		fragment_favorites_subtitle = view.findViewById(R.id.fragment_favorites_subtitle)
 		fragment_favorites_events_recycler_view = view.findViewById(R.id.fragment_favorites_events_recycler_view)

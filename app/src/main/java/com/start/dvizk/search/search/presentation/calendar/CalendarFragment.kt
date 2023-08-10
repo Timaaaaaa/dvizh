@@ -4,16 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener
 import com.start.dvizk.R
-import com.start.dvizk.main.ui.tickets.model.MyCanceledTicket
-import com.start.dvizk.main.ui.tickets.adapter.CanceledTicketsAdapter
 import com.start.dvizk.search.search.presentation.SelectedParams
 import com.start.dvizk.search.search.presentation.model.DateRange
 import java.util.*

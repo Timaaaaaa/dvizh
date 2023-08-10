@@ -11,7 +11,15 @@ import androidx.fragment.app.FragmentManager
 import com.start.dvizk.R
 import com.start.dvizk.registration.dialog.GenderSelectionListener
 
+const val SUCCESS_DIALOG_TITLE: String = "success_dialog_title"
+const val SUCCESS_DIALOG_SUBTITLE: String = "success_dialog_subtitle"
+
 class SuccessDialog : DialogFragment() {
+
+    private var listener: OnSuccessDialogOk? = null
+
+    private lateinit var fragment_event_page_location_text: TextView
+    private lateinit var fragment_event_page_location_text_1: TextView
 
     private lateinit var fragment_create_organization_next: Button
 
@@ -21,29 +29,44 @@ class SuccessDialog : DialogFragment() {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
-
-        return inflater.inflate(
-                R.layout.dialog_success,
-                container,
-                false
-        )
+        return inflater.inflate(R.layout.dialog_success, container, false)
     }
 
-    override fun onViewCreated(
-            view: View,
-            savedInstanceState: Bundle?,
-    ) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        fragment_create_organization_next = view.findViewById(R.id.fragment_create_organization_next)
+        fragment_event_page_location_text =
+            view.findViewById(R.id.fragment_event_page_location_text)
+        fragment_event_page_location_text_1 =
+            view.findViewById(R.id.fragment_event_page_location_text_1)
+
+        fragment_create_organization_next =
+            view.findViewById(R.id.fragment_create_organization_next)
+
+        arguments?.getString(SUCCESS_DIALOG_TITLE)?.let {
+            fragment_event_page_location_text.text = it
+        }
+        arguments?.getString(SUCCESS_DIALOG_SUBTITLE)?.let {
+            fragment_event_page_location_text_1.text = it
+        }
 
         fragment_create_organization_next.setOnClickListener {
+            dismiss()
+            if (listener != null) {
+                listener?.onPositiveClickButton()
+
+                return@setOnClickListener
+            }
             activity?.finish()
         }
+    }
+
+    fun setListener(listener: OnSuccessDialogOk) {
+        this.listener = listener
     }
 
     override fun show(manager: FragmentManager, tag: String?) {

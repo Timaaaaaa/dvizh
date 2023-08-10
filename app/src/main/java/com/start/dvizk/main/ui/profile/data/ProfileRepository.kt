@@ -1,6 +1,7 @@
 package com.start.dvizk.main.ui.profile.data
 
-import com.start.dvizk.main.ui.profile.data.model.User
+import com.start.dvizk.main.ui.profile.data.model.ProfileDataModel
+import com.start.dvizk.main.ui.profile.data.model.UserProfile
 import com.start.dvizk.network.Response
 import org.json.JSONObject
 import java.lang.Exception
@@ -11,7 +12,7 @@ class ProfileRepository(
 
 	fun getUserProfile(
 		token: String
-	): Response<User, String> {
+	): Response<ProfileDataModel, String> {
 		try {
 			val response = profileApi
 				.getUserProfile(
@@ -20,7 +21,7 @@ class ProfileRepository(
 				.execute()
 
 			if (response.isSuccessful) {
-				response.body()?.let { return Response.Success(it) }
+				response.body()?.let { return Response.Success(it.user) }
 			}
 			val message = JSONObject(response.errorBody()?.string()!!).getString("message")
 

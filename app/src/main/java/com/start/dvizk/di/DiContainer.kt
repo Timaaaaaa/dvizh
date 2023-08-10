@@ -43,6 +43,12 @@ import com.start.dvizk.main.ui.order.presentation.steps.TicketOrderViewModel
 import com.start.dvizk.main.ui.profile.data.ProfileApi
 import com.start.dvizk.main.ui.profile.data.ProfileRepository
 import com.start.dvizk.main.ui.profile.presentation.ProfileViewModel
+import com.start.dvizk.main.ui.tickets.mytickets.data.MyTicketsApi
+import com.start.dvizk.main.ui.tickets.mytickets.data.MyTicketsRepository
+import com.start.dvizk.main.ui.tickets.mytickets.presentation.MyTicketsViewModel
+import com.start.dvizk.main.ui.tickets.ticket.data.TicketApi
+import com.start.dvizk.main.ui.tickets.ticket.data.TicketRepository
+import com.start.dvizk.main.ui.tickets.ticket.presentation.TicketViewModel
 import com.start.dvizk.network.ApiErrorExceptionFactory
 import com.start.dvizk.network.DefaultApiErrorExceptionFactory
 import com.start.dvizk.registration.createpassword.presentation.PasswordGenerationViewModel
@@ -64,6 +70,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 internal const val APP_RETROFIT = "app_retrofit"
@@ -153,6 +160,20 @@ object DiContainer {
 			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
 			ProfileRepository(
 				profileApi = appRetrofit.create(ProfileApi::class.java)
+			)
+		}
+
+		factory {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			MyTicketsRepository(
+				myTicketsApi = appRetrofit.create(MyTicketsApi::class.java)
+			)
+		}
+
+		factory {
+			val appRetrofit: Retrofit = get(named(APP_RETROFIT))
+			TicketRepository(
+				ticketApi = appRetrofit.create(TicketApi::class.java)
 			)
 		}
 	}
@@ -350,6 +371,18 @@ object DiContainer {
 		viewModel {
 			ProfileViewModel(
 				profileRepository = get()
+			)
+		}
+
+		viewModel {
+			MyTicketsViewModel(
+				myTicketsRepository = get()
+			)
+		}
+
+		viewModel {
+			TicketViewModel(
+				ticketRepository = get()
 			)
 		}
 
