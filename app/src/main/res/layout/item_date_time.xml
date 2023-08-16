@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="112dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="12dp"
+    android:layout_marginStart="12dp"
+    android:background="@drawable/bg_date_time_card">
+
+    <ImageView
+        android:id="@+id/item_date_time_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_calendar_white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/item_date_time_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Январь 11, 2023"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:fontFamily="@font/app_font_md"
+        app:layout_constraintTop_toBottomOf="@id/item_date_time_icon"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/item_date_time_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="10:00 - 12:00"
+        android:textColor="@color/ticket_subtitle_color"
+        android:textSize="17sp"
+        android:fontFamily="@font/app_font_md"
+        app:layout_constraintTop_toBottomOf="@id/item_date_time_title"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

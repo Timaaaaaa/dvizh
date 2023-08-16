@@ -18,7 +18,7 @@
         android:textSize="16sp"
         android:textColor="@color/white"
         android:text="Музыка"
-        android:src="@drawable/ic_calendar"
+        android:src="@drawable/ic_calendar_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

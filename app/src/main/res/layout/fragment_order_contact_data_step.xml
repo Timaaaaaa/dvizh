@@ -100,7 +100,7 @@
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:layout_marginEnd="20dp"
-        android:src="@drawable/ic_calendar_white"
+        android:src="@drawable/ic_profile_calendar"
         app:layout_constraintTop_toTopOf="@id/fragment_order_contact_details_step_user_birthday_text_view"
         app:layout_constraintEnd_toEndOf="@id/fragment_order_contact_details_step_user_birthday_text_view"
         app:layout_constraintBottom_toBottomOf="@id/fragment_order_contact_details_step_user_birthday_text_view" />
@@ -142,7 +142,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="19dp"
         android:paddingBottom="33dp"
-        android:background="@color/event_bg"
+        android:background="@color/card_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">

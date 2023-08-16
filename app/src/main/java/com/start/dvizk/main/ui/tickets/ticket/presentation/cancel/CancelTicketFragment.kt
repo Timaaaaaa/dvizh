@@ -128,7 +128,7 @@ class CancelTicketFragment : Fragment(), OnSuccessDialogOk {
 		fragment_cancel_ticket_cancel_button =
 			view.findViewById(R.id.fragment_cancel_ticket_cancel_button)
 		fragment_cancel_ticket_cancel_button.setOnClickListener {
-			viewModel.cancelTicket(requireArguments().getInt(TICKET_ID), sharedPreferencesRepository.getUserToken())
+			viewModel.cancelTicket(requireArguments().getInt(TICKET_ID), sharedPreferencesRepository.getUserToken(), 1, 5, cancelReason)
 		}
 	}
 

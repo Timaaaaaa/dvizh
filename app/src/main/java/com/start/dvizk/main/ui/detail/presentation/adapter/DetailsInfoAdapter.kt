@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.detail.data.model.DetailsInfoDataModel
 
-class DetailsInfoAdapter(
-	private val resources: Resources
-) : RecyclerView.Adapter<DetailsInfoAdapter.ViewHolder>() {
+class DetailsInfoAdapter : RecyclerView.Adapter<DetailsInfoAdapter.ViewHolder>() {
 
 	private var detailsInformation = mutableListOf<DetailsInfoDataModel>()
 
