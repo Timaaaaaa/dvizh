@@ -96,6 +96,7 @@ class LanguageStepFragment : Fragment(), OnBottomSheetDismissListener {
 				val args = Bundle()
 				args.putParcelableArrayList(SELECT_LIST_KEY, ArrayList(selectListCurrent))
 				args.putBoolean(IS_MULTI_SELECT_KEY, true)
+				args.putString("TITLE", "Выберите языки")
 				bottomSheetFragment.arguments = args
 				bottomSheetFragment.show(parentFragmentManager, "MyBottomSheetFragmentTag")
 			}
@@ -145,9 +146,11 @@ class LanguageStepFragment : Fragment(), OnBottomSheetDismissListener {
 				}
 				val bottomSheetFragment = BottomSheetSelectListFragment()
 				bottomSheetFragment.setListener(this)
+
 				val args = Bundle()
 				args.putParcelableArrayList(SELECT_LIST_KEY, ArrayList(selectListCurrent))
 				args.putBoolean(IS_MULTI_SELECT_KEY, true)
+				args.putString("TITLE", "Выберите языки")
 				bottomSheetFragment.arguments = args
 				bottomSheetFragment.show(parentFragmentManager, "MyBottomSheetFragmentTag")
 			}

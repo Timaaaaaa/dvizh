@@ -68,7 +68,7 @@ interface EventCreateApi {
 		@Field("event_id") eventId: Int,
 		@Field("country_id") country_id: Int,
 		@Field("city_id") city_id: Int,
-		@Field("apartment") apartment: Int,
+		@Field("apartment") apartment: Int?,
 		@Field("street") street: String,
 		@Field("description") description: String,
 		@Header("Authorization") authorization: String,
@@ -78,6 +78,7 @@ interface EventCreateApi {
 	@FormUrlEncoded
 	@POST("api/v3/event/{number_step}")
 	fun sendEventDate(
+		@Header("version") version: Float = 2.1f,
 		@Field("event_id") eventId: Int,
 		@FieldMap fields: Map<String, @JvmSuppressWildcards Any>,
 		@Header("Authorization") authorization: String,

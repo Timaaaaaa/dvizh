@@ -50,12 +50,12 @@ class MainActivity : AppCompatActivity() {
 
 					true
 				}
-				R.id.navigation_qr -> {
-					val intent = Intent(this, CreateActivity::class.java)
-					startActivity(intent)
-
-					true
-				}
+//				R.id.navigation_qr -> {
+//					val intent = Intent(this, CreateActivity::class.java)
+//					startActivity(intent)
+//
+//					true
+//				}
 				R.id.navigation_my_tickets -> {
 					val ft: FragmentTransaction = this.supportFragmentManager.beginTransaction()
 					val myTicketsFragment = MyTicketsFragment()

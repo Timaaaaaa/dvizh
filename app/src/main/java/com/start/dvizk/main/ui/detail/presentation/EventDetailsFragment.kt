@@ -270,7 +270,7 @@ class EventDetailsFragment : Fragment() {
 					detailsInformation.add(
 						DetailsInfoDataModel(
 							R.drawable.ic_user,
-							"Одиночоное мероприятие",
+							"Одиночное мероприятие",
 							"",
 							""
 						)

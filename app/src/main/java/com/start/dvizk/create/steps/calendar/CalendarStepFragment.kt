@@ -17,6 +17,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.start.dvizk.arch.EventCreateRouter
 import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
 import com.start.dvizk.create.organization.list.presentation.SPECIFIC_DATA_KEY
+import com.start.dvizk.create.organization.list.presentation.STEP_NAME
 import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
 import java.text.SimpleDateFormat
 import java.util.*
@@ -69,9 +70,11 @@ class CalendarStepFragment : Fragment() {
 				val fragment = TimeIntervalStepFragment()
 				val a = this.getInt(STEP_NUMBER_KEY)
 				val b = this.getInt(EVENT_ID_KEY)
+				val c = this.getString(STEP_NAME)
 				fragment.arguments = Bundle().apply {
 					putInt(STEP_NUMBER_KEY, a)
 					putInt(EVENT_ID_KEY, b)
+					putString(STEP_NAME, c)
 					putStringArrayList(SPECIFIC_DATA_KEY,  ArrayList(dates.distinct()))
 				}
 				ft.add(R.id.fragment_container, fragment)

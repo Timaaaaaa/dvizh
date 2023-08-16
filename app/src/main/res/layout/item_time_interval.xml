@@ -100,4 +100,133 @@
         android:layout_marginEnd="20dp"
         android:src="@drawable/ic_triangle_down"
         />
+
+    <TextView
+        android:id="@+id/fragment_create_organization_title_9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Цена (в тенге)"
+        android:textColor="@color/prompt_color"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_gender_spinn" />
+
+    <EditText
+        android:id="@+id/fragment_registration_user_gender_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        android:hint="Цена одного билета"
+        android:padding="20dp"
+        android:inputType="number"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey_default"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_9"
+        tools:layout_editor_absoluteX="24dp" />
+
+    <TextView
+        android:id="@+id/fragment_create_organization_title_10"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Количество билетов"
+        android:textColor="@color/prompt_color"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_gender_1" />
+
+    <EditText
+        android:id="@+id/fragment_registration_user_gender_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        android:hint="Количество билетов"
+        android:inputType="number"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey_default"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_10"
+        tools:layout_editor_absoluteX="24dp" />
+
+    <TextView
+        android:id="@+id/fragment_create_organization_title_11"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="Максимальное количество команд"
+        android:textColor="@color/prompt_color"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_gender_2" />
+
+    <EditText
+        android:id="@+id/fragment_registration_user_gender_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        android:hint="Количество команд"
+        android:inputType="number"
+        android:padding="20dp"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey_default"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_11"
+        tools:layout_editor_absoluteX="24dp" />
+
+    <TextView
+        android:id="@+id/fragment_create_organization_title_12"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:visibility="gone"
+        android:text="Максимальное количество участников в команде"
+        android:textColor="@color/prompt_color"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_registration_user_gender_3" />
+
+    <EditText
+        android:id="@+id/fragment_registration_user_gender_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_gradient_dark_grey_button"
+        android:hint="Количество участников"
+        android:inputType="number"
+        android:padding="20dp"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey_default"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/fragment_create_organization_title_12"
+        tools:layout_editor_absoluteX="24dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

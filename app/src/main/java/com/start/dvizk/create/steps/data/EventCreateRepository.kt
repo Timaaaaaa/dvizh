@@ -216,7 +216,7 @@ class EventCreateRepository(
 		eventId: Int,
 		country_id: Int,
 		city_id: Int,
-		apartment: Int,
+		apartment: Int?,
 		street: String,
 		description: String,
 		authorization: String,
@@ -253,6 +253,13 @@ class EventCreateRepository(
 		dateList.forEachIndexed { index, cat ->
 			fieldMap["datetimes[$index][start]"] = cat.date + " " + cat.startTime + ":00"
 			fieldMap["datetimes[$index][duration]"] = cat.duration.toString()
+			fieldMap["datetimes[$index][price]"] = cat.price.toString()
+			if (dateList.first().type == "datetimeSingle") {
+				fieldMap["datetimes[$index][tickets_amount]"] = cat.ticketCount.toString()
+			} else {
+				fieldMap["datetimes[$index][max_number_teams]"] = cat.teamCount.toString()
+				fieldMap["datetimes[$index][max_number_participants_team]"] = cat.teamMemberCount.toString()
+			}
 		}
 
 		try {

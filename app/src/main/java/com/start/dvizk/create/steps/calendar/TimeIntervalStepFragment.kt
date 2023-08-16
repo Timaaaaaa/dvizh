@@ -21,6 +21,7 @@ import com.start.dvizk.arch.EventCreateRouter
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
 import com.start.dvizk.create.organization.list.presentation.SPECIFIC_DATA_KEY
+import com.start.dvizk.create.organization.list.presentation.STEP_NAME
 import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
 import com.start.dvizk.create.steps.bottomsheet.universal.BottomSheetSelectListFragment
 import com.start.dvizk.create.steps.bottomsheet.universal.IS_MULTI_SELECT_KEY
@@ -49,6 +50,8 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener, OnBottomSheet
 	private lateinit var timeIntervalRecyclerView: RecyclerView
 	var deadlineTimesListForRequest = mutableListOf<SelectItem>()
 	private lateinit var currentInterval: EventDateTimeInterval
+	var screenName = ""
+
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -105,7 +108,7 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener, OnBottomSheet
 		adapter = EventDateTimeIntervalAdapter(resources)
 		adapter.setListener(this)
 		timeIntervalRecyclerView.adapter = adapter
-
+		screenName = arguments?.getString(STEP_NAME).toString()
 		arguments?.getStringArrayList(SPECIFIC_DATA_KEY)?.toMutableList()?.let {
 			listDate.addAll(it)
 			adapter.setData(mapListToTimeInterval(listDate))
@@ -119,6 +122,36 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener, OnBottomSheet
 
 		next.setOnClickListener {
 			arguments?.apply {
+				listTimeInterval.forEach {
+					if (it.type == "datetimeSingle") {
+						if (it.price == -1) {
+							Toast.makeText(requireContext(), "Введите цену", Toast.LENGTH_LONG)
+								.show()
+							return@setOnClickListener
+						}
+						if (it.ticketCount == -1) {
+							Toast.makeText(requireContext(), "Введите количество билетов", Toast.LENGTH_LONG)
+								.show()
+							return@setOnClickListener
+						}
+					} else {
+						if (it.price == -1) {
+							Toast.makeText(requireContext(), "Введите цену", Toast.LENGTH_LONG)
+								.show()
+							return@setOnClickListener
+						}
+						if (it.teamCount == -1) {
+							Toast.makeText(requireContext(), "Введите количество команд", Toast.LENGTH_LONG)
+								.show()
+							return@setOnClickListener
+						}
+						if (it.teamMemberCount == -1) {
+							Toast.makeText(requireContext(), "Введите количество участников для одной команды", Toast.LENGTH_LONG)
+								.show()
+							return@setOnClickListener
+						}
+					}
+				}
 				viewModel.sendEventDate(
 					token = sharedPreferencesRepository.getUserToken(),
 					numberStep = getInt(STEP_NUMBER_KEY),
@@ -134,8 +167,26 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener, OnBottomSheet
 	}
 
 	private fun mapListToTimeInterval(listDate: MutableList<String>): MutableList<EventDateTimeInterval> {
-		listDate.forEach {
-			listTimeInterval.add(EventDateTimeInterval(date = it, "", "", ""))
+		if (screenName == "datetimeSingle") {
+			listDate.forEach {
+				listTimeInterval.add(EventDateTimeInterval(
+					date = it,
+					startTime = "",
+					duration = "",
+					durationViewText = "",
+					type = "datetimeSingle"
+				))
+			}
+		} else {
+			listDate.forEach {
+				listTimeInterval.add(EventDateTimeInterval(
+					date = it,
+					startTime = "",
+					duration = "",
+					durationViewText = "",
+					type = "datetimeGroup"
+				))
+			}
 		}
 		return listTimeInterval
 	}
@@ -156,6 +207,7 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener, OnBottomSheet
 		val args = Bundle()
 		args.putParcelableArrayList(SELECT_LIST_KEY, ArrayList(deadlineTimesList))
 		args.putBoolean(IS_MULTI_SELECT_KEY, false)
+		args.putString("TITLE", "Выберите время")
 		bottomSheetFragment.arguments = args
 		bottomSheetFragment.show(parentFragmentManager, "MyBottomSheetFragmentTag")
 	}

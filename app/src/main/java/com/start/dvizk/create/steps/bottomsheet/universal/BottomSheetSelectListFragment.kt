@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -24,7 +25,9 @@ class BottomSheetSelectListFragment : BottomSheetDialogFragment(), OnSelectListC
 	private lateinit var categoryRecyclerView: RecyclerView
 	private lateinit var backButton: ImageView
 	private lateinit var doneButton: Button
+	private lateinit var fragment_notifications_header_text: TextView
 	private var listener: OnBottomSheetDismissListener? = null
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setStyle(STYLE_NORMAL, R.style.AppBottomSheetDialogTheme)
@@ -58,11 +61,13 @@ class BottomSheetSelectListFragment : BottomSheetDialogFragment(), OnSelectListC
 	private fun initView(view: View) {
 		categoryRecyclerView = view.findViewById(R.id.fragment_bottom_sheet_category)
 		backButton = view.findViewById(R.id.fragment_notifications_return_button)
+		fragment_notifications_header_text = view.findViewById(R.id.fragment_notifications_header_text)
 
 		categoryRecyclerView.layoutManager =
 			LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 		arguments?.apply {
 			adapter = SelectListAdapter(resources, getBoolean(IS_MULTI_SELECT_KEY))
+			fragment_notifications_header_text.text = getString("TITLE") ?: ""
 		}
 
 		adapter.setListener(this)

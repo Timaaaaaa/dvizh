@@ -24,6 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 const val STEP_NUMBER_KEY = "step_number_key"
 const val EVENT_ID_KEY = "event_id_key"
 const val SPECIFIC_DATA_KEY = "SPECIFIC_DATA_KEY"
+const val STEP_NAME = "STEP_NAME"
 
 class OrganizationListFragment : Fragment() {
 

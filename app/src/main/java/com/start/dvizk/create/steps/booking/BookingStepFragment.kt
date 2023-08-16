@@ -98,6 +98,7 @@ class BookingStepFragment : Fragment(), OnBottomSheetDismissListener {
 			bottomSheetFragment.setListener(this)
 			val args = Bundle()
 			args.putParcelableArrayList(SELECT_LIST_KEY, ArrayList(deadlineTimesList))
+			args.putString("TITLE", "Выберите время")
 			args.putBoolean(IS_MULTI_SELECT_KEY, false)
 			bottomSheetFragment.arguments = args
 			bottomSheetFragment.show(parentFragmentManager, "MyBottomSheetFragmentTag")

@@ -83,6 +83,9 @@ object EventCreateRouter {
 		"numberOfTeams" -> {
 			TeamCountStepFragment()
 		}
+		"datetimeSingle", "datetimeGroup" -> {
+			CalendarStepFragment()
+		}
 		"success" -> {
 			SuccessDialog()
 		}
