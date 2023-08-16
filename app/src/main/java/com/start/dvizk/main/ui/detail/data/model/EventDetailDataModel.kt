@@ -15,7 +15,8 @@ data class EventDetailDataModel(
 	val necessary_items: List<String?>?,
 	val entry_condition: String?,
 	val is_favorite: Boolean,
-	val organization: Organization?
+	val organization: Organization?,
+	val team: Team?,
 )
 
 data class DateTime(
@@ -37,6 +38,11 @@ data class Requirements(
 	val age: Int?,
 	val children: Boolean,
 	val additional_requirements: String?
+)
+
+data class Team(
+	val maximum_number_teams: Int,
+	val maximum_number_team_members: Int
 )
 
 data class Organization(

@@ -273,14 +273,26 @@ class EventDetailsFragment : Fragment(), OnDateTimeClickListener {
 				}
 				dateTimesAdapter.setData(dateTimes)
 
-				detailsInformation.add(
-					DetailsInfoDataModel(
-						R.drawable.ic_user,
-						"Одинчоное мероприятие",
-						"no data",
-						""
+				if (response.team != null) {
+					detailsInformation.add(
+						DetailsInfoDataModel(
+							R.drawable.ic_user,
+							"Групповое мероприятие",
+							"Макcимальное кол-во человек: ${response.team.maximum_number_team_members}" ,
+							"Максимальное кол-во комманд: ${response.team.maximum_number_teams}"
+						)
 					)
-				)
+				} else {
+					detailsInformation.add(
+						DetailsInfoDataModel(
+							R.drawable.ic_user,
+							"Одиночное мероприятие",
+							"",
+							""
+						)
+					)
+				}
+
 
 				val languages = response.languages?.joinToString { it!! }.toString()
 

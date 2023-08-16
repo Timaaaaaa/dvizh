@@ -68,7 +68,7 @@ interface EventCreateApi {
 		@Field("event_id") eventId: Int,
 		@Field("country_id") country_id: Int,
 		@Field("city_id") city_id: Int,
-		@Field("apartment") apartment: Int,
+		@Field("apartment") apartment: Int?,
 		@Field("street") street: String,
 		@Field("description") description: String,
 		@Header("Authorization") authorization: String,
@@ -78,6 +78,7 @@ interface EventCreateApi {
 	@FormUrlEncoded
 	@POST("api/v3/event/{number_step}")
 	fun sendEventDate(
+		@Header("version") version: Float = 2.1f,
 		@Field("event_id") eventId: Int,
 		@FieldMap fields: Map<String, @JvmSuppressWildcards Any>,
 		@Header("Authorization") authorization: String,
@@ -207,6 +208,16 @@ interface EventCreateApi {
 	fun sendEventRule(
 		@Field("event_id") eventId: Int,
 		@Field("rules") rules: String,
+		@Header("Authorization") authorization: String,
+		@Path("number_step") numberStep: Int,
+	): Call<StepDataApiResponse>
+
+	@FormUrlEncoded
+	@POST("api/v3/event/{number_step}")
+	fun sendTeamCount(
+		@Field("event_id") eventId: Int,
+		@Field("maximum_number_teams") maximum_number_teams: Int,
+		@Field("maximum_number_participants_team") maximum_number_participants_team: Int,
 		@Header("Authorization") authorization: String,
 		@Path("number_step") numberStep: Int,
 	): Call<StepDataApiResponse>

@@ -187,7 +187,13 @@ class RegistrationFragment :
 	}
 
 	override fun getGender(gender: String) {
-		genderSelectionText.text = gender
+		if (gender == "male") {
+			genderSelectionText.text = "Мужчина"
+		} else {
+			genderSelectionText.text = "Женщина"
+		}
+
+
 		this.gender = gender
 	}
 

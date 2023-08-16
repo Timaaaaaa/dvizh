@@ -188,6 +188,10 @@ class PhotoStepFragment : Fragment() {
 	}
 
 	private fun initView(view: View) {
+		val headerBack: ImageView = view.findViewById(R.id.fragment_create_organization_back_image)
+		headerBack.setOnClickListener {
+			requireActivity().supportFragmentManager.popBackStack()
+		}
 		next = view.findViewById(R.id.fragment_create_organization_next)
 		back = view.findViewById(R.id.fragment_create_organization_back)
 		photo = view.findViewById(R.id.fragment_create_organization_title_8)

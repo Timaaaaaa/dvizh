@@ -30,7 +30,7 @@ class BottomSheetSelectCategoryListViewModel(
 		categoriesListState.value = CategoriesListState.Loading
 
 		launch(Dispatchers.IO) {
-			val response = homePageRepository.getCategories(parent_id)
+			val response = homePageRepository.getCategoriesWithOutAll(parent_id)
 
 			launch(Dispatchers.Main) {
 				when (response) {

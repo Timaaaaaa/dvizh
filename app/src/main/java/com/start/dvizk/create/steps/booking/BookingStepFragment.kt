@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -57,6 +58,10 @@ class BookingStepFragment : Fragment(), OnBottomSheetDismissListener {
 	}
 
 	private fun initView(view: View) {
+		val headerBack: ImageView = view.findViewById(R.id.fragment_create_organization_back_image)
+		headerBack.setOnClickListener {
+			requireActivity().supportFragmentManager.popBackStack()
+		}
 		next = view.findViewById(R.id.fragment_create_organization_next)
 		back = view.findViewById(R.id.fragment_create_organization_back)
 		fragment_registration_user_gender_spinner =
@@ -93,6 +98,7 @@ class BookingStepFragment : Fragment(), OnBottomSheetDismissListener {
 			bottomSheetFragment.setListener(this)
 			val args = Bundle()
 			args.putParcelableArrayList(SELECT_LIST_KEY, ArrayList(deadlineTimesList))
+			args.putString("TITLE", "Выберите время")
 			args.putBoolean(IS_MULTI_SELECT_KEY, false)
 			bottomSheetFragment.arguments = args
 			bottomSheetFragment.show(parentFragmentManager, "MyBottomSheetFragmentTag")

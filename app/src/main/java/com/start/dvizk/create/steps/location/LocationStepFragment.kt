@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.start.dvizk.R
 import com.start.dvizk.arch.EventCreateRouter
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
+import com.start.dvizk.create.organization.list.presentation.STEP_NAME
 import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
 import com.start.dvizk.create.steps.bottomsheet.universal.BottomSheetSelectListFragment
 import com.start.dvizk.create.steps.bottomsheet.universal.IS_MULTI_SELECT_KEY
@@ -66,6 +68,10 @@ class LocationStepFragment : Fragment(), OnBottomSheetDismissListener {
 	}
 
 	private fun initView(view: View) {
+		val headerBack: ImageView = view.findViewById(R.id.fragment_create_organization_back_image)
+		headerBack.setOnClickListener {
+			requireActivity().supportFragmentManager.popBackStack()
+		}
 		next = view.findViewById(R.id.fragment_create_organization_next)
 		back = view.findViewById(R.id.fragment_create_organization_back)
 		countryText = view.findViewById(R.id.fragment_registration_user_gender_spinner)
@@ -85,7 +91,7 @@ class LocationStepFragment : Fragment(), OnBottomSheetDismissListener {
 				viewModel.sendEventDescription(
 					country_id = countryList.first().id,
 					city_id = cityList.first().id,
-					apartment = apartmentText.text.toString().toInt(),
+					apartment = if (apartmentText.text.toString().isEmpty()) null else apartmentText.text.toString().toInt(),
 					street = streetText.text.toString(),
 					authorization = sharedPreferencesRepository.getUserToken(),
 					numberStep = getInt(STEP_NUMBER_KEY),
@@ -132,7 +138,7 @@ class LocationStepFragment : Fragment(), OnBottomSheetDismissListener {
 				val args = Bundle()
 				args.putParcelableArrayList(SELECT_LIST_KEY, ArrayList(selectListCurrent))
 				args.putString(PARAMETER_NAME_KEY, "country")
-
+				args.putString("TITLE", "Выберите страну")
 				args.putBoolean(IS_MULTI_SELECT_KEY, false)
 				bottomSheetFragment.arguments = args
 				bottomSheetFragment.show(parentFragmentManager, "MyBottomSheetFragmentTag")
@@ -160,6 +166,7 @@ class LocationStepFragment : Fragment(), OnBottomSheetDismissListener {
 				val args = Bundle()
 				args.putParcelableArrayList(SELECT_LIST_KEY, ArrayList(selectListCurrent))
 				args.putString(PARAMETER_NAME_KEY, "city")
+				args.putString("TITLE", "Выберите город")
 				args.putBoolean(IS_MULTI_SELECT_KEY, false)
 				bottomSheetFragment.arguments = args
 				bottomSheetFragment.show(parentFragmentManager, "MyBottomSheetFragmentTag")
@@ -245,6 +252,7 @@ class LocationStepFragment : Fragment(), OnBottomSheetDismissListener {
 				val fragment = EventCreateRouter.getCreateStepFragment(response.data.nextStep.name)
 				fragment.arguments = Bundle().apply {
 					putInt(STEP_NUMBER_KEY, response.data.nextStep.numberStep)
+					putString(STEP_NAME, response.data.nextStep.name)
 					putInt(EVENT_ID_KEY, response.data.eventId)
 				}
 				ft.add(R.id.fragment_container,fragment)

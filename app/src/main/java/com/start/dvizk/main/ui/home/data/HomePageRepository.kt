@@ -89,6 +89,25 @@ class HomePageRepository(
 		}
 	}
 
+
+	fun getCategoriesWithOutAll(parent_id: Int?): Response<List<Category>, String> {
+		try {
+			val response = homePageApi
+				.getCategories(parent_id)
+				.execute()
+
+			if (response.isSuccessful) {
+
+				return Response.Success(response.body()!!)
+			}
+			val message = JSONObject(response.errorBody()?.string()!!).getString("message")
+
+			return Response.Error(message)
+		} catch (e: Exception) {
+			return Response.Error(e.localizedMessage!!.toString())
+		}
+	}
+
 	fun getSearchedEvents(
 		token: String?,
 		categories: List<Int>?,

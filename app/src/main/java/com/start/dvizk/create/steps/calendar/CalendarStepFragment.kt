@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import com.start.dvizk.arch.EventCreateRouter
 import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
 import com.start.dvizk.create.organization.list.presentation.SPECIFIC_DATA_KEY
+import com.start.dvizk.create.organization.list.presentation.STEP_NAME
 import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
 import java.text.SimpleDateFormat
 import java.util.*
@@ -47,7 +49,10 @@ class CalendarStepFragment : Fragment() {
 	private fun initView(view: View) {
 		next = view.findViewById(R.id.fragment_create_organization_next)
 		back = view.findViewById(R.id.fragment_create_organization_back)
-
+		val headerBack: ImageView = view.findViewById(R.id.fragment_create_organization_back_image)
+		headerBack.setOnClickListener {
+			requireActivity().supportFragmentManager.popBackStack()
+		}
 		next.setOnClickListener {
 			if (selectedDates.isEmpty()) {
 				Toast.makeText(requireContext(), "Выберите день мероприятия", Toast.LENGTH_LONG).show()
@@ -65,9 +70,11 @@ class CalendarStepFragment : Fragment() {
 				val fragment = TimeIntervalStepFragment()
 				val a = this.getInt(STEP_NUMBER_KEY)
 				val b = this.getInt(EVENT_ID_KEY)
+				val c = this.getString(STEP_NAME)
 				fragment.arguments = Bundle().apply {
 					putInt(STEP_NUMBER_KEY, a)
 					putInt(EVENT_ID_KEY, b)
+					putString(STEP_NAME, c)
 					putStringArrayList(SPECIFIC_DATA_KEY,  ArrayList(dates.distinct()))
 				}
 				ft.add(R.id.fragment_container, fragment)

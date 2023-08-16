@@ -19,6 +19,7 @@ import com.start.dvizk.create.steps.needings.NeededItemsStepFragment
 import com.start.dvizk.create.steps.photo.PhotoStepFragment
 import com.start.dvizk.create.steps.price.PriceStepFragment
 import com.start.dvizk.create.steps.service.AdditionalServiceStepFragment
+import com.start.dvizk.create.steps.teamcount.TeamCountStepFragment
 import com.start.dvizk.create.steps.type.presentation.TypeStepFragment
 import com.start.dvizk.create.steps.visitperson.AllowedGuestStepFragment
 
@@ -78,6 +79,12 @@ object EventCreateRouter {
 		}
 		"rules" -> {
 			EventRuleStepFragment()
+		}
+		"numberOfTeams" -> {
+			TeamCountStepFragment()
+		}
+		"datetimeSingle", "datetimeGroup" -> {
+			CalendarStepFragment()
 		}
 		"success" -> {
 			SuccessDialog()

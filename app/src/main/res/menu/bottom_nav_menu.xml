@@ -12,11 +12,6 @@
         android:title="@string/title_favorites" />
 
     <item
-        android:id="@+id/navigation_qr"
-        android:icon="@drawable/ic_qr"
-        android:title="@string/title_qr" />
-
-    <item
         android:id="@+id/navigation_my_tickets"
         android:icon="@drawable/ic_my_tickets"
         android:title="@string/title_my_tickets" />

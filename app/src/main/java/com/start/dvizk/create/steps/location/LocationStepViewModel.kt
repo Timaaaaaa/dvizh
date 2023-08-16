@@ -62,7 +62,7 @@ class LocationStepViewModel(
 		eventId: Int,
 		country_id: Int,
 		city_id: Int,
-		apartment: Int,
+		apartment: Int?,
 		street: String,
 		description: String,
 		authorization: String,

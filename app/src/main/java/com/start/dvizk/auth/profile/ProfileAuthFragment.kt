@@ -97,15 +97,24 @@ class ProfileAuthFragment : Fragment(), OnClickListener {
 						response: Response<User>
 					) {
 						if (response.isSuccessful) {
-							Snackbar.make(view, "Успешно авторизовались, Брат скоро все сделаю", Snackbar.LENGTH_LONG).show()
 
 							response.body()?.let {
+								it.id?.let { it1 ->
+									sharedPreferencesRepository.setUserId(
+										it1
+									)
+								}
 								sharedPreferencesRepository.setUserToken(
 									it.token
 								)
 								sharedPreferencesRepository.setUserName(
 									it.name
 								)
+								it.image?.let { it1 ->
+									sharedPreferencesRepository.setUserImage(
+										it1
+									)
+								}
 
 								it.id?.let { it1 -> sharedPreferencesRepository.setUserId(it1) }
 

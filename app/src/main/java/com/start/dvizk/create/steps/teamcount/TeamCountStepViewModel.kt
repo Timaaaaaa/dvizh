@@ -1,4 +1,4 @@
-package com.start.dvizk.create.steps.guestcount
+package com.start.dvizk.create.steps.teamcount
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,38 +11,38 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class GuestCountStepViewModel(
+class TeamCountStepViewModel(
 	private val eventCreateRepository: EventCreateRepository,
 	override val coroutineContext: CoroutineContext = Dispatchers.Main
 ) : ViewModel(),
 	CoroutineScope {
 
-	val requestResponseStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
+	val requestTeamCountResponseStateLiveData: MutableLiveData<RequestResponseState> = CustomMutableLiveData()
 
-	fun sendEventMaxGroupSize(
+	fun sendTeamCount(
 		token: String,
 		numberStep: Int,
-		maximum_group_size: Int,
+		maximum_number_teams: Int,
+		maximum_number_participants_team: Int,
 		eventId: Int,
 	) {
-		requestResponseStateLiveData.value = RequestResponseState.Loading
+		requestTeamCountResponseStateLiveData.value = RequestResponseState.Loading
 		launch(Dispatchers.IO) {
-			val response = eventCreateRepository.sendEventMaxGroupSize(
+			val response = eventCreateRepository.sendTeamCount(
 				token = token,
 				numberStep = numberStep,
-				maximum_group_size = maximum_group_size,
+				maximum_number_participants_team = maximum_number_participants_team,
+				maximum_number_teams = maximum_number_teams,
 				eventId = eventId,
 			)
 			launch(Dispatchers.Main) {
 				when (response) {
-					is Response.Success -> requestResponseStateLiveData.value =
+					is Response.Success -> requestTeamCountResponseStateLiveData.value =
 						RequestResponseState.Success(response.result)
-					is Response.Error -> requestResponseStateLiveData.value =
+					is Response.Error -> requestTeamCountResponseStateLiveData.value =
 						RequestResponseState.Failed(response.error.toString())
 				}
 			}
 		}
 	}
-
-
 }
