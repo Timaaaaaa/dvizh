@@ -40,11 +40,13 @@ class CanceledTicketsAdapter(
 	}
 
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
+
+		val image: ImageView = itemView.findViewById(R.id.item_my_canceled_ticket_image)
+		val title: TextView = itemView.findViewById(R.id.item_my_canceled_ticket_title)
+		val date: TextView = itemView.findViewById(R.id.item_my_canceled_ticket_date)
+		val location: TextView = itemView.findViewById(R.id.item_my_canceled_ticket_location)
+
 		fun bind(myCanceledTicket: MyTicket) {
-			val image: ImageView = itemView.findViewById(R.id.item_my_canceled_ticket_image)
-			val title: TextView = itemView.findViewById(R.id.item_my_canceled_ticket_title)
-			val date: TextView = itemView.findViewById(R.id.item_my_canceled_ticket_date)
-			val location: TextView = itemView.findViewById(R.id.item_my_canceled_ticket_location)
 
 			Glide.with(itemView)
 				.load(image)

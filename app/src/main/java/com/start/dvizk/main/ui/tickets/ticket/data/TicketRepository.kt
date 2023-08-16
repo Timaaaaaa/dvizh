@@ -33,12 +33,18 @@ class TicketRepository(
 
 	fun cancelTicket(
 		ticketId: Int,
-		token: String
+		token: String,
+		ticket_cancel_reason_id: Int,
+		rating: Int,
+		review: String
 	): Response<String, String> {
 		val response = ticketApi
 			.cancelTicket(
 				ticketId = ticketId,
-				token = "Bearer $token"
+				token = "Bearer $token",
+				ticket_cancel_reason_id = ticket_cancel_reason_id,
+				rating = rating,
+				review = review
 			)
 			.execute()
 

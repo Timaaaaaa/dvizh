@@ -43,12 +43,21 @@ class TicketViewModel(
 
 	fun cancelTicket(
 		ticketId: Int,
-		token: String
+		token: String,
+		ticket_cancel_reason_id: Int,
+		rating: Int,
+		review: String
 	) {
 		userTicketCancelingState.value = TicketCancelingState.Loading
 
 		launch(Dispatchers.IO) {
-			val response = ticketRepository.cancelTicket(ticketId, token)
+			val response = ticketRepository.cancelTicket(
+				ticketId,
+				token,
+				ticket_cancel_reason_id,
+				rating,
+				review
+			)
 
 			launch(Dispatchers.Main) {
 				when (response) {

@@ -4,6 +4,7 @@ data class EventDetailDataModel(
 	val id: Int,
 	val images: List<String?>?,
 	val name: String?,
+	val datetimes: List<DateTime>?,
 	val datetime: DateTime?,
 	val languages: List<String?>?,
 	val price: String?,
@@ -18,9 +19,11 @@ data class EventDetailDataModel(
 )
 
 data class DateTime(
+	val id: Int,
 	val date: String?,
 	val start: String?,
-	val duration: String?
+	val duration: String?,
+	var isSelected: Boolean = false
 )
 
 data class Location(

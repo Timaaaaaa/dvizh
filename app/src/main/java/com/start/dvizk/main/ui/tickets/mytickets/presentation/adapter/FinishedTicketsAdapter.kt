@@ -44,12 +44,13 @@ class FinishedTicketsAdapter(
 	}
 
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-		fun bind(myFinishedTicket: MyTicket) {
-			val image: ImageView = itemView.findViewById(R.id.item_my_finished_ticket_image)
-			val title: TextView = itemView.findViewById(R.id.item_my_finished_ticket_title)
-			val date: TextView = itemView.findViewById(R.id.item_my_finished_ticket_date)
-			val location: TextView = itemView.findViewById(R.id.item_my_finished_ticket_location)
 
+		val image: ImageView = itemView.findViewById(R.id.item_my_finished_ticket_image)
+		val title: TextView = itemView.findViewById(R.id.item_my_finished_ticket_title)
+		val date: TextView = itemView.findViewById(R.id.item_my_finished_ticket_date)
+		val location: TextView = itemView.findViewById(R.id.item_my_finished_ticket_location)
+
+		fun bind(myFinishedTicket: MyTicket) {
 			Glide.with(itemView)
 				.load(image)
 				.centerCrop()
