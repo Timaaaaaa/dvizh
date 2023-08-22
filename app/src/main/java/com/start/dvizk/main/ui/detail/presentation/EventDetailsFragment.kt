@@ -193,6 +193,12 @@ class EventDetailsFragment : Fragment(), OnDateTimeClickListener {
 		fragment_detail_page_book_event_button =
 			view.findViewById(R.id.fragment_detail_page_book_event_button)
 		fragment_detail_page_book_event_button.setOnClickListener {
+			if (dateTimeId == 0) {
+				Toast.makeText(requireContext(), "Выберите дату мероприятия", Toast.LENGTH_LONG).show()
+
+				return@setOnClickListener
+			}
+
 			viewModel.orderFirstStep(sharedPreferencesRepository.getUserToken(), dateTimeId)
 		}
 	}
@@ -236,10 +242,12 @@ class EventDetailsFragment : Fragment(), OnDateTimeClickListener {
 
 			}
 			is RequestResponseState.Success -> {
+
+
 				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 				val fragment = OrderTicketScreenRouter.getTicketOrderStepFragment(state.value as? String ?: "")
 				fragment.arguments = Bundle().apply {
-					putInt(ORDER_DATE_TIME_ID, 168)
+					putInt(ORDER_DATE_TIME_ID, dateTimeId)
 				}
 				ft.add(R.id.nav_host_fragment_activity_main, fragment)
 				ft.addToBackStack("")
