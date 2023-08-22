@@ -47,13 +47,15 @@ class UpcomingTicketsAdapter(
 	}
 
 	inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+		val image: ImageView = itemView.findViewById(R.id.item_my_upcoming_ticket_image)
+		val title: TextView = itemView.findViewById(R.id.item_my_upcoming_ticket_title)
+		val date: TextView = itemView.findViewById(R.id.item_my_upcoming_ticket_date)
+		val location: TextView = itemView.findViewById(R.id.item_my_upcoming_ticket_location)
+		val viewTicketButton: Button = itemView.findViewById(R.id.item_my_upcoming_ticket_view_ticket_button)
+		val cancelButton: Button = itemView.findViewById(R.id.item_my_upcoming_ticket_cancel_ticket_button)
+
 		fun bind(myUpcomingTicket: MyTicket, listener: OnTicketClickListener?) {
-			val image: ImageView = itemView.findViewById(R.id.item_my_upcoming_ticket_image)
-			val title: TextView = itemView.findViewById(R.id.item_my_upcoming_ticket_title)
-			val date: TextView = itemView.findViewById(R.id.item_my_upcoming_ticket_date)
-			val location: TextView = itemView.findViewById(R.id.item_my_upcoming_ticket_location)
-			val viewTicketButton: Button = itemView.findViewById(R.id.item_my_upcoming_ticket_view_ticket_button)
-			val cancelButton: Button = itemView.findViewById(R.id.item_my_upcoming_ticket_cancel_ticket_button)
 
 			Glide.with(itemView)
 				.load(myUpcomingTicket.image)

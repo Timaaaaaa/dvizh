@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.start.dvizk.R
 import com.start.dvizk.main.ui.detail.data.model.CheckListDataModel
 
-class CheckListAdapter(
-	private val resources: Resources
-) : RecyclerView.Adapter<CheckListAdapter.ViewHolder>() {
+class CheckListAdapter : RecyclerView.Adapter<CheckListAdapter.ViewHolder>() {
 
 	private var checkList = listOf<CheckListDataModel>()
 

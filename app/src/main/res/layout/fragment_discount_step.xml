@@ -105,7 +105,7 @@
                     android:paddingStart="24dp"
                     android:layout_weight="2"
                     android:text="1000"
-                    android:background="@drawable/bg_grey_with_lighht_grey_border_left_side_rounded"
+                    android:background="@drawable/bg_grey_with_light_grey_border_left_side_rounded"
                     android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="bold" />

@@ -13,7 +13,7 @@
     <color name="calendar_selector_color">#2315ED</color>
     <color name="nav_unfocus_color">#979797</color>
     <color name="nav_bg">#181A20</color>
-    <color name="event_bg">#1F222A</color>
+    <color name="card_bg">#1F222A</color>
     <color name="light_grey">#40000000</color>
     <color name="bg_color">#181A20</color>
 

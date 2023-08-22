@@ -28,9 +28,11 @@ import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
 import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
 import com.start.dvizk.create.steps.data.model.RequestResponseState
 import com.start.dvizk.main.ui.detail.data.model.CheckListDataModel
+import com.start.dvizk.main.ui.detail.data.model.DateTime
 import com.start.dvizk.main.ui.detail.data.model.DetailsInfoDataModel
 import com.start.dvizk.main.ui.detail.data.model.EventDetailDataModel
 import com.start.dvizk.main.ui.detail.presentation.adapter.CheckListAdapter
+import com.start.dvizk.main.ui.detail.presentation.adapter.DateTimesAdapter
 import com.start.dvizk.main.ui.detail.presentation.adapter.DetailsInfoAdapter
 import com.start.dvizk.main.ui.detail.presentation.rules.CancellationRulesFragment
 import com.start.dvizk.main.ui.detail.presentation.rules.EventRulesFragment
@@ -42,7 +44,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 const val ORDER_DATE_TIME_ID = "ORDER_DATETIME_ID"
 
-class EventDetailsFragment : Fragment() {
+class EventDetailsFragment : Fragment(), OnDateTimeClickListener {
 
 	private val viewModel: EventDetailViewModel by viewModel()
 	private val sharedPreferencesRepository: SharedPreferencesRepository by inject()
@@ -68,6 +70,12 @@ class EventDetailsFragment : Fragment() {
 
 	private lateinit var fragment_detail_page_rules_of_event_button: Button
 	private lateinit var fragment_detail_page_cancellation_rules_button: Button
+
+	private lateinit var fragment_detail_page_date_times_recycler: RecyclerView
+	private lateinit var dateTimesAdapter: DateTimesAdapter
+	private val dateTimes = mutableListOf<DateTime>()
+	private var dateTimeId: Int = 0
+
 
 	private lateinit var fragment_detail_page_detail_info: RecyclerView
 	private lateinit var detailsInfoAdapter: DetailsInfoAdapter
@@ -98,6 +106,10 @@ class EventDetailsFragment : Fragment() {
 		viewModel.getEventDetails(requireArguments().getInt(EVENT_ID))
 	}
 
+	override fun onItemClick(dateTime: DateTime) {
+		dateTimeId = dateTime.id
+	}
+
 	private fun initView(view: View) {
 
 		fragment_detail_page_return_button =
@@ -112,6 +124,9 @@ class EventDetailsFragment : Fragment() {
 
 		fragment_detail_page_header_title =
 			view.findViewById(R.id.fragment_detail_page_header_title)
+
+		fragment_detail_page_date_times_recycler =
+			view.findViewById(R.id.fragment_detail_page_date_times_recycler)
 
 		fragment_detail_page_detail_info =
 			view.findViewById(R.id.fragment_detail_page_detail_info)
@@ -178,19 +193,34 @@ class EventDetailsFragment : Fragment() {
 		fragment_detail_page_book_event_button =
 			view.findViewById(R.id.fragment_detail_page_book_event_button)
 		fragment_detail_page_book_event_button.setOnClickListener {
-			viewModel.orderFirstStep(sharedPreferencesRepository.getUserToken(), 168/*160*/)
+			if (dateTimeId == 0) {
+				Toast.makeText(requireContext(), "Выберите дату мероприятия", Toast.LENGTH_LONG).show()
+
+				return@setOnClickListener
+			}
+
+			viewModel.orderFirstStep(sharedPreferencesRepository.getUserToken(), dateTimeId)
 		}
 	}
 
 	private fun initLists() {
-		checkListAdapter = CheckListAdapter(resources)
+		dateTimesAdapter = DateTimesAdapter(resources)
+		dateTimesAdapter.setListener(this)
+
+		fragment_detail_page_date_times_recycler.apply {
+			layoutManager =
+				LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+			adapter = dateTimesAdapter
+		}
+
+		checkListAdapter = CheckListAdapter()
 		fragment_detail_page_items_checklist.apply {
 			layoutManager =
 				LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 			adapter = checkListAdapter
 		}
 
-		detailsInfoAdapter = DetailsInfoAdapter(resources)
+		detailsInfoAdapter = DetailsInfoAdapter()
 		fragment_detail_page_detail_info.apply {
 			layoutManager =
 				LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -212,10 +242,12 @@ class EventDetailsFragment : Fragment() {
 
 			}
 			is RequestResponseState.Success -> {
+
+
 				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 				val fragment = OrderTicketScreenRouter.getTicketOrderStepFragment(state.value as? String ?: "")
 				fragment.arguments = Bundle().apply {
-					putInt(ORDER_DATE_TIME_ID, 168)
+					putInt(ORDER_DATE_TIME_ID, dateTimeId)
 				}
 				ft.add(R.id.nav_host_fragment_activity_main, fragment)
 				ft.addToBackStack("")
@@ -244,18 +276,10 @@ class EventDetailsFragment : Fragment() {
 				}
 				fragment_detail_page_carousel.setImageList(images, ScaleTypes.CENTER_CROP)
 
-				val date = response.datetime?.date.toString()
-				val start = response.datetime?.start.toString()
-				val duration = response.datetime?.duration.toString()
-
-				detailsInformation.add(
-					DetailsInfoDataModel(
-						R.drawable.ic_calendar_accent,
-						date,
-						start,
-						duration
-					)
-				)
+				response.datetimes?.forEach {
+					dateTimes.add(DateTime(it.id, it.date, it.start, it.duration))
+				}
+				dateTimesAdapter.setData(dateTimes)
 
 				if (response.team != null) {
 					detailsInformation.add(

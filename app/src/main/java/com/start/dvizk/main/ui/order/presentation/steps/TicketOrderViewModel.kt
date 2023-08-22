@@ -48,7 +48,7 @@ class TicketOrderViewModel(
 					is Response.Success -> ticketCountRequestStateLiveData.value =
 						RequestResponseState.Success(response.result)
 					is Response.Error -> ticketCountRequestStateLiveData.value =
-						RequestResponseState.Failed(response.error.toString())
+						RequestResponseState.Failed(response.error)
 				}
 			}
 		}
@@ -73,7 +73,7 @@ class TicketOrderViewModel(
 					is Response.Success -> ticketTeamDataRequestStateLiveData.value =
 						RequestResponseState.Success(response.result)
 					is Response.Error -> ticketTeamDataRequestStateLiveData.value =
-						RequestResponseState.Failed(response.error.toString())
+						RequestResponseState.Failed(response.error)
 				}
 			}
 		}
@@ -106,7 +106,7 @@ class TicketOrderViewModel(
 					is Response.Success -> ticketOwnerDataRequestStateLiveData.value =
 						RequestResponseState.Success(response.result)
 					is Response.Error -> ticketOwnerDataRequestStateLiveData.value =
-						RequestResponseState.Failed(response.error.toString())
+						RequestResponseState.Failed(response.error)
 				}
 			}
 		}
