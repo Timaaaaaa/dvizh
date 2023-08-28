@@ -82,5 +82,8 @@ dependencies {
     // Carousel (Image Slider)
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.2'
 
+    // RangeSeekBar for price
+    implementation 'com.github.Jay-Goo:RangeSeekBar:v3.0.0'
+
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
 }

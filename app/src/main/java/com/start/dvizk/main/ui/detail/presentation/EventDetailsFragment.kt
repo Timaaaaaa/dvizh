@@ -24,8 +24,6 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.material.snackbar.Snackbar
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
-import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
-import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
 import com.start.dvizk.create.steps.data.model.RequestResponseState
 import com.start.dvizk.main.ui.detail.data.model.CheckListDataModel
 import com.start.dvizk.main.ui.detail.data.model.DateTime
@@ -38,7 +36,6 @@ import com.start.dvizk.main.ui.detail.presentation.rules.CancellationRulesFragme
 import com.start.dvizk.main.ui.detail.presentation.rules.EventRulesFragment
 import com.start.dvizk.main.ui.home.presentation.EVENT_ID
 import com.start.dvizk.main.ui.order.presentation.router.OrderTicketScreenRouter
-import com.start.dvizk.main.ui.order.presentation.steps.TicketsCountStepFragment
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -193,7 +190,15 @@ class EventDetailsFragment : Fragment(), OnDateTimeClickListener {
 		fragment_detail_page_book_event_button =
 			view.findViewById(R.id.fragment_detail_page_book_event_button)
 		fragment_detail_page_book_event_button.setOnClickListener {
-			viewModel.orderFirstStep(sharedPreferencesRepository.getUserToken(), dateTimeId)
+			if (areAnyItemsSelected(dateTimes)) {
+				viewModel.orderFirstStep(sharedPreferencesRepository.getUserToken(), dateTimeId)
+			} else {
+				Toast.makeText(
+					requireContext(),
+					"Ни одна дата не выбрана",
+					Toast.LENGTH_SHORT
+				).show()
+			}
 		}
 	}
 
@@ -404,6 +409,13 @@ class EventDetailsFragment : Fragment(), OnDateTimeClickListener {
 				}
 			}
 		}
+	}
+
+	private fun areAnyItemsSelected(dateTimes: List<DateTime>): Boolean {
+		dateTimes.forEach {
+			if (it.isSelected) return true
+		}
+		return false
 	}
 
 	private fun openLink(link: String) {
