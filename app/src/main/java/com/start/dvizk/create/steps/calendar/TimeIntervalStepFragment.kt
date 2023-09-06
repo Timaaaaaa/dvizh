@@ -240,7 +240,11 @@ class TimeIntervalStepFragment : Fragment(), OnSelectTimeListener, OnBottomSheet
 
 	}
 
-	override fun onBottomSheetDismiss(ids: List<Int>, parameterName: String) {
+	override fun onBottomSheetDismiss(
+		ids: List<Int>,
+		parameterName: String,
+		list: MutableList<SelectItem>
+	) {
 
 		deadlineTimesList.forEach { time ->
 			time.isSelect = false

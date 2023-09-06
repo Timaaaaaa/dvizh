@@ -17,9 +17,11 @@ import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.CreateActivity
 import com.start.dvizk.create.steps.data.model.RequestResponseState
+import com.start.dvizk.main.MainActivity
 import com.start.dvizk.main.ui.home.presentation.HomeFragment
 import com.start.dvizk.main.ui.profile.data.model.ProfileDataModel
 import com.start.dvizk.main.ui.profile.data.model.UserProfile
+import com.start.dvizk.scanner.QRScannerActivity
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,6 +39,8 @@ class ProfileFragment : Fragment() {
 
 	private lateinit var fragment_profile_page_create_event: ConstraintLayout
 	private lateinit var fragment_profile_page_logout: ConstraintLayout
+
+	private lateinit var qr: View
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -69,6 +73,9 @@ class ProfileFragment : Fragment() {
 		fragment_profile_page_profile_name =
 			view.findViewById(R.id.fragment_profile_page_profile_name)
 
+		qr =
+			view.findViewById(R.id.qr)
+
 		fragment_profile_page_events_count =
 			view.findViewById(R.id.fragment_profile_page_events_count)
 		fragment_profile_page_followers_count =
@@ -85,12 +92,19 @@ class ProfileFragment : Fragment() {
 
 		fragment_profile_page_logout =
 			view.findViewById(R.id.fragment_profile_page_logout)
+
 		fragment_profile_page_logout.setOnClickListener {
 			val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
 			sharedPreferencesRepository.clearAll()
 			ft.replace(R.id.nav_host_fragment_activity_main, HomeFragment())
 			ft.commit()
+		}
+
+		qr.setOnClickListener {
+			val intent = Intent(requireContext(), QRScannerActivity::class.java)
+			startActivity(intent)
+
 		}
 	}
 

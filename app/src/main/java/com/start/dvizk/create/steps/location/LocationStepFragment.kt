@@ -183,7 +183,11 @@ class LocationStepFragment : Fragment(), OnBottomSheetDismissListener {
 			.show()
 	}
 
-	override fun onBottomSheetDismiss(ids: List<Int>, parameterName: String) {
+	override fun onBottomSheetDismiss(
+		ids: List<Int>,
+		parameterName: String,
+		list: MutableList<SelectItem>
+	) {
 		when (parameterName) {
 			"country" -> {
 				var languagesNames = ""

@@ -14,10 +14,10 @@ class CreateActivity : AppCompatActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		setContentView(layoutInflater.inflate(R.layout.activity_auth, null, false))
 
 		if (sharedPreferencesRepository.getFirstLaunchInstructio()) {
 			sharedPreferencesRepository.setFirstLaunchInstructio(false)
-			setContentView(layoutInflater.inflate(R.layout.activity_auth, null, false))
 
 			val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
 
@@ -25,8 +25,6 @@ class CreateActivity : AppCompatActivity() {
 
 			ft.commit()
 		} else {
-			setContentView(layoutInflater.inflate(R.layout.activity_auth, null, false))
-
 			val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
 
 			ft.replace(R.id.fragment_container, OrganizationListFragment())

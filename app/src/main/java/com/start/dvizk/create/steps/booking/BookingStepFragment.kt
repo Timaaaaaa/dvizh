@@ -17,7 +17,6 @@ import com.start.dvizk.arch.EventCreateRouter
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.organization.list.presentation.EVENT_ID_KEY
 import com.start.dvizk.create.organization.list.presentation.STEP_NUMBER_KEY
-import com.start.dvizk.create.steps.about.AboutStepViewModel
 import com.start.dvizk.create.steps.bottomsheet.universal.BottomSheetSelectListFragment
 import com.start.dvizk.create.steps.bottomsheet.universal.IS_MULTI_SELECT_KEY
 import com.start.dvizk.create.steps.bottomsheet.universal.OnBottomSheetDismissListener
@@ -25,7 +24,6 @@ import com.start.dvizk.create.steps.bottomsheet.universal.SELECT_LIST_KEY
 import com.start.dvizk.create.steps.bottomsheet.universal.model.SelectItem
 import com.start.dvizk.create.steps.data.model.RequestResponseState
 import com.start.dvizk.create.steps.data.model.StepDataApiResponse
-import com.start.dvizk.create.steps.service.AdditionalServiceStepFragment
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -122,7 +120,11 @@ class BookingStepFragment : Fragment(), OnBottomSheetDismissListener {
 		}
 	}
 
-	override fun onBottomSheetDismiss(ids: List<Int>, parameterName: String) {
+	override fun onBottomSheetDismiss(
+		ids: List<Int>,
+		parameterName: String,
+		list: MutableList<SelectItem>
+	) {
 
 		deadlineTimesList.forEach { lang ->
 			lang.isSelect = false

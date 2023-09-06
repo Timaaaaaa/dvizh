@@ -1,5 +1,6 @@
 package com.start.dvizk.main.ui.tickets.ticket.presentation
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.common.BitMatrix
 import com.start.dvizk.R
 import com.start.dvizk.arch.data.SharedPreferencesRepository
 import com.start.dvizk.create.steps.data.model.RequestResponseState
@@ -95,10 +99,29 @@ class TicketFragment : Fragment() {
 				fragment_ticket_time.text = ticket.time
 				fragment_ticket_price.text = ticket.price
 				fragment_ticket_id.text = ticket.id.toString()
-
+				fragment_ticket_title.text = ticket.title
 				fragment_ticket_progressbar.visibility = View.GONE
 				fragment_ticket_layout.visibility = View.VISIBLE
+
+
+
+				val textToEncode = "{\"datetime_id\":${ticket.datetime_id},\"ticket_id\":${ticket.id},\"email\":\"${ticket.email}\"}"
+				val bitmap = generateQRCode(textToEncode, 500, 500)
+				fragment_ticket_qr.setImageBitmap(bitmap)
 			}
 		}
+	}
+
+	private fun generateQRCode(text: String, width: Int, height: Int): Bitmap? {
+		val bitMatrix: BitMatrix = MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height)
+		val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+
+		for (x in 0 until width) {
+			for (y in 0 until height) {
+				bitmap.setPixel(x, y, if (bitMatrix[x, y]) 0xFF000000.toInt() else 0xFFFFFFFF.toInt())
+			}
+		}
+
+		return bitmap
 	}
 }

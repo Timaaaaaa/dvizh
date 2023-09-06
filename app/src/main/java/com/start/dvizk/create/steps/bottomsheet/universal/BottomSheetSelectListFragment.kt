@@ -54,7 +54,9 @@ class BottomSheetSelectListFragment : BottomSheetDialogFragment(), OnSelectListC
 				ids = ids.plus(it.id)
 			}
 		}
-		listener?.onBottomSheetDismiss(ids, arguments?.getString(PARAMETER_NAME_KEY) ?: "default")
+		listener?.onBottomSheetDismiss(ids, arguments?.getString(PARAMETER_NAME_KEY) ?: "default", list.filter { it.isSelect }.toMutableList())
+		listener = null
+		adapter.setListener(null)
 		super.onDismiss(dialog)
 	}
 
@@ -90,22 +92,26 @@ class BottomSheetSelectListFragment : BottomSheetDialogFragment(), OnSelectListC
 	}
 
 	override fun onItemSelect(id: Int) {
+		var item: SelectItem? = null
 		list.forEach {
 			if(it.id == id) {
 				it.isSelect = !it.isSelect
+				item = it
 			}
 		}
-		adapter.notifyDataSetChanged()
+		adapter.notifyItemChanged(list.indexOf(item))
 		dismiss()
 	}
 
 	override fun onMultiItemsSelect(id: Int) {
+		var item: SelectItem? = null
 		list.forEach {
 			if(it.id == id) {
 				it.isSelect = !it.isSelect
+				item = it
 			}
 		}
-		adapter.notifyDataSetChanged()
+		adapter.notifyItemChanged(list.indexOf(item))
 	}
 
 	fun setListener(listener: OnBottomSheetDismissListener) {

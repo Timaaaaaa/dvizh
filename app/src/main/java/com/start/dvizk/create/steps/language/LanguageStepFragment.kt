@@ -83,13 +83,14 @@ class LanguageStepFragment : Fragment(), OnBottomSheetDismissListener {
 			requireActivity().supportFragmentManager.popBackStack()
 		}
 
-		languagesText.setOnClickListener{
+		languagesText.setOnClickListener {
 			if (languages.isEmpty()) {
 				viewModel.getLanguages()
 			} else {
 				var selectListCurrent = listOf<SelectItem>()
 				languages.forEach {
-					selectListCurrent = selectListCurrent.plus(mapToSelectListItem(it.id, it.name, it.isSelected))
+					selectListCurrent =
+						selectListCurrent.plus(mapToSelectListItem(it.id, it.name, it.isSelected))
 				}
 				val bottomSheetFragment = BottomSheetSelectListFragment()
 				bottomSheetFragment.setListener(this)
@@ -108,22 +109,25 @@ class LanguageStepFragment : Fragment(), OnBottomSheetDismissListener {
 			is RequestResponseState.Failed -> {
 				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
 			}
+
 			is RequestResponseState.Loading -> {
 
 			}
+
 			is RequestResponseState.Success -> {
 				val response = state.value as? StepDataApiResponse ?: return responseFailed()
 				val imm: InputMethodManager =
 					context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
 				imm.hideSoftInputFromWindow(view?.windowToken, 0)
-				val ft: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+				val ft: FragmentTransaction =
+					requireActivity().supportFragmentManager.beginTransaction()
 				val fragment = EventCreateRouter.getCreateStepFragment(response.data.nextStep.name)
 
 				fragment.arguments = Bundle().apply {
 					putInt(STEP_NUMBER_KEY, response.data.nextStep.numberStep)
 					putInt(EVENT_ID_KEY, response.data.eventId)
 				}
-				ft.add(R.id.fragment_container,fragment)
+				ft.add(R.id.fragment_container, fragment)
 				ft.addToBackStack(null)
 				ft.commit()
 			}
@@ -135,14 +139,17 @@ class LanguageStepFragment : Fragment(), OnBottomSheetDismissListener {
 			is RequestResponseState.Failed -> {
 				Toast.makeText(requireContext(), state.message, Toast.LENGTH_LONG).show()
 			}
+
 			is RequestResponseState.Loading -> {
 
 			}
+
 			is RequestResponseState.Success -> {
 				languages = state.value as? List<EventParameter> ?: return responseFailed()
 				var selectListCurrent = listOf<SelectItem>()
 				languages.forEach {
-					selectListCurrent = selectListCurrent.plus(mapToSelectListItem(it.id, it.name, it.isSelected))
+					selectListCurrent =
+						selectListCurrent.plus(mapToSelectListItem(it.id, it.name, it.isSelected))
 				}
 				val bottomSheetFragment = BottomSheetSelectListFragment()
 				bottomSheetFragment.setListener(this)
@@ -162,10 +169,15 @@ class LanguageStepFragment : Fragment(), OnBottomSheetDismissListener {
 	}
 
 	private fun responseFailed() {
-		Toast.makeText(requireContext(), "Ошибка сервера попробуйте позже", Toast.LENGTH_LONG).show()
+		Toast.makeText(requireContext(), "Ошибка сервера попробуйте позже", Toast.LENGTH_LONG)
+			.show()
 	}
 
-	override fun onBottomSheetDismiss(ids: List<Int>, parameterName: String) {
+	override fun onBottomSheetDismiss(
+		ids: List<Int>,
+		parameterName: String,
+		list: MutableList<SelectItem>
+	) {
 		var languagesNames = ""
 		var secondLang = false
 		languages.forEach { lang ->
@@ -184,6 +196,7 @@ class LanguageStepFragment : Fragment(), OnBottomSheetDismissListener {
 				}
 			}
 		}
+
 		languagesText.text = languagesNames
 	}
 }

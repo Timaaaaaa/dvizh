@@ -38,7 +38,7 @@ class SelectListAdapter(
 		return items.size
 	}
 
-	fun setListener(listener: OnSelectListClickListener) {
+	fun setListener(listener: OnSelectListClickListener?) {
 		this.listener = listener
 	}
 
