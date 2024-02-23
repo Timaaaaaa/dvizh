@@ -1,8 +1,5 @@
 package com.start.dvizk.network
 
-/**
- * @author marshal@kolesa.kz
- */
 interface ApiErrorExceptionFactory {
 
     fun createException(
